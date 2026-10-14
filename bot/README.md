@@ -73,8 +73,4 @@ npx wrangler secret put ALLOWED_USER_IDS
 npx wrangler deploy
 ```
 
-7. Сказать Telegram, куда слать сообщения (подставить токен, адрес воркера и секрет):
-
-```bash
-curl "https://api.telegram.org/bot<TELEGRAM_TOKEN>/setWebhook?url=<адрес воркера>&secret_token=<TELEGRAM_SECRET>&allowed_updates=[\"message\",\"callback_query\"]"
-```
+7. Подключить к Telegram: открыть в браузере `<адрес воркера>/setup?secret=<TELEGRAM_SECRET>`. Ответ `"ok":true` значит, что всё готово.

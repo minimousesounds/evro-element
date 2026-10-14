@@ -44,6 +44,17 @@ const HELP = `Пишите как обычно, я пойму и покажу, �
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const url = new URL(request.url);
+    // Подключение к Telegram без знания токена: GET /setup?secret=<TELEGRAM_SECRET>
+    if (url.pathname === '/setup') {
+      if (url.searchParams.get('secret') !== env.TELEGRAM_SECRET) return new Response('forbidden', { status: 403 });
+      const res = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_TOKEN}/setWebhook`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: `${url.origin}/`, secret_token: env.TELEGRAM_SECRET, allowed_updates: ['message', 'callback_query'] }),
+      });
+      return new Response(await res.text(), { headers: { 'Content-Type': 'application/json' } });
+    }
     if (request.method !== 'POST') return new Response('ok');
     if (request.headers.get('X-Telegram-Bot-Api-Secret-Token') !== env.TELEGRAM_SECRET) return new Response('forbidden', { status: 403 });
     const update = (await request.json()) as TgUpdate;
