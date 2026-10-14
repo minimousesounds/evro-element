@@ -128,11 +128,16 @@ main { padding-bottom: var(--section); }
   background: var(--bg-surface); box-shadow: inset 0 0 0 1px var(--border-default); flex: none; }
 .stepper button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: none; border-radius: 4px; cursor: pointer; }
 .stepper button:hover { background: var(--bg-page); }
-.stepper input { width: 40px; border: 0; outline: 0; background: none; text-align: center; font: 500 16px/24px var(--font); color: var(--text-primary); -moz-appearance: textfield; }
+.stepper input { width: 56px; border: 0; outline: 0; background: none; text-align: center; font: 500 16px/24px var(--font); color: var(--text-primary); -moz-appearance: textfield; }
 .stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .stepper--s { height: 36px; }
 .stepper--s button { width: 32px; height: 28px; }
-.stepper--s input { width: 28px; font-size: 14px; line-height: 20px; }
+.stepper--s input { width: 40px; font-size: 14px; line-height: 20px; }
+/* На единице минус в карточке превращается в корзину: следующий клик убирает товар */
+.stepper .i-trash, .stepper[data-one] .i-minus { display: none; }
+.stepper[data-one] .i-trash { display: contents; }
+.stepper .i-minus { display: contents; }
+.stepper[data-one] [data-ctl-step="-1"] { color: var(--text-secondary); }
 
 /* Карточки и сетки */
 .card { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 28px; }

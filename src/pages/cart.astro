@@ -36,7 +36,7 @@ import Icon from '../components/Icon.astro';
       <div class="item__info"><span class="item__meta"><span class="mono" data-f="sku"></span></span><a class="item__title" data-f="title"></a><span class="tertiary small" data-f="unit"></span></div>
       <span class="stepper item__qty">
         <button type="button" data-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
-        <input type="number" min="1" aria-label="Количество" />
+        <input type="number" inputmode="numeric" min="1" max="9999" aria-label="Количество" />
         <button type="button" data-step="1" aria-label="Больше"><Icon name="plus" size={20} /></button>
       </span>
       <b class="item__sum" data-f="sum"></b>

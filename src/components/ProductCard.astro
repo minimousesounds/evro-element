@@ -21,8 +21,15 @@ const label = brandLabel(product);
     <span class:list={['pcard__stock', { 'pcard__stock--order': !d.inStock }]}>{d.inStock ? 'В наличии' : 'Под заказ'}</span>
     <div class="pcard__foot">
       <span class="pcard__price">{formatPrice(d.price)}</span>
-      <button class="btn btn--s" type="button" data-add={product.id} data-sku={d.sku} data-title={d.title}
-        data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}><Icon name="plus" size={16} />В корзину</button>
+      <div class="pcard__buy" data-cart-ctl={product.id} data-sku={d.sku} data-title={d.title}
+        data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}>
+        <button class="btn btn--s" type="button" data-ctl-add><Icon name="plus" size={16} />В корзину</button>
+        <span class="stepper stepper--s pcard__qty" data-ctl-stepper hidden>
+          <button type="button" data-ctl-step="-1" aria-label="Меньше"><span class="i-minus"><Icon name="minus" size={16} /></span><span class="i-trash"><Icon name="trash" size={16} /></span></button>
+          <input type="number" inputmode="numeric" min="0" max="9999" aria-label={`Количество ${d.sku} в корзине`} />
+          <button type="button" data-ctl-step="1" aria-label="Больше"><Icon name="plus" size={16} /></button>
+        </span>
+      </div>
     </div>
   </div>
 </article>
@@ -41,7 +48,9 @@ const label = brandLabel(product);
   .pcard__title a { text-decoration: none; }
   .pcard__title a::after { content: ""; position: absolute; inset: 0; }
   .pcard { position: relative; }
-  .pcard__foot .btn { position: relative; z-index: 1; }
+  .pcard__buy { position: relative; z-index: 1; display: flex; }
+  .pcard__qty { width: 124px; }
+  .pcard__qty input { flex: 1; min-width: 0; }
   .pcard__stock { display: inline-flex; gap: 6px; align-items: center; font: 500 12px/16px var(--font); color: var(--text-success); }
   .pcard__stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   .pcard__stock--order { color: var(--text-secondary); }
@@ -56,5 +65,7 @@ const label = brandLabel(product);
     .pcard__title { font: 500 14px/20px var(--font); }
     .pcard__foot { flex-direction: column; align-items: stretch; gap: 10px; padding-top: 0; }
     .pcard__price { font-size: 18px; }
+    .pcard__buy > * { flex: 1; }
+    .pcard__qty { width: auto; }
   }
 </style>

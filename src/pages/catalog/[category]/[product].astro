@@ -98,14 +98,15 @@ const ld = {
 
         <div class="buy">
           <div class="buy__price">{formatPrice(d.price)} <small>за штуку</small></div>
-          <div class="buy__actions">
-            <span class="stepper">
-              <button type="button" data-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
-              <input id="qty" type="number" min="1" value="1" aria-label="Количество" />
-              <button type="button" data-step="1" aria-label="Больше"><Icon name="plus" size={20} /></button>
+          <div class="buy__actions" data-cart-ctl={product.id} data-mode="page" data-sku={d.sku} data-title={d.title}
+            data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}>
+            <span class="stepper" data-ctl-stepper>
+              <button type="button" data-ctl-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
+              <input id="qty" type="number" inputmode="numeric" min="1" max="9999" value="1" aria-label="Количество" />
+              <button type="button" data-ctl-step="1" aria-label="Больше"><Icon name="plus" size={20} /></button>
             </span>
-            <button class="btn btn--l buy__add" type="button" data-add={product.id} data-qty-from="#qty" data-sku={d.sku}
-              data-title={d.title} data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}><Icon name="plus" size={20} />Добавить в корзину</button>
+            <button class="btn btn--l buy__add" type="button" data-ctl-add><Icon name="plus" size={20} />Добавить в корзину</button>
+            <a class="btn btn--l btn--dark buy__add" href="/cart/" data-ctl-go hidden><Icon name="check" size={20} />В корзине, оформить</a>
           </div>
           <p class="notice notice--plain"><Icon name="info" size={18} />Оформите заказ на сайте. Соберём его и отправим выбранным способом.</p>
         </div>
