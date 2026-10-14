@@ -9,7 +9,7 @@ export interface TgPhotoSize {
 export interface TgMessage {
   message_id: number;
   chat: { id: number };
-  from?: { id: number; first_name?: string };
+  from?: { id: number; first_name?: string; last_name?: string };
   text?: string;
   caption?: string;
   photo?: TgPhotoSize[];
@@ -17,7 +17,7 @@ export interface TgMessage {
 }
 export interface TgCallback {
   id: string;
-  from: { id: number };
+  from: { id: number; first_name?: string; last_name?: string };
   message?: TgMessage;
   data?: string;
 }

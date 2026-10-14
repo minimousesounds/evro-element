@@ -17,7 +17,7 @@ import site from '../data/site.json';
             <label class="field">Имя и фамилия<input name="name" autocomplete="name" required /></label>
             <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" required /></label>
           </div>
-          <label class="field">Электронная почта<input name="email" type="email" autocomplete="email" /><small>Пришлём сумму к оплате и номер отправления. Без почты свяжемся по телефону</small></label>
+          <label class="field">Электронная почта<input name="email" type="email" autocomplete="email" required /><small data-email-hint>Пришлём на неё счёт и номер отправления</small></label>
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Покупатель</h4></legend>
@@ -41,9 +41,8 @@ import site from '../data/site.json';
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Оплата</h4></legend>
-          <p class="muted small pay-note">Оплата не на сайте. Сначала проверим наличие и посчитаем доставку, потом пришлём точную сумму. Заказ отправляем после оплаты.</p>
-          <label class="opt" data-pay="person"><input type="radio" name="payment" value="Переводом" checked /><span><b>Переводом</b><small>Пришлём реквизиты или QR-код для оплаты в приложении банка</small></span></label>
-          <label class="opt" data-pay="org"><input type="radio" name="payment" value="По счёту" /><span><b>По счёту</b><small>Пришлём счёт на почту, после оплаты отгрузим и передадим закрывающие документы</small></span></label>
+          <p class="muted small pay-note">Оплата не на сайте. Проверим наличие, посчитаем доставку и пришлём счёт на точную сумму. Заказ отправляем после оплаты.</p>
+          <label class="opt" data-pay="invoice"><input type="radio" name="payment" value="По счёту" checked /><span><b>По счёту</b><small>Пришлём счёт на почту. Оплатить можно с расчётного счёта организации или в приложении любого банка. Организациям передадим закрывающие документы</small></span></label>
           <label class="opt" data-pay="pickup"><input type="radio" name="payment" value="При получении" /><span><b>При получении в офисе</b><small data-pickup-hint>Наличными или картой. Доступно только при самовывозе</small></span></label>
         </fieldset>
         <fieldset class="card stack">
@@ -77,7 +76,6 @@ import site from '../data/site.json';
   // поля организации и адреса показываем только когда они нужны
   const radio = (name: string) => form.elements.namedItem(name) as RadioNodeList;
   const payInput = (key: string) => form.querySelector<HTMLInputElement>(`[data-pay="${key}"] input`)!;
-  let lastBuyer = radio('buyer').value;
   const sync = () => {
     const org = radio('buyer').value !== 'Физическое лицо';
     form.querySelector<HTMLElement>('[data-org]')!.hidden = !org;
@@ -87,12 +85,11 @@ import site from '../data/site.json';
     const cash = payInput('pickup');
     cash.disabled = !pickup;
     cash.closest('.opt')!.classList.toggle('opt--disabled', !pickup);
-    if (!pickup && cash.checked) payInput(org ? 'org' : 'person').checked = true;
-    // при смене типа покупателя подставляем подходящий способ оплаты
-    if (radio('buyer').value !== lastBuyer) {
-      lastBuyer = radio('buyer').value;
-      if (!cash.checked) payInput(org ? 'org' : 'person').checked = true;
-    }
+    if (!pickup && cash.checked) payInput('invoice').checked = true;
+    // почта нужна для счёта; при оплате в офисе можно без неё
+    const email = form.elements.namedItem('email') as HTMLInputElement;
+    email.required = !cash.checked;
+    form.querySelector('[data-email-hint]')!.textContent = cash.checked ? 'Необязательно. Без почты позвоним, когда заказ будет готов' : 'Пришлём на неё счёт и номер отправления';
     document.getElementById('total-label')!.textContent = pickup ? 'Итого' : 'Итого без доставки';
   };
   form.addEventListener('change', sync);

@@ -3,43 +3,42 @@ import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Icon from '../components/Icon.astro';
 import site from '../data/site.json';
+import about from '../data/about.json';
 import { getCategories } from '../lib/catalog';
 const categories = await getCategories();
 const years = new Date().getFullYear() - site.foundingYear;
 const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
+// Тексты страницы правятся в админке (Настройки → Страница «О компании»). Подстановки считаются при сборке.
+const yearsWord = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'год' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'года' : 'лет');
+const fill = (t: string) =>
+  t.replaceAll('{компания}', site.legalName).replaceAll('{год}', String(site.foundingYear))
+    .replaceAll('{лет}', `${years} ${yearsWord(years)}`).replaceAll('{категорий}', String(categories.length));
 ---
-<Base title="О компании" description={`${site.legalName} с ${site.foundingYear} года подбирает и поставляет фильтры для грузовой и легковой техники в Набережных Челнах.`}>
+<Base title="О компании" description={fill(about.seoDescription)}>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'О компании' }]} />
     <div class="page-title"><h1>О компании</h1></div>
 
     <div class="intro">
       <div class="intro__text">
-        <p class="t-h3">{site.legalName} с {site.foundingYear} года подбирает и поставляет воздушные, масляные и топливные фильтры для грузовой и легковой техники.</p>
-        <p class="lead">Много лет мы работали с оригинальными фильтрами ASAS-FILTER и знаем эту линейку по артикулам. Сейчас привозим аналоги и говорим об этом прямо: в каждой карточке указано, какой фильтр ASAS заменяет товар.</p>
-        <p class="lead">Аналог подбираем по посадочным размерам, резьбе и кросс-номерам, поэтому он встаёт на штатное место. Найдём фильтр по артикулу, номеру другого производителя или марке техники, выставим счёт организации.</p>
+        <p class="t-h3">{fill(about.intro)}</p>
+        {about.paragraphs.map((p) => <p class="lead">{fill(p)}</p>)}
       </div>
       <div class="intro__stats">
-        <div class="stat"><b>{years} лет</b><span>работаем с фильтрами в Набережных Челнах</span></div>
-        <div class="stat"><b>{categories.length}</b><span>категорий фильтров и запчастей</span></div>
-        <div class="stat"><b>1 : 1</b><span>посадочные размеры как у оригинала</span></div>
-        <div class="stat"><b class="stat__s">По артикулу</b><span>ищите по номеру ASAS, подберём аналог</span></div>
+        {about.stats.map((st) => { const v = fill(st.value); return <div class="stat"><b class:list={{ stat__s: v.length > 8 }}>{v}</b><span>{fill(st.text)}</span></div>; })}
       </div>
     </div>
 
     <section class="section stack">
-      <h2>Почему к нам обращаются</h2>
+      <h2>{about.featuresTitle}</h2>
       <div class="features">
-        <div class="feature"><span class="feature__icon"><Icon name="shield" /></span><h3 class="t-h4">Честно про аналоги</h3><p>Не выдаём аналог за оригинал: в каждой карточке указано, какой фильтр он заменяет.</p></div>
-        <div class="feature"><span class="feature__icon"><Icon name="package" /></span><h3 class="t-h4">Наличие на месте</h3><p>Ходовые позиции для грузовой техники и легковых машин есть в офисе.</p></div>
-        <div class="feature"><span class="feature__icon"><Icon name="copy" /></span><h3 class="t-h4">Подбор по кросс-номеру</h3><p>Найдём замену по номеру ASAS, MANN, Fleetguard, Donaldson и других.</p></div>
-        <div class="feature"><span class="feature__icon"><Icon name="file" /></span><h3 class="t-h4">Работа с юрлицами</h3><p>Выставим счёт, передадим закрывающие документы.</p></div>
+        {about.features.map((f) => <div class="feature"><span class="feature__icon"><Icon name={f.icon as any} /></span><h3 class="t-h4">{f.title}</h3><p>{fill(f.text)}</p></div>)}
       </div>
     </section>
 
     <section class="section">
       <div class="cta">
-        <div><h2>Приезжайте или звоните</h2><p>{site.city}, {site.address}. {site.hours}</p></div>
+        <div><h2>{about.ctaTitle}</h2><p>{site.city}, {site.address}. {site.hours}</p></div>
         <div class="row">
           <a class="btn btn--l" href={phoneHref}><Icon name="phone" size={20} />{site.phone}</a>
           <a class="btn btn--l btn--outline" href="/contacts/">Контакты</a>

@@ -153,6 +153,10 @@ async function onButton(cb: TgCallback, env: Env, tg: Telegram, allowed: Set<num
     const files = await planToFiles(pending.plan, (p) => gh.readText(p), photo, stamp);
     await gh.commit(commitMessage(pending.plan), files);
     await tg.edit(chatId, cb.message.message_id, `${original}\n\n✅ Готово. На сайте будет через 1–2 минуты.`);
+    // остальным допущенным присылаем копию, чтобы видели, что поменялось
+    const who = [cb.from.first_name, cb.from.last_name].filter(Boolean).join(' ') || `id ${cb.from.id}`;
+    const copy = `${who} изменил каталог:\n${describe(pending.plan, await loadCatalog(env.SITE_INDEX_URL)).join('\n')}`;
+    for (const id of allowed) if (id !== cb.from.id) await tg.send(id, copy).catch((e) => console.error('copy failed', id, e));
   } catch (e) {
     console.error(e);
     await tg.edit(chatId, cb.message.message_id, `${original}\n\n⚠️ Не получилось сохранить, сайт не изменился. Попробуйте ещё раз.`);

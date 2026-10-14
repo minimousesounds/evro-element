@@ -47,9 +47,8 @@ import site from '../data/site.json';
       // шаги под выбранные оплату и доставку
       const steps: [string, string][] = [['Проверим наличие' + (order.pickup ? '' : ' и посчитаем доставку'), 'В рабочее время, ' + document.getElementById('done-data')!.dataset.hours]];
       const where = order.email ? `на ${order.email}` : 'по телефону из заказа';
-      if (order.payment === 'По счёту') steps.push(['Пришлём счёт', `Отправим ${order.email ? where : 'на почту, которую уточним по телефону'}`]);
-      else if (order.payment === 'При получении') steps.push(['Позвоним, когда заказ будет готов', 'Оплатите наличными или картой в офисе']);
-      else steps.push(['Пришлём сумму и реквизиты для перевода', `Сообщим ${where}`]);
+      if (order.payment === 'При получении') steps.push(['Позвоним, когда заказ будет готов', 'Оплатите наличными или картой в офисе']);
+      else steps.push(['Пришлём счёт', `Отправим ${order.email ? where : 'на почту, которую уточним по телефону'}. Оплатить можно в приложении любого банка`]);
       steps.push(order.pickup ? ['Заберите заказ в офисе', document.getElementById('done-data')!.dataset.address || ''] : ['После оплаты отправим заказ', 'Пришлём номер отправления']);
       if (order.payment === 'При получении') steps.splice(2, 1);
       document.getElementById('done-next')!.replaceChildren(

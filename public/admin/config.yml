@@ -153,3 +153,42 @@ collections:
           - { name: formsKey, label: "Ключ Web3Forms для писем с заказами", widget: string, required: false, hint: "Access key с web3forms.com. Письма приходят на почту, указанную при получении ключа" }
           - { name: dadataToken, label: "Ключ DaData для подсказок города и адреса", widget: string, required: false, hint: "API-ключ из личного кабинета dadata.ru. Без него подсказывается только город из короткого списка" }
           - { name: yandexMetrika, label: Номер счётчика Яндекс Метрики, widget: string, required: false }
+      - name: about
+        label: Страница «О компании»
+        file: src/data/about.json
+        fields:
+          - { name: intro, label: Главная фраза, widget: text, hint: "Подстановки: {компания} — юр. название, {год} — год основания, {лет} — сколько лет работаете, {категорий} — число категорий" }
+          - { name: paragraphs, label: Абзацы под ней, label_singular: Абзац, widget: list, field: { name: text, label: Абзац, widget: text } }
+          - name: stats
+            label: Чёрные плитки с цифрами
+            label_singular: Плитка
+            widget: list
+            min: 4
+            max: 4
+            summary: "{{value}}"
+            fields:
+              - { name: value, label: Крупно, widget: string, hint: "Например: {лет} или 1 : 1" }
+              - { name: text, label: Подпись, widget: string }
+          - { name: featuresTitle, label: Заголовок блока преимуществ, widget: string }
+          - name: features
+            label: Преимущества
+            label_singular: Преимущество
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - name: icon
+                label: Иконка
+                widget: select
+                options:
+                  - { label: Щит, value: shield }
+                  - { label: Коробка, value: package }
+                  - { label: Копии, value: copy }
+                  - { label: Документ, value: file }
+                  - { label: Грузовик, value: truck }
+                  - { label: Кошелёк, value: wallet }
+                  - { label: Телефон, value: phone }
+                  - { label: Метка на карте, value: pin }
+              - { name: title, label: Заголовок, widget: string }
+              - { name: text, label: Текст, widget: text }
+          - { name: ctaTitle, label: Заголовок плашки внизу, widget: string }
+          - { name: seoDescription, label: "SEO: описание", widget: text, hint: "Те же подстановки, что в главной фразе" }
