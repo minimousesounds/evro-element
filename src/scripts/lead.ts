@@ -1,4 +1,6 @@
-// Отправка коротких форм (подбор фильтра, «Напишите нам») на сервис из настроек сайта.
+// Короткие формы (подбор фильтра, «Напишите нам»): письмо владельцу через sendForm.
+import { sendForm, formFields, isBot } from './send';
+
 document.querySelectorAll<HTMLFormElement>('form[data-lead]').forEach((form) => {
   if (form.dataset.bound) return;
   form.dataset.bound = '1';
@@ -6,21 +8,17 @@ document.querySelectorAll<HTMLFormElement>('form[data-lead]').forEach((form) => 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) return form.reportValidity();
-    let text = 'Спасибо! Перезвоним в рабочее время.';
-    try {
-      if (!form.dataset.endpoint) throw new Error('Отправка заявок ещё не настроена. Позвоните нам, пожалуйста.');
-      const res = await fetch(form.dataset.endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ type: document.title, page: location.pathname, ...Object.fromEntries(new FormData(form)) }),
-      });
-      if (!res.ok) throw new Error('Не получилось отправить. Позвоните нам, пожалуйста.');
-      form.reset();
-    } catch (ex) {
-      text = (ex as Error).message;
-    }
+    if (isBot(form)) return;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (btn) btn.disabled = true;
+    const res = await sendForm(
+      form.dataset.subject || 'Заявка с сайта',
+      formFields(form, { name: 'Имя', phone: 'Телефон', comment: 'Артикул, техника или вопрос' }),
+    );
+    if (btn) btn.disabled = false;
+    if (res.ok) form.reset();
     if (msg) {
-      msg.textContent = text;
+      msg.textContent = res.ok ? 'Спасибо! Перезвоним в рабочее время.' : res.error!;
       msg.hidden = false;
     }
   });

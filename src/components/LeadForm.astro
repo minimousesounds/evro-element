@@ -3,7 +3,8 @@ import site from '../data/site.json';
 // Жёлтый блок «Не нашли нужный фильтр?» с формой подбора
 ---
 <section class="container section">
-  <form class="leadbox" data-lead data-endpoint={site.orderEndpoint} novalidate>
+  <form class="leadbox" data-lead data-subject="Подбор фильтра" novalidate>
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <div class="lead__text">
       <h2>Не нашли нужный фильтр?</h2>
       <p>Оставьте телефон и артикул или марку техники. Подберём аналог и перезвоним в рабочее время.</p>

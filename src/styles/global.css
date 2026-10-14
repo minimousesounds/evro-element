@@ -18,6 +18,8 @@ html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; font: 16px/24px var(--font); color: var(--text-primary); background: var(--bg-page); }
 body.mega-open main, body.mega-open footer { filter: brightness(0.6); transition: filter 0.15s; }
 [hidden] { display: none !important; }
+/* ловушка для ботов в формах */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 button { color: inherit; }

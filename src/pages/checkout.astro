@@ -8,7 +8,8 @@ import site from '../data/site.json';
   <div class="container">
     <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Корзина', href: '/cart/' }, { label: 'Оформление' }]} />
     <div class="page-title"><h1>Оформление заказа</h1></div>
-    <form class="cart section" style="padding-top: 0;" id="order-form" data-endpoint={site.orderEndpoint} data-dadata={site.dadataToken} novalidate>
+    <form class="cart section" style="padding-top: 0;" id="order-form" data-dadata={site.dadataToken} novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="stack" style="gap: 16px;">
         <fieldset class="card stack">
           <legend><h4>Контактные данные</h4></legend>
@@ -65,6 +66,7 @@ import site from '../data/site.json';
 <script>
   import { readCart, writeCart, cartTotal, money } from '../scripts/cart';
   import { setupAddress } from '../scripts/suggest';
+  import { sendForm, orderNumber, isBot } from '../scripts/send';
 
   const form = document.getElementById('order-form') as HTMLFormElement;
   const error = document.getElementById('order-error')!;
@@ -99,25 +101,44 @@ import site from '../data/site.json';
       form.reportValidity();
       return;
     }
-    const data = Object.fromEntries(new FormData(form).entries());
-    const order = {
-      ...data,
-      items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty, price: i.price, sum: i.price * i.qty })),
-      total: cartTotal(items),
-      text: items.map((i) => `${i.sku} ${i.title}: ${i.qty} шт. × ${i.price} ₽`).join('\n'),
-    };
-    const endpoint = form.dataset.endpoint;
-    try {
-      if (!endpoint) throw new Error('Отправка заказов ещё не настроена: в настройках сайта не указан адрес сервиса форм.');
-      const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(order) });
-      if (!res.ok) throw new Error('Не удалось отправить заказ. Позвоните нам, оформим по телефону.');
-      sessionStorage.setItem('ee-last-order', JSON.stringify(order));
-      writeCart([]);
-      location.href = `${import.meta.env.BASE_URL}order-done/`;
-    } catch (err) {
-      error.textContent = (err as Error).message;
+    if (isBot(form)) return;
+    const fd = new FormData(form);
+    const v = (k: string) => String(fd.get(k) ?? '').trim();
+    const pickup = v('delivery') === 'Самовывоз';
+    const number = orderNumber();
+    const total = cartTotal(items);
+    const lines = items.map((i, n) => `${n + 1}. ${i.sku} ${i.title}: ${i.qty} шт. × ${money(i.price)} = ${money(i.price * i.qty)}`).join('\n');
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    btn.disabled = true;
+    const res = await sendForm(
+      `Заказ ${number} на ${money(total)}`,
+      {
+        'Номер заказа': number,
+        'Состав заказа': lines,
+        'Итого': money(total),
+        'Имя': v('name'),
+        'Телефон': v('phone'),
+        'Почта': v('email'),
+        'Покупатель': v('buyer'),
+        'Организация': v('company'),
+        'ИНН': v('inn'),
+        'Доставка': v('delivery'),
+        'Город': pickup ? '' : v('city'),
+        'Адрес или пункт выдачи': pickup ? '' : v('address'),
+        'Оплата': v('payment'),
+        'Комментарий': v('comment'),
+      },
+      v('email') || undefined,
+    );
+    btn.disabled = false;
+    if (!res.ok) {
+      error.textContent = res.error!;
       error.hidden = false;
+      return;
     }
+    sessionStorage.setItem('ee-last-order', JSON.stringify({ number, total, items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty })) }));
+    writeCart([]);
+    location.href = `${import.meta.env.BASE_URL}order-done/`;
   });
 </script>
 

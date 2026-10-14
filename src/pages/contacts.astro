@@ -29,7 +29,8 @@ const mapQuery = encodeURIComponent(`${site.city}, ${site.addressShort}`);
     </div>
 
     <section class="section">
-      <form class="write" data-lead data-endpoint={site.orderEndpoint} novalidate>
+      <form class="write" data-lead data-subject="Сообщение со страницы «Контакты»" novalidate>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <div class="write__text">
           <h2>Напишите нам</h2>
           <p class="lead">Ответим на вопрос о наличии, подберём фильтр или выставим счёт. Перезваниваем в рабочее время.</p>

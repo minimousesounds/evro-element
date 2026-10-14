@@ -4,7 +4,8 @@ import Icon from './Icon.astro';
 // Модалка «Заказать звонок». Открывается любой кнопкой с атрибутом data-callback.
 ---
 <dialog class="modal" id="callback" aria-labelledby="callback-title">
-  <form class="modal__body" id="callback-form" data-endpoint={site.orderEndpoint} novalidate>
+  <form class="modal__body" id="callback-form" novalidate>
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <div class="modal__head">
       <div>
         <h2 class="t-h3" id="callback-title">Заказать звонок</h2>
@@ -30,6 +31,7 @@ import Icon from './Icon.astro';
 </dialog>
 
 <script>
+  import { sendForm, formFields, isBot } from '../scripts/send';
   const dlg = document.getElementById('callback') as HTMLDialogElement;
   const form = document.getElementById('callback-form') as HTMLFormElement;
   const done = document.getElementById('callback-done')!;
@@ -48,21 +50,19 @@ import Icon from './Icon.astro';
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) return form.reportValidity();
-    try {
-      if (!form.dataset.endpoint) throw new Error('Отправка заявок ещё не настроена. Позвоните нам, пожалуйста.');
-      const res = await fetch(form.dataset.endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ type: 'Обратный звонок', ...Object.fromEntries(new FormData(form)) }),
-      });
-      if (!res.ok) throw new Error('Не получилось отправить. Позвоните нам, пожалуйста.');
-      form.reset();
-      form.hidden = true;
-      done.hidden = false;
-    } catch (ex) {
-      err.textContent = (ex as Error).message;
+    if (isBot(form)) return;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    btn.disabled = true;
+    const res = await sendForm('Заказать звонок', formFields(form, { name: 'Имя', phone: 'Телефон', comment: 'Что нужно подобрать' }));
+    btn.disabled = false;
+    if (!res.ok) {
+      err.textContent = res.error!;
       err.hidden = false;
+      return;
     }
+    form.reset();
+    form.hidden = true;
+    done.hidden = false;
   });
 </script>
 

@@ -8,6 +8,7 @@ import site from '../data/site.json';
     <div class="done">
       <span class="done__icon"><Icon name="check" size={40} /></span>
       <h1>Заказ оформлен</h1>
+      <p class="done__num" id="done-num" hidden></p>
       <p class="lead" id="done-text">Спасибо! Заказ уже у нас на почте. Соберём его и свяжемся с вами в рабочее время, {site.hours}.</p>
       <div class="order" id="done-order" hidden>
         <ul id="done-lines"></ul>
@@ -36,6 +37,11 @@ import site from '../data/site.json';
       }
       document.getElementById('done-total')!.textContent = money(order.total);
       document.getElementById('done-order')!.hidden = false;
+      if (order.number) {
+        const num = document.getElementById('done-num')!;
+        num.textContent = `Номер заказа: ${order.number}`;
+        num.hidden = false;
+      }
     }
   } catch {
     /* нет данных о заказе, показываем общий текст */
@@ -49,8 +55,9 @@ import site from '../data/site.json';
   .done__icon :global(svg) { stroke-width: 2.5; }
   .order { width: min(480px, 100%); display: grid; gap: 10px; padding: 20px; border-radius: var(--radius-md); background: var(--bg-page); text-align: left; font-size: 14px; line-height: 20px; }
   .order ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  .order li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; }
+  .order :global(li) { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; }
   .order__total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-default); font-weight: 500; }
   .done__btns { justify-content: center; }
+  .done__num { margin: -12px 0 0; font: 500 16px/24px var(--mono); }
   @media (max-width: 600px) { .done { padding: 32px 20px; } .done__btns, .done__btns .btn { width: 100%; } }
 </style>

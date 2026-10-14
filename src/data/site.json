@@ -10,7 +10,7 @@
   "hours": "Пн–Пт 9:00–16:00",
   "hoursSchema": "Mo-Fr 09:00-16:00",
   "foundingYear": 2008,
-  "orderEndpoint": "",
   "yandexMetrika": "31865876",
-  "dadataToken": ""
+  "dadataToken": "",
+  "formsKey": ""
 }
