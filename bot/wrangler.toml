@@ -14,4 +14,4 @@ SITE_INDEX_URL = "https://minimousesounds.github.io/evro-element/bot-index.json"
 # `npx wrangler kv namespace create PENDING`.
 [[kv_namespaces]]
 binding = "PENDING"
-id = "REPLACE_WITH_KV_ID"
+id = "61815bcdb7cc4f13854380931cb37869"
