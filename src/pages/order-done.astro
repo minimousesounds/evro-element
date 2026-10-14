@@ -4,15 +4,21 @@ import Icon from '../components/Icon.astro';
 import site from '../data/site.json';
 ---
 <Base title="Заказ оформлен" noindex>
+  <span hidden id="done-data" data-hours={site.hours} data-address={`${site.addressShort}, офис 205, ${site.hours}`}></span>
   <div class="container section">
     <div class="done">
       <span class="done__icon"><Icon name="check" size={40} /></span>
       <h1>Заказ оформлен</h1>
       <p class="done__num" id="done-num" hidden></p>
-      <p class="lead" id="done-text">Спасибо! Заказ уже у нас на почте. Соберём его и свяжемся с вами в рабочее время, {site.hours}.</p>
+      <p class="lead">Спасибо! Заказ у нас. Оплачивать пока ничего не нужно.</p>
+      <ol class="next" id="done-next">
+        <li><b>Проверим наличие и посчитаем доставку</b><span>В рабочее время, {site.hours}</span></li>
+        <li><b>Пришлём сумму и способ оплаты</b><span>На почту или позвоним по телефону из заказа</span></li>
+        <li><b>После оплаты соберём и отправим заказ</b><span>Пришлём номер отправления</span></li>
+      </ol>
       <div class="order" id="done-order" hidden>
         <ul id="done-lines"></ul>
-        <div class="order__total"><span>Итого</span><b id="done-total"></b></div>
+        <div class="order__total"><span id="done-total-label">Итого</span><b id="done-total"></b></div>
       </div>
       <div class="row done__btns"><a class="btn btn--l" href="/catalog/">Вернуться в каталог</a><a class="btn btn--l btn--outline" href="/">На главную</a></div>
     </div>
@@ -36,7 +42,23 @@ import site from '../data/site.json';
         ul.append(li);
       }
       document.getElementById('done-total')!.textContent = money(order.total);
+      if (!order.pickup) document.getElementById('done-total-label')!.textContent = 'Итого без доставки';
       document.getElementById('done-order')!.hidden = false;
+      // шаги под выбранные оплату и доставку
+      const steps: [string, string][] = [['Проверим наличие' + (order.pickup ? '' : ' и посчитаем доставку'), 'В рабочее время, ' + document.getElementById('done-data')!.dataset.hours]];
+      const where = order.email ? `на ${order.email}` : 'по телефону из заказа';
+      if (order.payment === 'По счёту') steps.push(['Пришлём счёт', `Отправим ${order.email ? where : 'на почту, которую уточним по телефону'}`]);
+      else if (order.payment === 'При получении') steps.push(['Позвоним, когда заказ будет готов', 'Оплатите наличными или картой в офисе']);
+      else steps.push(['Пришлём сумму и реквизиты для перевода', `Сообщим ${where}`]);
+      steps.push(order.pickup ? ['Заберите заказ в офисе', document.getElementById('done-data')!.dataset.address || ''] : ['После оплаты отправим заказ', 'Пришлём номер отправления']);
+      if (order.payment === 'При получении') steps.splice(2, 1);
+      document.getElementById('done-next')!.replaceChildren(
+        ...steps.map(([b, s]) => {
+          const li = document.createElement('li');
+          li.append(Object.assign(document.createElement('b'), { textContent: b }), Object.assign(document.createElement('span'), { textContent: s }));
+          return li;
+        }),
+      );
       if (order.number) {
         const num = document.getElementById('done-num')!;
         num.textContent = `Номер заказа: ${order.number}`;
@@ -58,6 +80,10 @@ import site from '../data/site.json';
   .order :global(li) { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; }
   .order__total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-default); font-weight: 500; }
   .done__btns { justify-content: center; }
+  .next { list-style: none; margin: 0; padding: 0; width: min(480px, 100%); display: grid; gap: 12px; text-align: left; counter-reset: s; }
+  .next :global(li) { display: grid; grid-template-columns: 32px 1fr; column-gap: 12px; counter-increment: s; }
+  .next :global(li)::before { content: counter(s); grid-row: span 2; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--bg-accent); font: 500 14px/20px var(--mono); }
+  .next :global(span) { font-size: 14px; line-height: 20px; color: var(--text-secondary); }
   .done__num { margin: -12px 0 0; font: 500 16px/24px var(--mono); }
   @media (max-width: 600px) { .done { padding: 32px 20px; } .done__btns, .done__btns .btn { width: 100%; } }
 </style>

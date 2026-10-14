@@ -17,7 +17,7 @@ import site from '../data/site.json';
             <label class="field">Имя и фамилия<input name="name" autocomplete="name" required /></label>
             <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" required /></label>
           </div>
-          <label class="field">Электронная почта<input name="email" type="email" autocomplete="email" /><small>Пришлём подтверждение заказа и номер отправления</small></label>
+          <label class="field">Электронная почта<input name="email" type="email" autocomplete="email" /><small>Пришлём сумму к оплате и номер отправления. Без почты свяжемся по телефону</small></label>
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Покупатель</h4></legend>
@@ -41,9 +41,10 @@ import site from '../data/site.json';
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Оплата</h4></legend>
-          <label class="opt"><input type="radio" name="payment" value="Переводом по реквизитам" checked /><span><b>Переводом по реквизитам</b><small>Пришлём реквизиты на почту после оформления</small></span></label>
-          <label class="opt"><input type="radio" name="payment" value="По счёту для организаций" /><span><b>По счёту для организаций</b><small>Выставим счёт и передадим закрывающие документы</small></span></label>
-          <label class="opt"><input type="radio" name="payment" value="При получении" /><span><b>При получении</b><small>Наличными или картой, только при самовывозе</small></span></label>
+          <p class="muted small pay-note">Оплата не на сайте. Сначала проверим наличие и посчитаем доставку, потом пришлём точную сумму. Заказ отправляем после оплаты.</p>
+          <label class="opt" data-pay="person"><input type="radio" name="payment" value="Переводом" checked /><span><b>Переводом</b><small>Пришлём реквизиты или QR-код для оплаты в приложении банка</small></span></label>
+          <label class="opt" data-pay="org"><input type="radio" name="payment" value="По счёту" /><span><b>По счёту</b><small>Пришлём счёт на почту, после оплаты отгрузим и передадим закрывающие документы</small></span></label>
+          <label class="opt" data-pay="pickup"><input type="radio" name="payment" value="При получении" /><span><b>При получении в офисе</b><small data-pickup-hint>Наличными или картой. Доступно только при самовывозе</small></span></label>
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Комментарий к заказу</h4></legend>
@@ -53,11 +54,11 @@ import site from '../data/site.json';
       <aside class="card stack">
         <h4>Ваш заказ</h4>
         <ul class="lines" id="order-lines"></ul>
-        <div class="total"><span>Итого</span><b id="order-total"></b></div>
+        <div class="total"><span id="total-label">Итого без доставки</span><b id="order-total"></b></div>
         <label class="check"><input type="checkbox" name="consent" required />Согласен на <a href="/consent/">обработку персональных данных</a></label>
         <button class="btn btn--l btn--block" type="submit">Оформить заказ</button>
         <p class="error" id="order-error" role="alert" hidden></p>
-        <p class="muted" style="font-size: 14px; margin: 0;">Заказ придёт нам на почту. Соберём и отправим его в рабочее время, {site.hours}.</p>
+        <p class="muted small" style="margin: 0;">Это ещё не оплата. Проверим наличие и свяжемся с вами в рабочее время, {site.hours}.</p>
       </aside>
     </form>
   </div>
@@ -74,11 +75,25 @@ import site from '../data/site.json';
   if (!items.length) location.replace(`${import.meta.env.BASE_URL}cart/`);
   setupAddress(form, form.dataset.dadata || '');
   // поля организации и адреса показываем только когда они нужны
+  const radio = (name: string) => form.elements.namedItem(name) as RadioNodeList;
+  const payInput = (key: string) => form.querySelector<HTMLInputElement>(`[data-pay="${key}"] input`)!;
+  let lastBuyer = radio('buyer').value;
   const sync = () => {
-    const org = (form.elements.namedItem('buyer') as RadioNodeList).value !== 'Физическое лицо';
+    const org = radio('buyer').value !== 'Физическое лицо';
     form.querySelector<HTMLElement>('[data-org]')!.hidden = !org;
-    const pickup = (form.elements.namedItem('delivery') as RadioNodeList).value === 'Самовывоз';
+    const pickup = radio('delivery').value === 'Самовывоз';
     form.querySelector<HTMLElement>('[data-address]')!.hidden = pickup;
+    // оплата при получении возможна только в офисе
+    const cash = payInput('pickup');
+    cash.disabled = !pickup;
+    cash.closest('.opt')!.classList.toggle('opt--disabled', !pickup);
+    if (!pickup && cash.checked) payInput(org ? 'org' : 'person').checked = true;
+    // при смене типа покупателя подставляем подходящий способ оплаты
+    if (radio('buyer').value !== lastBuyer) {
+      lastBuyer = radio('buyer').value;
+      if (!cash.checked) payInput(org ? 'org' : 'person').checked = true;
+    }
+    document.getElementById('total-label')!.textContent = pickup ? 'Итого' : 'Итого без доставки';
   };
   form.addEventListener('change', sync);
   sync();
@@ -136,7 +151,7 @@ import site from '../data/site.json';
       error.hidden = false;
       return;
     }
-    sessionStorage.setItem('ee-last-order', JSON.stringify({ number, total, items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty })) }));
+    sessionStorage.setItem('ee-last-order', JSON.stringify({ number, total, payment: v('payment'), pickup, email: v('email'), items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty })) }));
     writeCart([]);
     location.href = `${import.meta.env.BASE_URL}order-done/`;
   });
@@ -148,6 +163,9 @@ import site from '../data/site.json';
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; clear: both; }
   .opt { display: flex; gap: 12px; padding: 16px 20px 16px 16px; border: 1px solid var(--border-default); border-radius: var(--radius-md); cursor: pointer; clear: both; }
   .opt:has(input:checked) { border-color: var(--border-strong); box-shadow: inset 0 0 0 0.5px var(--border-strong); }
+  .opt--disabled { opacity: 0.5; cursor: not-allowed; }
+  .opt--disabled input { cursor: not-allowed; }
+  .pay-note { margin: 0; clear: both; }
   .opt em { margin-left: auto; font: 500 14px/20px var(--font); white-space: nowrap; }
   .opt span { flex: 1; }
   .seg .chip input { position: absolute; opacity: 0; pointer-events: none; }
