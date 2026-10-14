@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+import { getCategories } from '../lib/catalog';
+const categories = await getCategories();
+const years = new Date().getFullYear() - site.foundingYear;
+const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
+---
+<Base title="О компании" description={`${site.legalName} с ${site.foundingYear} года подбирает и поставляет фильтры для грузовой и легковой техники в Набережных Челнах.`}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'О компании' }]} />
+    <div class="page-title"><h1>О компании</h1></div>
+
+    <div class="intro">
+      <div class="intro__text">
+        <p class="t-h3">{site.legalName} с {site.foundingYear} года подбирает и поставляет воздушные, масляные и топливные фильтры для грузовой и легковой техники.</p>
+        <p class="lead">Много лет мы работали с оригинальными фильтрами ASAS-FILTER и знаем эту линейку по артикулам. Сейчас привозим аналоги и говорим об этом прямо: в каждой карточке указано, какой фильтр ASAS заменяет товар.</p>
+        <p class="lead">Аналог подбираем по посадочным размерам, резьбе и кросс-номерам, поэтому он встаёт на штатное место. Найдём фильтр по артикулу, номеру другого производителя или марке техники, выставим счёт организации.</p>
+      </div>
+      <div class="intro__stats">
+        <div class="stat"><b>{years} лет</b><span>работаем с фильтрами в Набережных Челнах</span></div>
+        <div class="stat"><b>{categories.length}</b><span>категорий фильтров и запчастей</span></div>
+        <div class="stat"><b>1 : 1</b><span>посадочные размеры как у оригинала</span></div>
+        <div class="stat"><b class="stat__s">По артикулу</b><span>ищите по номеру ASAS, подберём аналог</span></div>
+      </div>
+    </div>
+
+    <section class="section stack">
+      <h2>Почему к нам обращаются</h2>
+      <div class="features">
+        <div class="feature"><span class="feature__icon"><Icon name="shield" /></span><h3 class="t-h4">Честно про аналоги</h3><p>Не выдаём аналог за оригинал: в каждой карточке указано, какой фильтр он заменяет.</p></div>
+        <div class="feature"><span class="feature__icon"><Icon name="package" /></span><h3 class="t-h4">Наличие на месте</h3><p>Ходовые позиции для грузовой техники и легковых машин есть в офисе.</p></div>
+        <div class="feature"><span class="feature__icon"><Icon name="copy" /></span><h3 class="t-h4">Подбор по кросс-номеру</h3><p>Найдём замену по номеру ASAS, MANN, Fleetguard, Donaldson и других.</p></div>
+        <div class="feature"><span class="feature__icon"><Icon name="file" /></span><h3 class="t-h4">Работа с юрлицами</h3><p>Выставим счёт, передадим закрывающие документы.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta">
+        <div><h2>Приезжайте или звоните</h2><p>{site.city}, {site.address}. {site.hours}</p></div>
+        <div class="row">
+          <a class="btn btn--l" href={phoneHref}><Icon name="phone" size={20} />{site.phone}</a>
+          <a class="btn btn--l btn--outline" href="/contacts/">Контакты</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .intro { display: flex; gap: 48px; align-items: flex-start; }
+  .intro__text { flex: 1; display: grid; gap: 20px; }
+  .intro__text p { margin: 0; }
+  .intro__stats { width: 560px; flex: none; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stat { display: flex; flex-direction: column; justify-content: space-between; gap: 8px; min-height: 150px; padding: 24px; border-radius: 16px; background: var(--bg-inverse); }
+  .stat b { font: 600 36px/42px var(--font); letter-spacing: -0.02em; color: var(--text-accent); }
+  .stat b.stat__s { font-size: 24px; line-height: 30px; }
+  .stat span { font-size: 14px; line-height: 20px; color: var(--text-inverse-secondary); }
+  .features { display: grid; gap: var(--gap); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .feature { display: flex; flex-direction: column; gap: 16px; padding: 28px; border-radius: 16px; background: var(--bg-surface); }
+  .feature p { margin: 0; font-size: 14px; line-height: 20px; color: var(--text-secondary); }
+  .feature__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--bg-accent); }
+  .cta { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 48px; border-radius: var(--radius-lg); background: var(--bg-inverse); color: var(--text-inverse); }
+  .cta p { margin: 8px 0 0; color: var(--text-inverse-secondary); }
+  @media (max-width: 1100px) {
+    .intro { flex-direction: column; gap: 24px; }
+    .intro__stats { width: 100%; }
+    .stat b { font-size: 26px; line-height: 32px; }
+    .stat b.stat__s { font-size: 20px; line-height: 26px; }
+    .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .feature { padding: 20px; }
+    .cta { flex-direction: column; align-items: flex-start; padding: 32px; }
+  }
+  @media (max-width: 600px) {
+    .intro__stats { gap: 12px; }
+    .stat { min-height: 0; padding: 16px; }
+    .stat b.stat__s { font-size: 18px; line-height: 24px; }
+    .features { grid-template-columns: 1fr; }
+    .cta { padding: 24px; }
+    .cta .row, .cta .btn { width: 100%; }
+  }
+</style>

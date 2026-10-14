@@ -1,0 +1,29 @@
+---
+import site from '../data/site.json';
+interface Props { dark?: boolean; compact?: boolean }
+const { dark = false, compact = false } = Astro.props;
+---
+<a class:list={['logo', { 'logo--dark': dark, 'logo--compact': compact }]} href="/" aria-label={`${site.name}, на главную`}>
+  <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+    <rect width="40" height="40" rx="8" fill="#FFCC00" />
+    <circle cx="20" cy="20" r="11" fill="none" stroke="#161616" stroke-width="4" />
+    <circle cx="20" cy="20" r="4" fill="#161616" />
+  </svg>
+  <span class="logo__text">
+    <b>ЕВРОЭЛЕМЕНТ</b>
+    <small>{site.tagline}</small>
+  </span>
+</a>
+
+<style>
+  .logo { display: inline-flex; gap: 12px; align-items: center; text-decoration: none; color: var(--text-primary); flex: none; }
+  .logo__mark { width: 40px; height: 40px; flex: none; }
+  .logo__text { display: flex; flex-direction: column; gap: 2px; }
+  .logo__text b { font: 700 18px/24px var(--font); letter-spacing: 0.04em; }
+  .logo__text small { font: 500 12px/16px var(--font); color: var(--text-tertiary); }
+  .logo--dark { color: var(--text-inverse); }
+  .logo--dark small { color: var(--text-inverse-secondary); }
+  .logo--compact { gap: 10px; }
+  .logo--compact .logo__mark { width: 36px; height: 36px; }
+  .logo--compact small { display: none; }
+</style>

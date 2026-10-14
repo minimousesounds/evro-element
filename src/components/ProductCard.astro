@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import { productUrl, formatPrice, brandLabel, type Product } from '../lib/catalog';
+interface Props { product: Product }
+const { product } = Astro.props;
+const d = product.data;
+const label = brandLabel(product);
+---
+<article class="pcard" data-product data-price={d.price} data-sku={d.sku} data-popular={d.popular ? '1' : undefined} data-offer={d.offer ? '1' : undefined}
+  data-search={`${d.sku} ${d.title} ${d.brand}`.toLowerCase()}>
+  <a class="pcard__media" href={productUrl(product)} tabindex="-1" aria-hidden="true">
+    {d.images[0]
+      ? <img src={d.images[0]} alt="" width="256" height="188" loading="lazy" />
+      : <span class="pcard__nophoto">Фото скоро будет</span>}
+    {d.offer && <span class="badge badge--dark pcard__badge">Спецпредложение</span>}
+    {!d.offer && d.popular && <span class="badge badge--accent pcard__badge">Хит продаж</span>}
+  </a>
+  <div class="pcard__body">
+    <div class="pcard__meta"><span class="mono">{d.sku}</span>{label && <span>{label}</span>}</div>
+    <h3 class="pcard__title"><a href={productUrl(product)}>{d.title}</a></h3>
+    <span class:list={['pcard__stock', { 'pcard__stock--order': !d.inStock }]}>{d.inStock ? 'В наличии' : 'Под заказ'}</span>
+    <div class="pcard__foot">
+      <span class="pcard__price">{formatPrice(d.price)}</span>
+      <button class="btn btn--s" type="button" data-add={product.id} data-sku={d.sku} data-title={d.title}
+        data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}><Icon name="plus" size={16} />В корзину</button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .pcard { display: flex; flex-direction: column; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); overflow: hidden; transition: box-shadow 0.15s, border-color 0.15s; }
+  .pcard:hover { border-color: var(--border-strong); box-shadow: var(--shadow-hover); }
+  .pcard__media { position: relative; display: grid; place-items: center; height: 228px; padding: 20px; background: #fff; text-decoration: none; }
+  .pcard__media img { max-height: 188px; width: auto; object-fit: contain; }
+  .pcard__nophoto { font-size: 14px; color: var(--text-tertiary); }
+  .pcard__badge { position: absolute; top: 16px; left: 16px; }
+  .pcard__body { display: flex; flex-direction: column; gap: 12px; padding: 16px 20px 20px; flex: 1; }
+  .pcard__meta { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font: 500 12px/16px var(--font); color: var(--text-tertiary); }
+  .pcard__meta .mono { color: var(--text-primary); }
+  .pcard__title { font: 600 18px/24px var(--font); letter-spacing: -0.01em; flex: 1; }
+  .pcard__title a { text-decoration: none; }
+  .pcard__title a::after { content: ""; position: absolute; inset: 0; }
+  .pcard { position: relative; }
+  .pcard__foot .btn { position: relative; z-index: 1; }
+  .pcard__stock { display: inline-flex; gap: 6px; align-items: center; font: 500 12px/16px var(--font); color: var(--text-success); }
+  .pcard__stock::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .pcard__stock--order { color: var(--text-secondary); }
+  .pcard__foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; }
+  .pcard__price { font: 600 20px/24px var(--font); letter-spacing: -0.01em; white-space: nowrap; }
+  @media (max-width: 600px) {
+    .pcard__media { height: 148px; padding: 10px; }
+    .pcard__media img { max-height: 128px; }
+    .pcard__badge { top: 8px; left: 8px; }
+    .pcard__body { padding: 12px; gap: 8px; }
+    .pcard__meta .mono { font-size: 12px; line-height: 16px; font-weight: 400; }
+    .pcard__title { font: 500 14px/20px var(--font); }
+    .pcard__foot { flex-direction: column; align-items: stretch; gap: 10px; padding-top: 0; }
+    .pcard__price { font-size: 18px; }
+  }
+</style>

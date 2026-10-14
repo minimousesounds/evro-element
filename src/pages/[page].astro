@@ -1,0 +1,41 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import site from '../data/site.json';
+
+export async function getStaticPaths() {
+  // «О компании» и «Контакты» свёрстаны отдельными страницами
+  return (await getCollection('pages')).filter((e) => !['about', 'contacts'].includes(e.id)).map((entry) => ({ params: { page: entry.id }, props: { entry } }));
+}
+interface Props { entry: CollectionEntry<'pages'> }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const isContacts = entry.id === 'contacts';
+const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
+---
+<Base title={entry.data.title} description={entry.data.seoDescription || (isContacts ? `${site.name}: ${site.city}, ${site.address}. Телефон ${site.phone}, ${site.hours}.` : '')}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: entry.data.title }]} />
+    <div class="page-title"><h1>{entry.data.title}</h1></div>
+    <div class="section stack" style="padding-top: 0;">
+      {isContacts ? (
+        <address class="card contacts">
+          <div><span class="tertiary">Телефон</span><a class="contacts__phone" href={phoneHref}>{site.phone}</a></div>
+          <div><span class="tertiary">Почта</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+          <div><span class="tertiary">Адрес</span><span>г. {site.city}, {site.address}</span></div>
+          <div><span class="tertiary">Режим работы</span><span>{site.hours}, Сб–Вс выходной</span></div>
+        </address>
+      ) : (
+        <article class="prose"><Content /></article>
+      )}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contacts { display: grid; gap: 20px; max-width: 560px; font-style: normal; font-weight: 500; }
+  .contacts div { display: grid; gap: 4px; }
+  .contacts span.tertiary { font-weight: 400; font-size: 14px; }
+  .contacts__phone { font: 600 24px/30px var(--font); text-decoration: none; }
+</style>

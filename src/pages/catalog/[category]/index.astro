@@ -1,0 +1,123 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Icon from '../../../components/Icon.astro';
+import { getCategories, getProducts, categoryUrl, positions, type Category } from '../../../lib/catalog';
+
+export async function getStaticPaths() {
+  return (await getCategories()).map((category) => ({ params: { category: category.id }, props: { category } }));
+}
+interface Props { category: Category }
+const { category } = Astro.props;
+const categories = await getCategories();
+const all = await getProducts();
+const products = all.filter((p) => p.data.category.id === category.id);
+const countBy = (id: string) => all.filter((p) => p.data.category.id === id).length;
+const { Content } = await render(category);
+const title = category.data.seoTitle || `${category.data.title} — купить в Набережных Челнах`;
+const description =
+  category.data.seoDescription ||
+  `${category.data.title}: ${positions(products.length)} в каталоге, цены и наличие. Поиск по артикулу, самовывоз в Набережных Челнах и отправка транспортной компанией.`;
+---
+<Base title={title} description={description} image={products.find((p) => p.data.images.length)?.data.images[0]}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog/' }, { label: category.data.title }]} />
+    <div class="page-title"><h1>{category.data.title}</h1><span class="page-title__sub">{positions(products.length)}</span></div>
+    <div class="listing">
+      <aside class="side">
+        <nav class="side__menu" aria-label="Категории">
+          {categories.map((c) => (
+            <a class="menu-item menu-item--s" href={categoryUrl(c)} aria-current={c.id === category.id ? 'page' : undefined}>
+              <span>{c.data.title}</span><span class="menu-item__count">{countBy(c.id)}</span>
+            </a>
+          ))}
+        </nav>
+        <div class="side__promo">
+          <div><p class="t-h4">Не знаете артикул?</p><p class="small">Подберём фильтр по марке и модели техники.</p></div>
+          <button class="btn btn--s" type="button" data-callback>Оставить заявку</button>
+        </div>
+      </aside>
+
+      <nav class="chips chips--scroll cat-chips" aria-label="Категории">
+        <a class="chip" href="/catalog/">Все</a>
+        {categories.map((c) => <a class="chip" href={categoryUrl(c)} aria-current={c.id === category.id ? 'page' : undefined}>{c.data.title}</a>)}
+      </nav>
+
+      <div class="main stack">
+        <p class="notice"><Icon name="info" size={18} />В каталоге аналоги фильтров ASAS. Артикул в карточке совпадает с номером оригинала, который заменяет фильтр.</p>
+        <div class="toolbar">
+          <label class="search toolbar__search">
+            <Icon name="search" size={22} class="search__icon" />
+            <input type="search" placeholder="Поиск в категории" aria-label="Поиск в категории" data-filter />
+          </label>
+          <div class="chips toolbar__sort" role="group" aria-label="Сортировка">
+            <span class="tertiary small toolbar__label">Сортировка:</span>
+            <button class="chip" type="button" data-sort="default" aria-pressed="true">Популярные</button>
+            <button class="chip" type="button" data-sort="price-asc" aria-pressed="false">Дешевле</button>
+            <button class="chip" type="button" data-sort="price-desc" aria-pressed="false">Дороже</button>
+            <button class="chip" type="button" data-sort="sku" aria-pressed="false">По артикулу</button>
+          </div>
+        </div>
+        <div class="grid grid--3" data-list>{products.map((p) => <ProductCard product={p} />)}</div>
+        <p class="tertiary" data-empty hidden>В этой категории ничего не нашлось. Попробуйте <a href="/search/">поиск по всему каталогу</a>.</p>
+        <div class="prose seo"><Content /></div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  const list = document.querySelector<HTMLElement>('[data-list]');
+  if (list) {
+    const cards = [...list.querySelectorAll<HTMLElement>('[data-product]')];
+    const original = [...cards];
+    const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+    document.querySelector<HTMLInputElement>('[data-filter]')!.addEventListener('input', (e) => {
+      const q = (e.target as HTMLInputElement).value.trim().toLowerCase().replace(/[\s\-.]+/g, '');
+      let shown = 0;
+      for (const c of cards) {
+        const ok = !q || (c.dataset.search || '').replace(/[\s\-.]+/g, '').includes(q);
+        c.hidden = !ok;
+        if (ok) shown++;
+      }
+      empty.hidden = shown > 0;
+    });
+    document.querySelectorAll<HTMLButtonElement>('[data-sort]').forEach((btn) =>
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-sort]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        const mode = btn.dataset.sort;
+        const sorted =
+          mode === 'price-asc' ? [...cards].sort((a, b) => +a.dataset.price! - +b.dataset.price!)
+          : mode === 'price-desc' ? [...cards].sort((a, b) => +b.dataset.price! - +a.dataset.price!)
+          : mode === 'sku' ? [...cards].sort((a, b) => a.dataset.sku!.localeCompare(b.dataset.sku!, 'ru', { numeric: true }))
+          : original;
+        list.append(...sorted);
+      }),
+    );
+  }
+</script>
+
+<style>
+  .listing { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 32px; align-items: start; }
+  .side { display: grid; gap: 16px; position: sticky; top: 16px; }
+  .side__menu { display: grid; gap: 2px; padding: 8px; border-radius: var(--radius-md); background: var(--bg-surface); }
+  .side__promo { display: grid; gap: 12px; justify-items: start; padding: 20px; border-radius: var(--radius-md); background: var(--bg-inverse); color: var(--text-inverse); }
+  .side__promo p { margin: 0; }
+  .side__promo .small { margin-top: 8px; color: var(--text-inverse-secondary); }
+  .cat-chips { display: none; }
+  .toolbar { display: flex; gap: 16px; align-items: center; }
+  .toolbar__search { width: 320px; flex: none; }
+  .seo { padding-top: 16px; }
+  .seo :global(p:first-child) { margin-top: 0; }
+  @media (max-width: 1100px) {
+    .listing { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .side { display: none; }
+    .cat-chips { display: flex; }
+    .toolbar { flex-direction: column; align-items: stretch; gap: 12px; }
+    .toolbar__search { width: auto; }
+    .toolbar__sort { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  }
+  @media (max-width: 600px) { .toolbar__label { display: none; } }
+</style>

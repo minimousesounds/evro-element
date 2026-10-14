@@ -1,0 +1,38 @@
+---
+import site from '../data/site.json';
+// Жёлтый блок «Не нашли нужный фильтр?» с формой подбора
+---
+<section class="container section">
+  <form class="leadbox" data-lead data-endpoint={site.orderEndpoint} novalidate>
+    <div class="lead__text">
+      <h2>Не нашли нужный фильтр?</h2>
+      <p>Оставьте телефон и артикул или марку техники. Подберём аналог и перезвоним в рабочее время.</p>
+    </div>
+    <div class="lead__form">
+      <div class="lead__fields">
+        <label class="field"><span class="visually-hidden">Телефон</span><input name="phone" type="tel" autocomplete="tel" required /></label>
+        <label class="field"><span class="visually-hidden">Артикул или марка техники</span><input name="comment" placeholder="Артикул или марка техники" /></label>
+      </div>
+      <button class="btn btn--l btn--dark btn--block" type="submit">Подобрать фильтр</button>
+      <label class="check"><input type="checkbox" name="consent" required checked />Согласен на обработку персональных данных</label>
+      <p class="lead__msg small" role="status" hidden></p>
+    </div>
+  </form>
+</section>
+
+<script>
+  import '../scripts/lead';
+</script>
+
+<style>
+  .leadbox { display: flex; gap: 48px; align-items: center; padding: 56px; border-radius: var(--radius-lg); background: var(--bg-accent); }
+  .lead__text { flex: 1; display: grid; gap: 12px; }
+  .lead__text p { margin: 0; font-size: 18px; line-height: 28px; }
+  .lead__form { width: 560px; flex: none; display: grid; gap: 16px; }
+  .lead__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .leadbox .check { color: var(--text-primary); }
+  .lead__msg { margin: 0; font-weight: 500; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  @media (max-width: 1100px) { .leadbox { flex-direction: column; align-items: stretch; gap: 24px; padding: 40px; } .lead__form { width: auto; } }
+  @media (max-width: 600px) { .leadbox { padding: 24px; } .lead__text p { font-size: 16px; line-height: 24px; } .lead__fields { grid-template-columns: 1fr; } }
+</style>

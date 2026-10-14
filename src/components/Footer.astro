@@ -1,0 +1,70 @@
+---
+import site from '../data/site.json';
+import Logo from './Logo.astro';
+import { getCategories, categoryUrl } from '../lib/catalog';
+interface Props { phoneHref: string }
+const { phoneHref } = Astro.props;
+const categories = await getCategories();
+---
+<footer class="ftr">
+  <div class="container ftr__top">
+    <div class="ftr__brand">
+      <Logo dark />
+      <p>Фильтры для грузовой и легковой техники, спецтехники и тракторов. Подбор по артикулу оригинала.</p>
+    </div>
+    <nav aria-labelledby="ftr-cat">
+      <h2 id="ftr-cat">Каталог</h2>
+      <ul class="ftr__cols">{categories.map((c) => <li><a href={categoryUrl(c)}>{c.data.title}</a></li>)}</ul>
+    </nav>
+    <nav aria-labelledby="ftr-buy">
+      <h2 id="ftr-buy">Покупателям</h2>
+      <ul>
+        <li><a href="/#how">Как заказать</a></li>
+        <li><a href="/tech/">Техническая информация</a></li>
+        <li><a href="/about/">О компании</a></li>
+        <li><a href="/contacts/">Контакты</a></li>
+      </ul>
+    </nav>
+    <div class="ftr__contacts">
+      <h2>Контакты</h2>
+      <a class="ftr__phone" href={phoneHref}>{site.phone}</a>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a><br />{site.city}, {site.address}<br />{site.hours}</p>
+      <button class="btn" type="button" data-callback>Заказать звонок</button>
+    </div>
+  </div>
+  <div class="container ftr__bottom">
+    <span>© {site.foundingYear}–{new Date().getFullYear()} {site.legalName}</span>
+    <a href="/privacy/">Политика конфиденциальности</a>
+    <a href="/consent/">Согласие на обработку данных</a>
+    <a href="/terms/">Пользовательское соглашение</a>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--bg-inverse); color: var(--text-inverse); padding: 64px 0 32px; }
+  .ftr__top { display: flex; justify-content: space-between; gap: 40px; }
+  .ftr__brand { width: 256px; flex: none; display: grid; gap: 20px; align-content: start; }
+  .ftr__brand p, .ftr__contacts p { margin: 0; font-size: 14px; line-height: 20px; color: var(--text-inverse-secondary); }
+  .ftr h2 { font: 400 14px/20px var(--font); color: var(--text-inverse-secondary); margin-bottom: 20px; letter-spacing: 0; }
+  .ftr ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .ftr__cols { grid-template-columns: auto auto; column-gap: 32px; }
+  .ftr a { text-decoration: none; }
+  .ftr a:hover { color: var(--bg-accent); }
+  .ftr__contacts { width: 260px; flex: none; display: grid; gap: 16px; align-content: start; justify-items: start; }
+  .ftr__contacts h2 { margin-bottom: 0; }
+  .ftr__phone { font: 600 24px/30px var(--font); letter-spacing: -0.015em; }
+  .ftr__bottom { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border-inverse); font-size: 14px; line-height: 20px; color: var(--text-inverse-secondary); }
+  .ftr__bottom span { margin-right: auto; }
+  @media (max-width: 1100px) {
+    .ftr__top { display: grid; grid-template-columns: 1fr 300px; gap: 40px 48px; }
+    .ftr__brand { width: auto; }
+    .ftr__contacts { width: auto; grid-row: 1; grid-column: 2; }
+    .ftr__phone { font-size: 20px; line-height: 26px; }
+    .ftr__bottom { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .ftr { padding-top: 40px; }
+    .ftr__top { display: flex; flex-direction: column; gap: 40px; }
+    .ftr__cols { grid-template-columns: 1fr; }
+  }
+</style>

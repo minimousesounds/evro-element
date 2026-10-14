@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+---
+<Base title="Заказ оформлен" noindex>
+  <div class="container section">
+    <div class="done">
+      <span class="done__icon"><Icon name="check" size={40} /></span>
+      <h1>Заказ оформлен</h1>
+      <p class="lead" id="done-text">Спасибо! Заказ уже у нас на почте. Соберём его и свяжемся с вами в рабочее время, {site.hours}.</p>
+      <div class="order" id="done-order" hidden>
+        <ul id="done-lines"></ul>
+        <div class="order__total"><span>Итого</span><b id="done-total"></b></div>
+      </div>
+      <div class="row done__btns"><a class="btn btn--l" href="/catalog/">Вернуться в каталог</a><a class="btn btn--l btn--outline" href="/">На главную</a></div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { money } from '../scripts/cart';
+  // показываем состав только что оформленного заказа, если он сохранился в этой вкладке
+  try {
+    const order = JSON.parse(sessionStorage.getItem('ee-last-order') || 'null');
+    if (order?.items?.length) {
+      const ul = document.getElementById('done-lines')!;
+      for (const i of order.items) {
+        const li = document.createElement('li');
+        li.append(
+          Object.assign(document.createElement('span'), { className: 'mono', textContent: i.sku }),
+          Object.assign(document.createElement('span'), { className: 'muted', textContent: i.title }),
+          Object.assign(document.createElement('b'), { textContent: `${i.qty} шт.` }),
+        );
+        ul.append(li);
+      }
+      document.getElementById('done-total')!.textContent = money(order.total);
+      document.getElementById('done-order')!.hidden = false;
+    }
+  } catch {
+    /* нет данных о заказе, показываем общий текст */
+  }
+</script>
+
+<style>
+  .done { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 64px 48px; border-radius: var(--radius-lg); background: var(--bg-surface); text-align: center; }
+  .done .lead { max-width: 600px; }
+  .done__icon { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: var(--bg-accent); }
+  .done__icon :global(svg) { stroke-width: 2.5; }
+  .order { width: min(480px, 100%); display: grid; gap: 10px; padding: 20px; border-radius: var(--radius-md); background: var(--bg-page); text-align: left; font-size: 14px; line-height: 20px; }
+  .order ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .order li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; }
+  .order__total { display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-default); font-weight: 500; }
+  .done__btns { justify-content: center; }
+  @media (max-width: 600px) { .done { padding: 32px 20px; } .done__btns, .done__btns .btn { width: 100%; } }
+</style>

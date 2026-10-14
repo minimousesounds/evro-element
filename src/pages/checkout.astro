@@ -1,0 +1,142 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import site from '../data/site.json';
+// Поля формы предварительные: состав уточняется у владельца магазина.
+---
+<Base title="Оформление заказа" noindex>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Корзина', href: '/cart/' }, { label: 'Оформление' }]} />
+    <div class="page-title"><h1>Оформление заказа</h1></div>
+    <form class="cart section" style="padding-top: 0;" id="order-form" data-endpoint={site.orderEndpoint} data-dadata={site.dadataToken} novalidate>
+      <div class="stack" style="gap: 16px;">
+        <fieldset class="card stack">
+          <legend><h4>Контактные данные</h4></legend>
+          <div class="two">
+            <label class="field">Имя и фамилия<input name="name" autocomplete="name" required /></label>
+            <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" required /></label>
+          </div>
+          <label class="field">Электронная почта<input name="email" type="email" autocomplete="email" /><small>Пришлём подтверждение заказа и номер отправления</small></label>
+        </fieldset>
+        <fieldset class="card stack">
+          <legend><h4>Покупатель</h4></legend>
+          <div class="chips seg">
+            <label class="chip"><input type="radio" name="buyer" value="Физическое лицо" checked />Физическое лицо</label>
+            <label class="chip"><input type="radio" name="buyer" value="Организация или ИП" />Организация или ИП</label>
+          </div>
+          <div class="two" data-org hidden>
+            <label class="field">Название организации<input name="company" autocomplete="organization" /></label>
+            <label class="field">ИНН<input name="inn" inputmode="numeric" maxlength="12" /></label>
+          </div>
+        </fieldset>
+        <fieldset class="card stack">
+          <legend><h4>Доставка</h4></legend>
+          <label class="opt"><input type="radio" name="delivery" value="Транспортная компания" checked /><span><b>Транспортная компания</b><small>Отправим в ваш город, передадим номер отправления</small></span><em>По тарифу ТК</em></label>
+          <label class="opt"><input type="radio" name="delivery" value="Самовывоз" /><span><b>Самовывоз</b><small>{site.city}, {site.address}, {site.hours}</small></span><em>Бесплатно</em></label>
+          <div class="two" data-address>
+            <label class="field">Город<input name="city" placeholder="Начните вводить название" /></label>
+            <label class="field">Адрес или пункт выдачи<input name="address" placeholder="Улица и дом" /></label>
+          </div>
+        </fieldset>
+        <fieldset class="card stack">
+          <legend><h4>Оплата</h4></legend>
+          <label class="opt"><input type="radio" name="payment" value="Переводом по реквизитам" checked /><span><b>Переводом по реквизитам</b><small>Пришлём реквизиты на почту после оформления</small></span></label>
+          <label class="opt"><input type="radio" name="payment" value="По счёту для организаций" /><span><b>По счёту для организаций</b><small>Выставим счёт и передадим закрывающие документы</small></span></label>
+          <label class="opt"><input type="radio" name="payment" value="При получении" /><span><b>При получении</b><small>Наличными или картой, только при самовывозе</small></span></label>
+        </fieldset>
+        <fieldset class="card stack">
+          <legend><h4>Комментарий к заказу</h4></legend>
+          <label class="field">Необязательно<textarea name="comment" placeholder="Марка техники, удобное время для звонка"></textarea></label>
+        </fieldset>
+      </div>
+      <aside class="card stack">
+        <h4>Ваш заказ</h4>
+        <ul class="lines" id="order-lines"></ul>
+        <div class="total"><span>Итого</span><b id="order-total"></b></div>
+        <label class="check"><input type="checkbox" name="consent" required />Согласен на <a href="/consent/">обработку персональных данных</a></label>
+        <button class="btn btn--l btn--block" type="submit">Оформить заказ</button>
+        <p class="error" id="order-error" role="alert" hidden></p>
+        <p class="muted" style="font-size: 14px; margin: 0;">Заказ придёт нам на почту. Соберём и отправим его в рабочее время, {site.hours}.</p>
+      </aside>
+    </form>
+  </div>
+</Base>
+
+<script>
+  import { readCart, writeCart, cartTotal, money } from '../scripts/cart';
+  import { setupAddress } from '../scripts/suggest';
+
+  const form = document.getElementById('order-form') as HTMLFormElement;
+  const error = document.getElementById('order-error')!;
+  const items = readCart();
+  if (!items.length) location.replace(`${import.meta.env.BASE_URL}cart/`);
+  setupAddress(form, form.dataset.dadata || '');
+  // поля организации и адреса показываем только когда они нужны
+  const sync = () => {
+    const org = (form.elements.namedItem('buyer') as RadioNodeList).value !== 'Физическое лицо';
+    form.querySelector<HTMLElement>('[data-org]')!.hidden = !org;
+    const pickup = (form.elements.namedItem('delivery') as RadioNodeList).value === 'Самовывоз';
+    form.querySelector<HTMLElement>('[data-address]')!.hidden = pickup;
+  };
+  form.addEventListener('change', sync);
+  sync();
+
+  const lines = document.getElementById('order-lines')!;
+  for (const i of items) {
+    const li = document.createElement('li');
+    const sku = Object.assign(document.createElement('span'), { className: 'mono', textContent: i.sku });
+    const name = Object.assign(document.createElement('span'), { className: 'muted', textContent: i.title });
+    const qty = Object.assign(document.createElement('b'), { textContent: `${i.qty} × ${money(i.price)}` });
+    li.append(sku, name, qty);
+    lines.append(li);
+  }
+  document.getElementById('order-total')!.textContent = money(cartTotal(items));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    error.hidden = true;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    const order = {
+      ...data,
+      items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty, price: i.price, sum: i.price * i.qty })),
+      total: cartTotal(items),
+      text: items.map((i) => `${i.sku} ${i.title}: ${i.qty} шт. × ${i.price} ₽`).join('\n'),
+    };
+    const endpoint = form.dataset.endpoint;
+    try {
+      if (!endpoint) throw new Error('Отправка заказов ещё не настроена: в настройках сайта не указан адрес сервиса форм.');
+      const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(order) });
+      if (!res.ok) throw new Error('Не удалось отправить заказ. Позвоните нам, оформим по телефону.');
+      sessionStorage.setItem('ee-last-order', JSON.stringify(order));
+      writeCart([]);
+      location.href = `${import.meta.env.BASE_URL}order-done/`;
+    } catch (err) {
+      error.textContent = (err as Error).message;
+      error.hidden = false;
+    }
+  });
+</script>
+
+<style is:global>
+  fieldset.card { border: 0; margin: 0; min-width: 0; }
+  fieldset.card legend { float: left; width: 100%; padding: 0; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; clear: both; }
+  .opt { display: flex; gap: 12px; padding: 16px 20px 16px 16px; border: 1px solid var(--border-default); border-radius: var(--radius-md); cursor: pointer; clear: both; }
+  .opt:has(input:checked) { border-color: var(--border-strong); box-shadow: inset 0 0 0 0.5px var(--border-strong); }
+  .opt em { margin-left: auto; font: 500 14px/20px var(--font); white-space: nowrap; }
+  .opt span { flex: 1; }
+  .seg .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg .chip:has(input:checked) { background: var(--bg-inverse); color: var(--text-inverse); box-shadow: none; }
+  .seg .chip:has(input:focus-visible) { outline: 2px solid var(--border-strong); outline-offset: 2px; }
+  .opt input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--bg-inverse); }
+  .opt span { display: grid; gap: 2px; }
+  .opt small { font-size: 14px; line-height: 20px; color: var(--text-secondary); }
+  .lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14px; line-height: 20px; }
+  .lines li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; }
+  .error { color: var(--text-danger); font-size: 14px; margin: 0; }
+  @media (max-width: 600px) { .two { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,81 @@
+---
+import site from '../data/site.json';
+import Icon from './Icon.astro';
+// Модалка «Заказать звонок». Открывается любой кнопкой с атрибутом data-callback.
+---
+<dialog class="modal" id="callback" aria-labelledby="callback-title">
+  <form class="modal__body" id="callback-form" data-endpoint={site.orderEndpoint} novalidate>
+    <div class="modal__head">
+      <div>
+        <h2 class="t-h3" id="callback-title">Заказать звонок</h2>
+        <p class="muted small">Перезвоним в рабочее время, {site.hours}.</p>
+      </div>
+      <button class="icon-btn icon-btn--soft" type="button" data-close aria-label="Закрыть"><Icon name="close" size={20} /></button>
+    </div>
+    <label class="field">Имя<input name="name" autocomplete="name" required /></label>
+    <label class="field">Телефон<input name="phone" type="tel" autocomplete="tel" required /></label>
+    <label class="field">Что нужно подобрать<input name="comment" placeholder="Артикул или марка техники, необязательно" /></label>
+    <label class="check"><input type="checkbox" name="consent" required />Согласен на обработку персональных данных</label>
+    <button class="btn btn--l btn--block" type="submit">Жду звонка</button>
+    <p class="error small" role="alert" hidden></p>
+  </form>
+  <div class="modal__body" id="callback-done" hidden>
+    <div class="modal__head">
+      <h2 class="t-h3">Спасибо, заявка принята</h2>
+      <button class="icon-btn icon-btn--soft" type="button" data-close aria-label="Закрыть"><Icon name="close" size={20} /></button>
+    </div>
+    <p class="muted">Перезвоним в рабочее время. Если срочно, звоните: <a href={'tel:' + site.phone.replace(/[^\d+]/g, '')}>{site.phone}</a>.</p>
+    <button class="btn btn--l btn--dark btn--block" type="button" data-close>Хорошо</button>
+  </div>
+</dialog>
+
+<script>
+  const dlg = document.getElementById('callback') as HTMLDialogElement;
+  const form = document.getElementById('callback-form') as HTMLFormElement;
+  const done = document.getElementById('callback-done')!;
+  const err = form.querySelector<HTMLElement>('.error')!;
+  const open = () => {
+    form.hidden = false;
+    done.hidden = true;
+    err.hidden = true;
+    dlg.showModal();
+  };
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-callback]')) open();
+  });
+  dlg.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => dlg.close()));
+  dlg.addEventListener('click', (e) => e.target === dlg && dlg.close());
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) return form.reportValidity();
+    try {
+      if (!form.dataset.endpoint) throw new Error('Отправка заявок ещё не настроена. Позвоните нам, пожалуйста.');
+      const res = await fetch(form.dataset.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ type: 'Обратный звонок', ...Object.fromEntries(new FormData(form)) }),
+      });
+      if (!res.ok) throw new Error('Не получилось отправить. Позвоните нам, пожалуйста.');
+      form.reset();
+      form.hidden = true;
+      done.hidden = false;
+    } catch (ex) {
+      err.textContent = (ex as Error).message;
+      err.hidden = false;
+    }
+  });
+</script>
+
+<style is:global>
+  .modal { width: min(480px, calc(100vw - 32px)); padding: 0; border: 0; border-radius: var(--radius-lg); background: var(--bg-surface); color: var(--text-primary);
+    box-shadow: 0 24px 64px -12px rgb(0 0 0 / 0.2); }
+  .modal::backdrop { background: rgb(22 22 22 / 0.5); }
+  .modal__body { display: flex; flex-direction: column; gap: 16px; padding: 40px; }
+  .modal__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 8px; }
+  .modal__head p { margin: 8px 0 0; }
+  .error { color: var(--text-danger); margin: 0; }
+  @media (max-width: 600px) {
+    .modal { width: 100vw; max-width: 100vw; margin: auto 0 0; border-radius: 20px 20px 0 0; }
+    .modal__body { padding: 24px 16px 32px; }
+  }
+</style>

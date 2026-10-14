@@ -1,0 +1,217 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import Icon from '../../../components/Icon.astro';
+import site from '../../../data/site.json';
+import { getCategories, getProducts, categoryUrl, productUrl, productSeo, formatPrice, fullName, type Product, type Category } from '../../../lib/catalog';
+
+export async function getStaticPaths() {
+  const categories = await getCategories();
+  const products = await getProducts();
+  return products.map((product) => ({
+    params: { category: product.data.category.id, product: product.id },
+    props: {
+      product,
+      category: categories.find((c) => c.id === product.data.category.id)!,
+      related: products.filter((p) => p.data.category.id === product.data.category.id && p.id !== product.id).slice(0, 4),
+    },
+  }));
+}
+interface Props { product: Product; category: Category; related: Product[] }
+const { product, category, related } = Astro.props;
+const d = product.data;
+const seo = productSeo(product);
+const name = fullName(product);
+const analog = d.kind === 'analog';
+const { Content } = await render(product);
+const hasDescription = Boolean(product.body?.trim());
+const specs = [
+  { name: 'Тип', value: category.data.title },
+  ...(d.kind ? [{ name: 'Исполнение', value: analog ? 'Аналог' : 'Оригинал' }] : []),
+  ...(analog && d.brand ? [{ name: 'Заменяет', value: `${d.brand} ${d.sku}`, mono: true }] : [{ name: 'Артикул', value: d.sku, mono: true }]),
+  ...(!analog && d.brand ? [{ name: 'Бренд', value: d.brand }] : []),
+  ...(d.country ? [{ name: 'Страна производства', value: d.country }] : []),
+  ...d.specs,
+];
+const cross = [...(analog && d.brand ? [{ brand: `${d.brand} (оригинал)`, number: d.sku }] : []), ...d.replaces];
+const tabs = [
+  { id: 'specs', label: 'Характеристики' },
+  ...(cross.length ? [{ id: 'cross', label: 'Кросс-номера' }] : []),
+  ...(d.applicability ? [{ id: 'apply', label: 'Применимость' }] : []),
+  ...(hasDescription ? [{ id: 'about', label: 'Описание' }] : []),
+];
+// бренд в разметке указываем только там, где он действительно принадлежит товару
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name,
+  sku: d.sku,
+  category: category.data.title,
+  ...(d.images.length ? { image: d.images.map((i) => new URL(i, Astro.site).href) } : {}),
+  ...(d.brand && !analog ? { brand: { '@type': 'Brand', name: d.brand } } : {}),
+  offers: {
+    '@type': 'Offer',
+    url: new URL(productUrl(product), Astro.site).href,
+    priceCurrency: 'RUB',
+    price: d.price,
+    availability: d.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+    seller: { '@type': 'Organization', name: site.name },
+  },
+};
+---
+<Base title={seo.title} description={seo.description} image={d.images[0]}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(ld)} />
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog/' }, { label: category.data.title, href: categoryUrl(category) }, { label: d.sku }]} />
+
+    <div class="product">
+      <div class="gallery">
+        {d.images[0] ? <img src={d.images[0]} alt={name} width="492" height="432" /> : <span class="tertiary">Фото скоро будет</span>}
+        {d.offer && <span class="badge badge--dark gallery__badge">Спецпредложение</span>}
+        {!d.offer && d.popular && <span class="badge badge--accent gallery__badge">Хит продаж</span>}
+      </div>
+
+      <div class="info">
+        <div class="info__head">
+          <div class="row" style="gap: 8px;">
+            <span class:list={['badge', { 'badge--stock': d.inStock }]}>{d.inStock ? 'В наличии' : 'Под заказ'}</span>
+            {analog && <span class="badge badge--analog">Аналог{d.brand ? ` ${d.brand}` : ''}</span>}
+            {d.kind === 'original' && <span class="badge">Оригинал</span>}
+          </div>
+          <h1>{name}{analog && d.brand ? ` (аналог ${d.brand})` : ''}</h1>
+          <div class="meta">
+            <span class="meta__item">
+              <span class="tertiary">{analog ? 'Заменяет' : 'Артикул'}</span>
+              <span class="mono">{analog && d.brand ? `${d.brand} ${d.sku}` : d.sku}</span>
+              <button class="copy" type="button" data-copy={d.sku} aria-label="Скопировать артикул"><Icon name="copy" size={16} /></button>
+            </span>
+            {d.kind && <span class="meta__item"><span class="tertiary">Исполнение</span><span class="small">{analog ? 'аналог' : 'оригинал'}</span></span>}
+            {!analog && d.brand && <span class="meta__item"><span class="tertiary">Бренд</span><span class="small">{d.brand}</span></span>}
+          </div>
+        </div>
+
+        {analog && (
+          <p class="notice"><Icon name="info" size={18} />Это аналог{d.brand ? ` фильтра ${d.brand} ${d.sku}` : ''}. Посадочные размеры, резьба и уплотнение совпадают, фильтр встаёт на штатное место.</p>
+        )}
+
+        <div class="buy">
+          <div class="buy__price">{formatPrice(d.price)} <small>за штуку</small></div>
+          <div class="buy__actions">
+            <span class="stepper">
+              <button type="button" data-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
+              <input id="qty" type="number" min="1" value="1" aria-label="Количество" />
+              <button type="button" data-step="1" aria-label="Больше"><Icon name="plus" size={20} /></button>
+            </span>
+            <button class="btn btn--l buy__add" type="button" data-add={product.id} data-qty-from="#qty" data-sku={d.sku}
+              data-title={d.title} data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}><Icon name="plus" size={20} />Добавить в корзину</button>
+          </div>
+          <p class="notice notice--plain"><Icon name="info" size={18} />Оформите заказ на сайте. Соберём его и отправим выбранным способом.</p>
+        </div>
+
+        <ul class="conds">
+          <li><Icon name="pin" size={22} /><span><b>Самовывоз</b><span>{site.addressShort}, офис 205, {site.hours}</span></span></li>
+          <li><Icon name="truck" size={22} /><span><b>Доставка</b><span>Транспортными компаниями по России, стоимость по тарифу перевозчика</span></span></li>
+          <li><Icon name="wallet" size={22} /><span><b>Оплата</b><span>Способы оплаты уточним после оформления заказа</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="details">
+      <div class="tabs" role="tablist" aria-label="О товаре">
+        {tabs.map((t, i) => (
+          <button class="tab" type="button" role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={String(i === 0)} tabindex={i === 0 ? 0 : -1}>{t.label}</button>
+        ))}
+      </div>
+      <div class="details__row">
+        <div class="details__main">
+          <div role="tabpanel" id="panel-specs" aria-labelledby="tab-specs">
+            <dl class="specs">{specs.map((s) => (<div><dt>{s.name}</dt><dd class:list={{ mono: (s as any).mono }}>{s.value}</dd></div>))}</dl>
+          </div>
+          {cross.length > 0 && (
+            <div role="tabpanel" id="panel-cross" aria-labelledby="tab-cross" hidden>
+              <dl class="specs">{cross.map((r) => (<div><dt>{r.brand}</dt><dd class="mono">{r.number}</dd></div>))}</dl>
+            </div>
+          )}
+          {d.applicability && <div role="tabpanel" id="panel-apply" aria-labelledby="tab-apply" class="card prose" hidden><p>{d.applicability}</p></div>}
+          {hasDescription && <div role="tabpanel" id="panel-about" aria-labelledby="tab-about" class="card prose" hidden><Content /></div>}
+        </div>
+        {cross.length > 0 && (
+          <aside class="cross">
+            <h2 class="t-h4">Что заменяет этот фильтр</h2>
+            <p class="small">Подходит вместо оригинала и позиций других производителей:</p>
+            <ul>{cross.map((r) => (<li><span>{r.brand}</span><span class="mono">{r.number}</span></li>))}</ul>
+          </aside>
+        )}
+      </div>
+    </section>
+
+    {related.length > 0 && (
+      <section class="section stack">
+        <div class="sec-head"><h2>Похожие товары</h2><a class="text-link" href={categoryUrl(category)}>Все: {category.data.title.toLowerCase()}<Icon name="arrow-right" size={20} /></a></div>
+        <div class="grid">{related.map((p) => <ProductCard product={p} />)}</div>
+      </section>
+    )}
+  </div>
+</Base>
+
+<style>
+  .product { display: grid; grid-template-columns: 620px minmax(0, 1fr); gap: 48px; align-items: start; }
+  .gallery { position: relative; display: grid; place-items: center; height: 560px; padding: 64px; border-radius: var(--radius-lg); background: #fff; }
+  .gallery img { max-height: 100%; width: auto; object-fit: contain; }
+  .gallery__badge { position: absolute; top: 24px; left: 24px; }
+  .info { display: flex; flex-direction: column; gap: 24px; }
+  .info__head { display: flex; flex-direction: column; gap: 12px; }
+  .meta { display: flex; gap: 8px 24px; flex-wrap: wrap; align-items: center; }
+  .meta__item { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; line-height: 20px; }
+  .copy { display: grid; place-items: center; padding: 2px; border: 0; background: none; color: var(--text-tertiary); cursor: pointer; border-radius: 4px; }
+  .copy:hover, .copy.is-copied { color: var(--text-primary); }
+  .buy { display: flex; flex-direction: column; gap: 20px; padding: 28px; border-radius: 16px; background: var(--bg-surface); }
+  .buy__price { font: 600 32px/36px var(--font); letter-spacing: -0.02em; }
+  .buy__price small { font: 400 14px/20px var(--font); letter-spacing: 0; color: var(--text-tertiary); margin-left: 6px; }
+  .buy__actions { display: flex; gap: 12px; }
+  .buy__add { flex: 1; }
+  .conds { list-style: none; margin: 0; padding: 0; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--border-default); }
+  .conds li { display: flex; gap: 16px; align-items: flex-start; padding: 20px 28px; }
+  .conds li + li { border-top: 1px solid var(--border-default); }
+  .conds li > span { display: grid; gap: 2px; }
+  .conds li > span > span { font-size: 14px; line-height: 20px; color: var(--text-secondary); }
+  .conds .icon { flex: none; }
+  .details { padding-top: 72px; display: grid; gap: 24px; }
+  .tabs { display: flex; gap: 32px; border-bottom: 1px solid var(--border-default); overflow-x: auto; scrollbar-width: none; }
+  .tab { position: relative; padding: 4px 0 14px; border: 0; background: none; font: 500 16px/24px var(--font); color: var(--text-tertiary); cursor: pointer; white-space: nowrap; }
+  .tab[aria-selected="true"] { color: var(--text-primary); }
+  .tab[aria-selected="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--bg-inverse); }
+  .details__row { display: flex; gap: 48px; align-items: flex-start; }
+  .details__main { flex: 1; min-width: 0; }
+  .specs { margin: 0; padding: 8px 24px; border-radius: 16px; background: var(--bg-surface); }
+  .specs div { display: grid; grid-template-columns: 220px 1fr; gap: 24px; padding: 14px 0; font-size: 14px; line-height: 20px; }
+  .specs div + div { border-top: 1px solid var(--border-default); }
+  .specs dt { color: var(--text-tertiary); }
+  .specs dd { margin: 0; font-weight: 500; }
+  .cross { width: 420px; flex: none; display: grid; gap: 16px; padding: 28px; border-radius: 16px; background: var(--bg-inverse); color: var(--text-inverse); }
+  .cross p { margin: 0; color: var(--text-inverse-secondary); }
+  .cross ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .cross li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--bg-inverse-subtle); font-size: 14px; line-height: 20px; }
+  .cross li span:first-child { color: var(--text-inverse-secondary); }
+  @media (max-width: 1100px) {
+    .product { grid-template-columns: 1fr; gap: 24px; }
+    .gallery { height: 440px; padding: 32px; }
+    .details { padding-top: 48px; }
+    .details__row { flex-direction: column; gap: 24px; }
+    .cross { width: auto; }
+  }
+  @media (max-width: 600px) {
+    .gallery { height: 320px; }
+    .gallery__badge { top: 16px; left: 16px; }
+    .buy { padding: 20px; }
+    .buy__actions { flex-direction: column; }
+    .buy__actions .stepper { width: 100%; }
+    .conds li { padding: 16px 20px; }
+    .tabs { gap: 20px; }
+    .specs { padding: 8px 16px; }
+    .specs div { grid-template-columns: 1fr; gap: 2px; }
+    .cross { padding: 20px; }
+  }
+</style>

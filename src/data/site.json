@@ -1,0 +1,16 @@
+{
+  "name": "Евроэлемент",
+  "legalName": "ООО «Евроэлемент»",
+  "tagline": "автофильтры с 2008 года",
+  "city": "Набережные Челны",
+  "address": "ул. Низаметдинова, 8, офис 205, 2 этаж, 1 подъезд",
+  "addressShort": "ул. Низаметдинова, 8",
+  "phone": "+7 (927) 452-28-63",
+  "email": "azat49@yandex.ru",
+  "hours": "Пн–Пт 9:00–16:00",
+  "hoursSchema": "Mo-Fr 09:00-16:00",
+  "foundingYear": 2008,
+  "orderEndpoint": "",
+  "yandexMetrika": "31865876",
+  "dadataToken": ""
+}

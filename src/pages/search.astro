@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { getProducts } from '../lib/catalog';
+// Сайт статический, поэтому поиск работает в браузере: все карточки уже на странице, скрипт прячет лишние.
+const products = await getProducts();
+---
+<Base title="Поиск по каталогу" noindex>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Поиск' }]} />
+    <div class="page-title"><h1>Результаты поиска</h1><span class="tertiary" id="search-sub"></span></div>
+    <div class="section stack" style="padding-top: 0;">
+      <div class="grid" id="search-grid">{products.map((p) => <ProductCard product={p} />)}</div>
+      <div class="card stack" id="search-empty" hidden>
+        <h2>Ничего не нашлось</h2>
+        <p class="lead">Проверьте артикул: буквы и цифры без пробелов, например SP926M. Или позвоните нам, подберём фильтр по марке техники.</p>
+        <div><a class="btn btn--l" href="/contacts/">Контакты</a></div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  const q = (new URLSearchParams(location.search).get('q') || '').trim().toLowerCase();
+  const norm = (s: string) => s.replace(/[\s\-_.\/]+/g, '');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-product]')];
+  let found = 0;
+  for (const c of cards) {
+    const hay = c.dataset.search || '';
+    const ok = !q || hay.includes(q) || norm(hay).includes(norm(q));
+    c.hidden = !ok;
+    if (ok) found++;
+  }
+  document.getElementById('search-sub')!.textContent = q ? `по запросу «${q}»: ${found}` : '';
+  document.getElementById('search-empty')!.hidden = found > 0;
+  document.querySelectorAll<HTMLInputElement>('input[name="q"]').forEach((i) => (i.value = q));
+</script>

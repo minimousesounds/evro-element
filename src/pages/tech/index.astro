@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+
+const all = await getCollection('tech');
+const top = all.filter((t) => t.data.order > 0).sort((a, b) => a.data.order - b.data.order);
+const childrenOf = (id: string) => all.filter((t) => t.data.parent === id).length;
+---
+<Base title="Техническая информация" description="Справочные материалы по фильтрам и технике: каталоги фильтров, характеристики грузовиков, катков, бульдозеров и экскаваторов.">
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Техническая информация' }]} />
+    <div class="page-title"><h1>Техническая информация</h1></div>
+    <p class="lead intro">Справочные материалы по фильтрам и технике. На страницах техники внизу собраны подходящие товары из каталога.</p>
+    <ul class="docs">
+      {top.map((t) => (
+        <li><a href={`/tech/${t.id}/`}>
+          <span class="docs__icon"><Icon name="file" size={22} /></span>
+          <span class="docs__text"><span class="docs__title">{t.data.title}</span>{childrenOf(t.id) > 0 && <span class="tertiary small">Страниц внутри: {childrenOf(t.id)}</span>}</span>
+          <Icon name="chevron-right" size={20} />
+        </a></li>
+      ))}
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .intro { margin-bottom: 32px; }
+  .docs { list-style: none; margin: 0; padding: 0; border-radius: var(--radius-lg); background: var(--bg-surface); }
+  .docs li + li { border-top: 1px solid var(--border-default); }
+  .docs a { display: flex; gap: 16px; align-items: center; padding: 20px 24px; text-decoration: none; }
+  .docs a:hover .docs__title { text-decoration: underline; }
+  .docs a > .icon { color: var(--text-tertiary); flex: none; }
+  .docs__icon { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: var(--radius-sm); background: var(--bg-page); }
+  .docs__text { flex: 1; display: grid; gap: 2px; }
+  .docs__title { font-weight: 500; }
+  @media (max-width: 600px) { .docs a { padding: 16px; } }
+</style>

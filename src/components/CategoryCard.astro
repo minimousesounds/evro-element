@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import { categoryUrl, positions, type Category } from '../lib/catalog';
+interface Props { category: Category; count: number; image?: string }
+const { category, count, image } = Astro.props;
+---
+<a class:list={['ccard', { 'ccard--image': image }]} href={categoryUrl(category)}>
+  <span class="ccard__top">
+    <span class="ccard__text">
+      <span class="ccard__name">{category.data.title}</span>
+      <span class="ccard__count">{positions(count)}</span>
+    </span>
+    <span class="ccard__arrow"><Icon name="arrow-up-right" size={20} /></span>
+  </span>
+  {image && <img class="ccard__img" src={image} alt="" width="160" height="130" loading="lazy" />}
+</a>
+
+<style>
+  .ccard { display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 24px 16px 16px 24px; border-radius: var(--radius-md);
+    background: var(--bg-surface); text-decoration: none; transition: box-shadow 0.15s; min-height: 112px; }
+  .ccard:hover { box-shadow: inset 0 0 0 1px var(--border-strong), var(--shadow-hover); }
+  .ccard--image { min-height: 280px; }
+  .ccard__top { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; }
+  .ccard__text { display: grid; gap: 4px; }
+  .ccard__name { font: 600 18px/24px var(--font); letter-spacing: -0.01em; }
+  .ccard--image .ccard__name { font-size: 24px; line-height: 30px; letter-spacing: -0.015em; }
+  .ccard__count { font-size: 14px; line-height: 20px; color: var(--text-tertiary); }
+  .ccard__arrow { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--bg-page); }
+  .ccard:hover .ccard__arrow { background: var(--bg-accent); }
+  .ccard__img { align-self: flex-end; width: 160px; height: 130px; object-fit: contain; }
+  @media (max-width: 1100px) { .ccard--image { min-height: 240px; } .ccard--image .ccard__name { font-size: 20px; line-height: 26px; } }
+  @media (max-width: 600px) {
+    .ccard { padding: 16px; min-height: 0; justify-content: center; }
+    .ccard--image { min-height: 200px; padding-right: 12px; justify-content: space-between; }
+    .ccard--image .ccard__name { font-size: 18px; line-height: 24px; }
+    .ccard--image .ccard__arrow { display: none; }
+    .ccard__img { width: 120px; height: 100px; }
+  }
+</style>

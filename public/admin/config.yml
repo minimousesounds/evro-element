@@ -1,0 +1,155 @@
+# Настройки админки (Sveltia CMS). Открывается по адресу /admin/
+# Репозиторий сайта на GitHub. Вход: «Войти через токен доступа» (личный токен GitHub с правом repo).
+backend:
+  name: github
+  repo: minimousesounds/evro-element
+  branch: main
+
+locale: ru
+site_url: https://www.evro-element.ru
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: products
+    label: Товары
+    label_singular: Товар
+    folder: src/content/products
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{fields.sku}}"
+    identifier_field: title
+    summary: "{{sku}} — {{title}}, {{price}} ₽"
+    sortable_fields: [sku, title, price]
+    media_folder: /public/uploads/products
+    public_folder: /uploads/products
+    fields:
+      - { name: title, label: Название, widget: string, hint: "Например: Фильтр топливный" }
+      - { name: sku, label: Артикул, widget: string, hint: "Латиницей, как на корпусе. По нему строится адрес страницы" }
+      - { name: price, label: "Цена, ₽", widget: number, value_type: float, min: 0 }
+      - { name: inStock, label: В наличии, widget: boolean, default: true }
+      - name: category
+        label: Категория
+        widget: relation
+        collection: categories
+        value_field: "{{slug}}"
+        display_fields: [title]
+        search_fields: [title]
+      - { name: brand, label: Бренд, widget: string, required: false, hint: "Для аналога — бренд оригинала, который он заменяет" }
+      - name: kind
+        label: Исполнение
+        widget: select
+        required: false
+        default: ""
+        options:
+          - { label: Не указано, value: "" }
+          - { label: Оригинал, value: original }
+          - { label: Аналог, value: analog }
+      - { name: images, label: Фото, widget: image, multiple: true, required: false }
+      - { name: popular, label: Показывать на главной, widget: boolean, default: false }
+      - { name: offer, label: Спецпредложение, widget: boolean, default: false }
+      - name: specs
+        label: Характеристики
+        label_singular: Характеристика
+        widget: list
+        required: false
+        summary: "{{name}}: {{value}}"
+        fields:
+          - { name: name, label: Название, widget: string, hint: "Высота, резьба, наружный диаметр" }
+          - { name: value, label: Значение, widget: string }
+      - name: replaces
+        label: Что заменяет (кросс-номера)
+        label_singular: Номер
+        widget: list
+        required: false
+        summary: "{{brand}} {{number}}"
+        fields:
+          - { name: brand, label: Производитель, widget: string }
+          - { name: number, label: Номер, widget: string }
+      - { name: country, label: Страна производства, widget: string, required: false }
+      - { name: applicability, label: Применимость, widget: text, required: false, hint: "На какую технику подходит" }
+      - { name: body, label: Описание, widget: markdown, required: false }
+      - { name: seoTitle, label: "SEO: заголовок", widget: string, required: false, hint: "Если пусто, соберётся сам из названия и артикула" }
+      - { name: seoDescription, label: "SEO: описание", widget: text, required: false, hint: "Если пусто, соберётся само" }
+      - { name: oldId, label: Номер на старом сайте, widget: hidden, required: false }
+
+  - name: categories
+    label: Категории
+    label_singular: Категория
+    folder: src/content/categories
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: title
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: Название, widget: string }
+      - { name: order, label: Порядок в меню, widget: number, value_type: int, default: 99 }
+      - { name: image, label: Картинка, widget: image, required: false }
+      - { name: body, label: Текст под списком товаров, widget: markdown, required: false }
+      - { name: seoTitle, label: "SEO: заголовок", widget: string, required: false }
+      - { name: seoDescription, label: "SEO: описание", widget: text, required: false }
+      - { name: oldId, label: Номер на старом сайте, widget: hidden, required: false }
+
+  - name: tech
+    label: Техинформация
+    label_singular: Страница
+    folder: src/content/tech
+    extension: md
+    format: frontmatter
+    create: true
+    identifier_field: title
+    media_folder: /public/uploads/tech
+    public_folder: /uploads/tech
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: order, label: "Порядок в списке (0 — не показывать в списке)", widget: number, value_type: int, default: 0 }
+      - { name: parent, label: Родительская страница, widget: relation, collection: tech, value_field: "{{slug}}", display_fields: [title], search_fields: [title], required: false }
+      - { name: body, label: Текст, widget: markdown }
+      - name: products
+        label: Подходящие товары
+        hint: "Товары с артикулами из текста страницы подставятся сами. Здесь можно добавить остальные"
+        widget: relation
+        collection: products
+        multiple: true
+        required: false
+        value_field: "{{slug}}"
+        display_fields: ["{{sku}} {{title}}"]
+        search_fields: [sku, title]
+      - { name: seoDescription, label: "SEO: описание", widget: text, required: false }
+
+  - name: pages
+    label: Страницы
+    label_singular: Страница
+    folder: src/content/pages
+    extension: md
+    format: frontmatter
+    create: false
+    identifier_field: title
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: body, label: Текст, widget: markdown }
+      - { name: seoDescription, label: "SEO: описание", widget: text, required: false }
+
+  - name: settings
+    label: Настройки
+    files:
+      - name: site
+        label: Контакты и реквизиты
+        file: src/data/site.json
+        fields:
+          - { name: name, label: Название магазина, widget: string }
+          - { name: legalName, label: Юридическое название, widget: string }
+          - { name: tagline, label: Подпись под логотипом, widget: string }
+          - { name: city, label: Город, widget: string }
+          - { name: address, label: Адрес полностью, widget: string }
+          - { name: addressShort, label: Адрес коротко, widget: string }
+          - { name: phone, label: Телефон, widget: string }
+          - { name: email, label: Почта, widget: string }
+          - { name: hours, label: Режим работы, widget: string }
+          - { name: hoursSchema, label: "Режим работы для поисковиков", widget: string, hint: "Формат: Mo-Fr 09:00-16:00" }
+          - { name: foundingYear, label: Год основания, widget: number, value_type: int }
+          - { name: orderEndpoint, label: Адрес сервиса для отправки заказов, widget: string, required: false }
+          - { name: dadataToken, label: "Ключ DaData для подсказок города и адреса", widget: string, required: false, hint: "API-ключ из личного кабинета dadata.ru. Без него подсказывается только город из короткого списка" }
+          - { name: yandexMetrika, label: Номер счётчика Яндекс Метрики, widget: string, required: false }

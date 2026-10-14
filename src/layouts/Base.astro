@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CallbackModal from '../components/CallbackModal.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  /** Заголовок уже содержит название магазина */
+  rawTitle?: boolean;
+}
+const { title, description = '', image = '/og-default.png', noindex: noindexProp = false, rawTitle = false } = Astro.props;
+// временная копия (GitHub Pages) не должна попасть в поиск
+const noindex = noindexProp || import.meta.env.PUBLIC_PREVIEW === '1';
+const fullTitle = rawTitle ? title : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoPartsStore',
+  name: site.name,
+  legalName: site.legalName,
+  url: Astro.site?.href,
+  telephone: site.phone,
+  email: site.email,
+  foundingDate: String(site.foundingYear),
+  openingHours: site.hoursSchema,
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'RU',
+    addressLocality: site.city,
+    streetAddress: site.address,
+  },
+};
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={fullTitle} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(business)} />
+    <slot name="head" />
+  </head>
+  <body>
+    <Header phoneHref={phoneHref} />
+    <main>
+      <slot />
+    </main>
+    <Footer phoneHref={phoneHref} />
+    <CallbackModal />
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script>
+      import '../scripts/cart';
+      import '../scripts/phone';
+      import '../scripts/ui';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .toast { position: fixed; right: 24px; bottom: 24px; z-index: 50; max-width: 360px; padding: 16px 20px; border-radius: var(--radius-md);
+    background: var(--bg-inverse); color: var(--text-inverse); font-size: 14px; line-height: 20px; box-shadow: 0 16px 40px -8px rgb(0 0 0 / 0.2); }
+  .toast a { color: var(--bg-accent); margin-left: 8px; }
+  @media (max-width: 600px) { .toast { left: 16px; right: 16px; bottom: 16px; max-width: none; } }
+</style>

@@ -1,0 +1,2980 @@
+[
+  {
+    "slug": "tehinfo",
+    "old_url": "/tehinfo.html",
+    "title": "Техническая информация",
+    "chars": 698,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "about",
+    "old_url": "/about.html",
+    "title": "ООО «ЕВРОЭЛЕМЕНТ» гарантирует поставку высококачественных элементов воздушных, масляных, топливных фильтров.",
+    "chars": 1031,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "contact",
+    "old_url": "/contact.html",
+    "title": "Контакты  Евроэлемент",
+    "chars": 262,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "uslovia",
+    "old_url": "/uslovia.html",
+    "title": "Условия использования сайта",
+    "chars": 9026,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "konfidencialnost",
+    "old_url": "/konfidencialnost.html",
+    "title": "Политика конфиденциальности интернет-сайта",
+    "chars": 19783,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "soglasie",
+    "old_url": "/soglasie.html",
+    "title": "Согласие на обработку персональных данных",
+    "chars": 2260,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "notification",
+    "old_url": "/notification.html",
+    "title": "Уведомление об использовании файлов куки",
+    "chars": 2014,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "maps",
+    "old_url": "/maps.html",
+    "title": "Карта сайта",
+    "chars": 2916,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "panel",
+    "old_url": "/panel.html",
+    "title": "Панель управления",
+    "chars": 0,
+    "tables": 0,
+    "images": [],
+    "robots": ""
+  },
+  {
+    "slug": "reg",
+    "old_url": "/reg.html",
+    "title": "Регистрация",
+    "chars": 0,
+    "tables": 0,
+    "images": [],
+    "robots": ""
+  },
+  {
+    "slug": "shop",
+    "old_url": "/shop.html",
+    "title": "Автомобильные фильтры",
+    "chars": 3501,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/photo/im/pre-as1510.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-as1539.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3523.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3529.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3541.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3543.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as928ht.png",
+      "https://www.evro-element.ru/element/photo/im/pre-hf5126.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-hf5615.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp1553m.png",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7006.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7007.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7024.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp818m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp854m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp926m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp998m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-spfc321.png",
+      "https://www.evro-element.ru/element/photo/im/pre-spfc510.png",
+      "https://www.evro-element.ru/img/nofoto.png"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "asas",
+    "old_url": "/asas.html",
+    "title": "АСАШ ФИЛЬТР",
+    "chars": 1823,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/bezimyanniy.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "asas-oil",
+    "old_url": "/asas-oil.html",
+    "title": "Масляные фильтры",
+    "chars": 1332,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/photo/im/pre-as1503.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-as1510.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-as1539.png",
+      "https://www.evro-element.ru/element/photo/im/pre-sp677.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp685.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp690.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-spc415.jpg",
+      "https://www.evro-element.ru/img/nofoto.png"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "asas-fuel",
+    "old_url": "/asas-fuel.html",
+    "title": "Топливные фильтры",
+    "chars": 2344,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/photo/im/pre-as3523.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3529.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3541.png",
+      "https://www.evro-element.ru/element/photo/im/pre-as3543.png",
+      "https://www.evro-element.ru/element/photo/im/pre-sp1553m.png",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7006.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7007.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp7024.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp818m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp854m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp926m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-sp998m.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-spfc321.png",
+      "https://www.evro-element.ru/element/photo/im/pre-spfc510.png",
+      "https://www.evro-element.ru/img/nofoto.png"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "aira-sas",
+    "old_url": "/aira-sas.html",
+    "title": "Воздушные фильтры",
+    "chars": 1465,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/photo/im/pre-hf5126.jpg",
+      "https://www.evro-element.ru/element/photo/im/pre-hf5615.jpg",
+      "https://www.evro-element.ru/img/nofoto.png"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "asasevro",
+    "old_url": "/asasevro.html",
+    "title": "Фильтры на ЕВРО",
+    "chars": 227,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "china",
+    "old_url": "/china.html",
+    "title": "Фильтры на китайские автомобили",
+    "chars": 954,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "truck",
+    "old_url": "/truck.html",
+    "title": "Фильтры на импортную дорожностроительную технику",
+    "chars": 3217,
+    "tables": 11,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "harkitavto",
+    "old_url": "/harkitavto.html",
+    "title": "Характеристики китайских автомобилей",
+    "chars": 351,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/dongfeng1045.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/faw_besturn.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/faw_hq3.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/faw_vita_hetchbek.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/faw_vita_sedan.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_auman_1241__1251.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_baw1044th.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_baw1065.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_dfa6720.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_dfl_4181_930.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_dong_feng_eq1063dj10.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_eq1030t47d_820.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_faw1041.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_feng_dfl_3251_931.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_foton_1039.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_foton_1049.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_foton_1069.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_foton_1099.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_foton_auman_1138.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_izoter__dong_feng_eq_1030_1_5_tn.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dorstroittehn",
+    "old_url": "/dorstroittehn.html",
+    "title": "Характеристики дорожностроительной техники",
+    "chars": 171,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_ca302.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_d65e_12.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f4c.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_hamm_3520.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_hamm_3625_ht.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_pc400_7.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_volvo_g710b.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_volvo_g746b.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dongfbort",
+    "old_url": "/dongfbort.html",
+    "title": "Китайские бортовые автомобили Dong Feng",
+    "chars": 134,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_eq1030t47d_820.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_eq_1063dj10.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_eq_1074g5ad.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "samosvali",
+    "old_url": "/samosvali.html",
+    "title": "Китайские самосвалы",
+    "chars": 2309,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/feng_dfl_3251_931.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "evakuator",
+    "old_url": "/evakuator.html",
+    "title": "Китайский автоэвакуатор",
+    "chars": 2472,
+    "tables": 2,
+    "images": [
+      "https://www.evro-element.ru/element/images/dong_feng_eq1063dj10.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "phurgoni",
+    "old_url": "/phurgoni.html",
+    "title": "Китайские фургоны",
+    "chars": 297,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_izoter__dong_feng_eq_1030_1_5_tn.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_izoter__eq_1063_4_0_tn.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_izoter_eq_1074_6_0_tn.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_prom___eq_1074_6_0_tn.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_prom_eq_1030_1_5_tn.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_promtovarniy_eq_1063_4_0_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "tyagachi",
+    "old_url": "/tyagachi.html",
+    "title": "Китайские седельные тягачи",
+    "chars": 90,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_dfl_4181_930.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_feng_dfl_4251_930.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "kitavto",
+    "old_url": "/kitavto.html",
+    "title": "Китайские автобусы",
+    "chars": 49,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_dfa6720.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_dongfeng6600.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "gruzfaw",
+    "old_url": "/gruzfaw.html",
+    "title": "Грузовики FAW",
+    "chars": 67,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_faw1010.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_faw1041.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/kopiya_faw1051.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dynapacasfalt",
+    "old_url": "/dynapacasfalt.html",
+    "title": "Асфальтоукладчики DYNAPAC",
+    "chars": 249,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_f121c.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f121w_d.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f161w.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f4c.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f5c.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f6w.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dynapackatki",
+    "old_url": "/dynapackatki.html",
+    "title": "Катки DYNAPAC",
+    "chars": 113,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_ca134.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc122c.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc142.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cp142.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "combi",
+    "old_url": "/combi.html",
+    "title": "Комбинированные катки DYNAPAC",
+    "chars": 95,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_cc122c.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc142c.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc222chf.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "odnovalc",
+    "old_url": "/odnovalc.html",
+    "title": "Одновальцовые грунтовые катки DYNAPAC",
+    "chars": 143,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_ca134.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_ca144.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_ca150.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_ca302.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_ca302_dco.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "statit",
+    "old_url": "/statit.html",
+    "title": "Статические катки DYNAPAC",
+    "chars": 86,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_cp142.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cp221.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cs142.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "tandem",
+    "old_url": "/tandem.html",
+    "title": "Тандемные асфальтовые катки DYNAPAC",
+    "chars": 159,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_cc142.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc222hf.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc800.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_cc900.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "buldozer",
+    "old_url": "/buldozer.html",
+    "title": "Бульдозеры KOMATSU",
+    "chars": 125,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_d275a_5.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_d375a_5.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_d65e_12.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_d85ex_15.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ekskavatori",
+    "old_url": "/ekskavatori.html",
+    "title": "Экскаваторы KOMATSU",
+    "chars": 130,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_pc200_7.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_pc300_7.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_pc400_7.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_wb93r_5.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "g710b",
+    "old_url": "/g710b.html",
+    "title": "Автогрейдер VOLVO G710B",
+    "chars": 714,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/volvo_g710b.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "g746b",
+    "old_url": "/g746b.html",
+    "title": "Автогрейдер VOLVO G746B",
+    "chars": 735,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/volvo_g746b.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "hamm3520",
+    "old_url": "/hamm3520.html",
+    "title": "Каток HAMM 3520",
+    "chars": 391,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/hamm_3520.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "3625ht",
+    "old_url": "/3625ht.html",
+    "title": "Каток HAMM 3625HT",
+    "chars": 395,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/hamm_3625_ht.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "faw1010",
+    "old_url": "/faw1010.html",
+    "title": "Китайский грузовик Faw 1010",
+    "chars": 1055,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/faw1010.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "faw1041",
+    "old_url": "/faw1041.html",
+    "title": "Китайский грузовик Faw 1041",
+    "chars": 1403,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/faw1041.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "faw1051",
+    "old_url": "/faw1051.html",
+    "title": "Китайский грузовик FAW 1051",
+    "chars": 1506,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/faw1051.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "foton1049",
+    "old_url": "/foton1049.html",
+    "title": "Китайский грузовик FOTON 1049",
+    "chars": 1397,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/foton1049.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dfm6720",
+    "old_url": "/dfm6720.html",
+    "title": "Китайский автобус DONG FENG DFA 6720",
+    "chars": 1105,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/dfa6720.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dfa6600",
+    "old_url": "/dfa6600.html",
+    "title": "Китайский автобус Dong Feng DFA 6600",
+    "chars": 1480,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/dongfeng6600.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dongfengtruck",
+    "old_url": "/dongfengtruck.html",
+    "title": "Китайские грузовики  Dong Feng",
+    "chars": 76,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/dongfeng1042.jpg?2209102899",
+      "https://www.evro-element.ru/element/images/dongfeng1045.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dfm1045",
+    "old_url": "/dfm1045.html",
+    "title": "Китайский грузовик Dong Feng DFA 1045",
+    "chars": 1084,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/dongfeng1045.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dfa1062",
+    "old_url": "/dfa1062.html",
+    "title": "Китайский грузовик Dong Feng DFA 1062",
+    "chars": 1481,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/dongfeng1042.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "baw1065",
+    "old_url": "/baw1065.html",
+    "title": "Китайский грузовик BAW 1065",
+    "chars": 1198,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/baw1065.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "baw1044",
+    "old_url": "/baw1044.html",
+    "title": "Китайский грузовик BAW 1044",
+    "chars": 1347,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/baw1044th.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "faw",
+    "old_url": "/faw.html",
+    "title": "Китайский автомобиль FAW Vita хэтчбек",
+    "chars": 1943,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_faw_vita_hetchbek.jpg?2209102899"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "fawsedan",
+    "old_url": "/fawsedan.html",
+    "title": "Китайский автомобиль FAW Vita седан",
+    "chars": 1941,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_faw_vita_sedan.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "fawbesturn",
+    "old_url": "/fawbesturn.html",
+    "title": "Китайский автомобиль FAW Besturn",
+    "chars": 1288,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_faw_besturn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "hq3",
+    "old_url": "/hq3.html",
+    "title": "Китайский автомобиль FAW HQ3",
+    "chars": 1353,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_faw_hq3.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "foton1039",
+    "old_url": "/foton1039.html",
+    "title": "Китайский грузовик Foton 1039",
+    "chars": 608,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/foton_1039.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "foton1241",
+    "old_url": "/foton1241.html",
+    "title": "Китайский грузовик Foton Auman 1241",
+    "chars": 1713,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/auman_1241__1251.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "foton1069",
+    "old_url": "/foton1069.html",
+    "title": "Китайский грузовик Foton 1069",
+    "chars": 1424,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/foton_1069.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "foton1099",
+    "old_url": "/foton1099.html",
+    "title": "Китайский грузовик Foton 1099",
+    "chars": 1749,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/foton_1099.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "fotonauman1138",
+    "old_url": "/fotonauman1138.html",
+    "title": "Китайский грузовик Foton Auman 1138",
+    "chars": 1725,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/foton_auman_1138.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "eq1030t47d-820",
+    "old_url": "/eq1030t47d-820.html",
+    "title": "Китайский бортовой грузовик EQ1030T47D-820",
+    "chars": 2442,
+    "tables": 2,
+    "images": [
+      "https://www.evro-element.ru/element/images/eq1030t47d_820.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "eq1063dj10",
+    "old_url": "/eq1063dj10.html",
+    "title": "Китайский бортовой грузовик EQ 1063DJ10",
+    "chars": 2353,
+    "tables": 2,
+    "images": [
+      "https://www.evro-element.ru/element/images/eq_1063dj10.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "eq1074g5ad",
+    "old_url": "/eq1074g5ad.html",
+    "title": "Китайский бортовой грузовик EQ 1074G5AD",
+    "chars": 1929,
+    "tables": 2,
+    "images": [
+      "https://www.evro-element.ru/element/images/eq_1074g5ad.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "eq10301izo",
+    "old_url": "/eq10301izo.html",
+    "title": "Китайский изотермический фургон Dong Feng EQ 1030 1,5 тн",
+    "chars": 2292,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/izoter__dong_feng_eq_1030_1_5_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "10634izo",
+    "old_url": "/10634izo.html",
+    "title": "Китайский фургон изотермический Dong Feng EQ 1063 4,0 тн",
+    "chars": 1651,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/izoter__eq_1063_4_0_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "10746izo",
+    "old_url": "/10746izo.html",
+    "title": "Китайский фургон изотермический Dong Feng EQ 1074 6,0 тн",
+    "chars": 1520,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/izoter_eq_1074_6_0_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "prom107460",
+    "old_url": "/prom107460.html",
+    "title": "Китайский фургон промтоварный Dong Feng EQ 1074 6,0 тн",
+    "chars": 1526,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/prom___eq_1074_6_0_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "prom103015",
+    "old_url": "/prom103015.html",
+    "title": "Китайский фургон промтоварный Dong Feng EQ 1030 1,5 тн",
+    "chars": 1624,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/prom_eq_1030_1_5_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "prom106340",
+    "old_url": "/prom106340.html",
+    "title": "Китайский фургон промтоварный Dong Feng EQ 1063 4,0 тн",
+    "chars": 1175,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/promtovarniy_eq_1063_4_0_tn.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "tagach4181930",
+    "old_url": "/tagach4181930.html",
+    "title": "Китайский седельный тягач DFL 4181-930",
+    "chars": 2434,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/dfl_4181_930.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "tagach4251930",
+    "old_url": "/tagach4251930.html",
+    "title": "Китайский седельный тягач Feng DFL 4251-930",
+    "chars": 2464,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/feng_dfl_4251_930.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dynkoles",
+    "old_url": "/dynkoles.html",
+    "title": "Асфальтоукладчики DYNAPAC колёсные",
+    "chars": 120,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_f121w_d.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f161w.jpg?2209102898",
+      "https://www.evro-element.ru/element/images/kopiya_f6w.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f6w",
+    "old_url": "/f6w.html",
+    "title": "Асфальтоукладчик F6W DYNAPAC",
+    "chars": 1383,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f6w.jpg?2209102898"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f121w",
+    "old_url": "/f121w.html",
+    "title": "Асфальтоукладчик F121W D DYNAPAC",
+    "chars": 1320,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f121w_d.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f161w",
+    "old_url": "/f161w.html",
+    "title": "Асфальтоукладчик F161W DYNAPAC",
+    "chars": 1119,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f161w.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "dynapacgusen",
+    "old_url": "/dynapacgusen.html",
+    "title": "Асфальтоукладчики DYNAPAC гусеничные",
+    "chars": 127,
+    "tables": 0,
+    "images": [
+      "https://www.evro-element.ru/element/images/kopiya_f121c.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_f4c.jpg?2209102897",
+      "https://www.evro-element.ru/element/images/kopiya_f5c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f4c",
+    "old_url": "/f4c.html",
+    "title": "Асфальтоукладчик гусеничный F4C",
+    "chars": 1438,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f4c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f5c",
+    "old_url": "/f5c.html",
+    "title": "Асфальтоукладчик гусеничный F5C",
+    "chars": 1435,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f5c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "f121c",
+    "old_url": "/f121c.html",
+    "title": "Асфальтоукладчик гусеничный F121C",
+    "chars": 1147,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/f121c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc122c",
+    "old_url": "/cc122c.html",
+    "title": "Каток DYNAPAC СС122С",
+    "chars": 967,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc122c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc142c",
+    "old_url": "/cc142c.html",
+    "title": "Каток DYNAPAC СС142С",
+    "chars": 1079,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc142c.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc222chf",
+    "old_url": "/cc222chf.html",
+    "title": "Каток DYNAPAC СС222СHF",
+    "chars": 1475,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc222chf.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ca134",
+    "old_url": "/ca134.html",
+    "title": "Каток DYNAPAC СА134",
+    "chars": 1040,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/ca134.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ca144",
+    "old_url": "/ca144.html",
+    "title": "Каток DYNAPAC СА144",
+    "chars": 953,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/ca144.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ca150",
+    "old_url": "/ca150.html",
+    "title": "Каток DYNAPAC CA150",
+    "chars": 1130,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/ca150.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ca302",
+    "old_url": "/ca302.html",
+    "title": "Каток DYNAPAC СА302",
+    "chars": 1206,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/ca302.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "ca302dco",
+    "old_url": "/ca302dco.html",
+    "title": "Каток DYNAPAC СА302 DCO",
+    "chars": 1100,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/ca302_dco.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cp142",
+    "old_url": "/cp142.html",
+    "title": "Каток статический DYNAPAC СР142",
+    "chars": 1186,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cp142.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cp221",
+    "old_url": "/cp221.html",
+    "title": "Каток DYNAPAC статический СР221",
+    "chars": 1167,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cp221.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cs142",
+    "old_url": "/cs142.html",
+    "title": "Каток DYNAPAC статический СS142",
+    "chars": 1391,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cs142.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc222hf",
+    "old_url": "/cc222hf.html",
+    "title": "Каток DYNAPAC тандемный CC222HF",
+    "chars": 1139,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc222hf.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc800",
+    "old_url": "/cc800.html",
+    "title": "Каток DYNAPAC тандемный СС800",
+    "chars": 994,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc800.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "cc900",
+    "old_url": "/cc900.html",
+    "title": "Каток DYNAPAC тандемный CC900",
+    "chars": 1053,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc900.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "d65e12",
+    "old_url": "/d65e12.html",
+    "title": "Бульдозер KOMATSU D65E-12",
+    "chars": 1002,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/d65e_12.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "d85ex15",
+    "old_url": "/d85ex15.html",
+    "title": "Бульдозер KOMATSU D85EX-15",
+    "chars": 862,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/d85ex_15.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "d275a5",
+    "old_url": "/d275a5.html",
+    "title": "Бульдозер KOMATSU D275A-5",
+    "chars": 1059,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/d275a_5.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "d375a5",
+    "old_url": "/d375a5.html",
+    "title": "Бульдозер KOMATSU D375A-5",
+    "chars": 1092,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/d375a_5.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "pc2007",
+    "old_url": "/pc2007.html",
+    "title": "Экскаваторы KOMATSU PC200-7",
+    "chars": 1346,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/pc2007_pc2007_pc2007_pc2007_pc2007_pc2007_blank.gif?2209102897",
+      "https://www.evro-element.ru/element/images/pc200_7.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "pc3007",
+    "old_url": "/pc3007.html",
+    "title": "Экскаваторы KOMATSU PC300-7",
+    "chars": 1343,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/pc300_7.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "pc400",
+    "old_url": "/pc400.html",
+    "title": "Экскаваторы KOMATSU PC400",
+    "chars": 1247,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/pc400_7.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "wb93r5",
+    "old_url": "/wb93r5.html",
+    "title": "Экскаваторы KOMATSU WB93R-5",
+    "chars": 1736,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/wb93r5_wb93r5_wb93r5_blank.gif?2209102896",
+      "https://www.evro-element.ru/element/images/wb93r_5.jpg?2209102896"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation",
+    "old_url": "/affiliation.html",
+    "title": "Компании партнеры",
+    "chars": 657,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "getpass",
+    "old_url": "/getpass.html",
+    "title": "Забыли пароль?",
+    "chars": 0,
+    "tables": 0,
+    "images": [],
+    "robots": ""
+  },
+  {
+    "slug": "cc142",
+    "old_url": "/cc142.html",
+    "title": "Каток DYNAPAC тандемный СС142",
+    "chars": 610,
+    "tables": 1,
+    "images": [
+      "https://www.evro-element.ru/element/images/cc142.jpg?2209102897"
+    ],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0",
+    "old_url": "/affiliation-0.html",
+    "title": "По дорогам России на автомобиле | Компании партнеры",
+    "chars": 1936,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-21",
+    "old_url": "/affiliation-21.html",
+    "title": "Автоцентры | Компании партнеры",
+    "chars": 88,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7",
+    "old_url": "/affiliation-7.html",
+    "title": "Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 744,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-22",
+    "old_url": "/affiliation-22.html",
+    "title": "Запасные части для автобусов | Компании партнеры",
+    "chars": 34,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8",
+    "old_url": "/affiliation-8.html",
+    "title": "Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 405,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-28",
+    "old_url": "/affiliation-28.html",
+    "title": "Все детали для легковых автомобилей | Компании партнеры",
+    "chars": 219,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-27",
+    "old_url": "/affiliation-27.html",
+    "title": "Автомобильные жидкости и топливо | Компании партнеры",
+    "chars": 124,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-23",
+    "old_url": "/affiliation-23.html",
+    "title": "Продажа сельхозтехники | Компании партнеры",
+    "chars": 308,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6",
+    "old_url": "/affiliation-6.html",
+    "title": "Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 485,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-9",
+    "old_url": "/affiliation-9.html",
+    "title": "Садовые сайты | Компании партнеры",
+    "chars": 36,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10",
+    "old_url": "/affiliation-10.html",
+    "title": "Про лодки | Компании партнеры",
+    "chars": 748,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5",
+    "old_url": "/affiliation-5.html",
+    "title": "Буровые сайты | Компании партнеры",
+    "chars": 1626,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2",
+    "old_url": "/affiliation-2.html",
+    "title": "Все для бизнеса | Компании партнеры",
+    "chars": 524,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-14",
+    "old_url": "/affiliation-14.html",
+    "title": "Рынки | Компании партнеры",
+    "chars": 112,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-26",
+    "old_url": "/affiliation-26.html",
+    "title": "Юридические компании | Компании партнеры",
+    "chars": 49,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20",
+    "old_url": "/affiliation-20.html",
+    "title": "Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 847,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1",
+    "old_url": "/affiliation-1.html",
+    "title": "Системы управления сайтами | Компании партнеры",
+    "chars": 358,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-15",
+    "old_url": "/affiliation-15.html",
+    "title": "Семейный туризм | Компании партнеры",
+    "chars": 60,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-25",
+    "old_url": "/affiliation-25.html",
+    "title": "Образование, обучение, курсы семинары | Компании партнеры",
+    "chars": 80,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3",
+    "old_url": "/affiliation-3.html",
+    "title": "Дом моей семьи | Компании партнеры",
+    "chars": 447,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-4",
+    "old_url": "/affiliation-4.html",
+    "title": "Отопление | Компании партнеры",
+    "chars": 268,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12",
+    "old_url": "/affiliation-12.html",
+    "title": "Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 834,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24",
+    "old_url": "/affiliation-24.html",
+    "title": "Промышленные предприятия | Компании партнеры",
+    "chars": 326,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13",
+    "old_url": "/affiliation-13.html",
+    "title": "Строительство и отделка | Компании партнеры",
+    "chars": 806,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-10",
+    "old_url": "/affiliation-0-10.html",
+    "title": "мотолодки и мотокультиваторы  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 175,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-11",
+    "old_url": "/affiliation-0-11.html",
+    "title": "спецтехнику Бецема  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 129,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-12",
+    "old_url": "/affiliation-0-12.html",
+    "title": "буровые установки  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 144,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-13",
+    "old_url": "/affiliation-0-13.html",
+    "title": "цементовозы сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 344,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-107",
+    "old_url": "/affiliation-0-107.html",
+    "title": "муковозы и цементовозы Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 140,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-108",
+    "old_url": "/affiliation-0-108.html",
+    "title": "мобильные офисы  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 173,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-148",
+    "old_url": "/affiliation-0-148.html",
+    "title": "Муковозы комбикормовозы Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 127,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-149",
+    "old_url": "/affiliation-0-149.html",
+    "title": "рекламные кампании  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 122,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-150",
+    "old_url": "/affiliation-0-150.html",
+    "title": "услуги ремонта и сервиса  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 141,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-151",
+    "old_url": "/affiliation-0-151.html",
+    "title": "руководства по эксплуатации  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 194,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-200",
+    "old_url": "/affiliation-0-200.html",
+    "title": "нефтегазопромысловой технике  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 112,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-187",
+    "old_url": "/affiliation-0-187.html",
+    "title": "аварийно ремонтные фургоны  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 203,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-195",
+    "old_url": "/affiliation-0-195.html",
+    "title": "бензовозовы, битумовозы, автоцистеры  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 347,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-215",
+    "old_url": "/affiliation-0-215.html",
+    "title": "оформление товаросопроводительных документов  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 211,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-219",
+    "old_url": "/affiliation-0-219.html",
+    "title": "ППЦ битумовоз 964874 для эксплуатацию в различных климатических условиях  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 274,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-220",
+    "old_url": "/affiliation-0-220.html",
+    "title": "муковозы комбикормовозы Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 125,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-221",
+    "old_url": "/affiliation-0-221.html",
+    "title": "пищевую цистерну Сеспель 96487С для перевозки жиров  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 405,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-241",
+    "old_url": "/affiliation-0-241.html",
+    "title": "бортовые платформы на автомобили КАМАЗ  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 175,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-245",
+    "old_url": "/affiliation-0-245.html",
+    "title": "цистерны для перевозки опасных грузов  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 249,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-246",
+    "old_url": "/affiliation-0-246.html",
+    "title": "Цементовозы Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 280,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-247",
+    "old_url": "/affiliation-0-247.html",
+    "title": "Цистерны для перевозки кислот  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 216,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-251",
+    "old_url": "/affiliation-0-251.html",
+    "title": "полуприцепы-контейнеровозы  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 120,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-252",
+    "old_url": "/affiliation-0-252.html",
+    "title": "бензовозы Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 328,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-297",
+    "old_url": "/affiliation-0-297.html",
+    "title": "все про скреперы, канавокопатели, земснаряды  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 409,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-275",
+    "old_url": "/affiliation-0-275.html",
+    "title": "автомобили  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 133,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-321",
+    "old_url": "/affiliation-0-321.html",
+    "title": "всю необходимую информацию про автомобильные компании  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 138,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-325",
+    "old_url": "/affiliation-0-325.html",
+    "title": "полуприцепы цистерны НЕФАЗ  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 116,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-327",
+    "old_url": "/affiliation-0-327.html",
+    "title": "спецтехнику КАМАЗ  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 405,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-332",
+    "old_url": "/affiliation-0-332.html",
+    "title": "бензовозы BONUM  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 202,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-0-333",
+    "old_url": "/affiliation-0-333.html",
+    "title": "Спецтехнику Сеспель  |  По дорогам России на автомобиле | Компании партнеры",
+    "chars": 334,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-21-183",
+    "old_url": "/affiliation-21-183.html",
+    "title": "автомобили японского производства и страхование ОСАГО онлайн  |  Автоцентры | Компании партнеры",
+    "chars": 218,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-18",
+    "old_url": "/affiliation-7-18.html",
+    "title": "рти маз  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 155,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-126",
+    "old_url": "/affiliation-7-126.html",
+    "title": "силовые агрегаты  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 190,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-84",
+    "old_url": "/affiliation-7-84.html",
+    "title": "поршень к а/м камаз  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 168,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-91",
+    "old_url": "/affiliation-7-91.html",
+    "title": "к автомобилю из автограда на реке КАМА, маз, урал, зил  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 152,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-93",
+    "old_url": "/affiliation-7-93.html",
+    "title": "шины  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 169,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-214",
+    "old_url": "/affiliation-7-214.html",
+    "title": "реактивные и рулевые пальцы  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 310,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-217",
+    "old_url": "/affiliation-7-217.html",
+    "title": "запчасти к автомобилю из автограда на реке КАМА  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 395,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-223",
+    "old_url": "/affiliation-7-223.html",
+    "title": "номенклатуру запчастей для автомобилей  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 195,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-228",
+    "old_url": "/affiliation-7-228.html",
+    "title": "камазовские запчасти  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 119,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-255",
+    "old_url": "/affiliation-7-255.html",
+    "title": "запчасти из автограда на реке КАМА  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 298,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-302",
+    "old_url": "/affiliation-7-302.html",
+    "title": "коробки передач ZF  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 236,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-7-310",
+    "old_url": "/affiliation-7-310.html",
+    "title": "запчасти ЯМЗ ЯЗДА УМЗ  |  Детали и узлы для автомобиля автозавода на реке КАМА | Компании партнеры",
+    "chars": 160,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-22-30",
+    "old_url": "/affiliation-22-30.html",
+    "title": "запчасти к автобусам лиаз  |  Запасные части для автобусов | Компании партнеры",
+    "chars": 57,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-53",
+    "old_url": "/affiliation-8-53.html",
+    "title": "запчасти камаз  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 139,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-82",
+    "old_url": "/affiliation-8-82.html",
+    "title": "про компрессоры Паневежио Аурида  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 294,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-139",
+    "old_url": "/affiliation-8-139.html",
+    "title": "пальцы, пружины  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 102,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-294",
+    "old_url": "/affiliation-8-294.html",
+    "title": "ремонт дизельных двигателей  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 364,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-264",
+    "old_url": "/affiliation-8-264.html",
+    "title": "тягачи камаз и книги по ремонту и обслуживанию автомобилей  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 210,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-349",
+    "old_url": "/affiliation-8-349.html",
+    "title": "спецтехнику СЕСПЕЛЬ  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 206,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-8-397",
+    "old_url": "/affiliation-8-397.html",
+    "title": "воздушные, масляные фильтры  |  Все детали для грузового автомобиля | Компании партнеры",
+    "chars": 175,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-28-79",
+    "old_url": "/affiliation-28-79.html",
+    "title": "механическую обработку  |  Все детали для легковых автомобилей | Компании партнеры",
+    "chars": 98,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-28-88",
+    "old_url": "/affiliation-28-88.html",
+    "title": "токарную обработку  |  Все детали для легковых автомобилей | Компании партнеры",
+    "chars": 371,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-28-261",
+    "old_url": "/affiliation-28-261.html",
+    "title": "коврах в салон и багажник  |  Все детали для легковых автомобилей | Компании партнеры",
+    "chars": 155,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-28-314",
+    "old_url": "/affiliation-28-314.html",
+    "title": "шины к легковым автомобилям  |  Все детали для легковых автомобилей | Компании партнеры",
+    "chars": 133,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-27-286",
+    "old_url": "/affiliation-27-286.html",
+    "title": "азс и топливо  |  Автомобильные жидкости и топливо | Компании партнеры",
+    "chars": 228,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-27-346",
+    "old_url": "/affiliation-27-346.html",
+    "title": "трансмиссионные масла, антифризы  |  Автомобильные жидкости и топливо | Компании партнеры",
+    "chars": 358,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-23-184",
+    "old_url": "/affiliation-23-184.html",
+    "title": "плуги косилки и другое навесное оборудование  |  Продажа сельхозтехники | Компании партнеры",
+    "chars": 139,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-23-229",
+    "old_url": "/affiliation-23-229.html",
+    "title": "рассаде огородных культур  |  Продажа сельхозтехники | Компании партнеры",
+    "chars": 136,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-23-298",
+    "old_url": "/affiliation-23-298.html",
+    "title": "запасные части к сельхозтехнике Case IH, МТЗ, MacDon, CLAAS, Ростсельмаш  |  Продажа сельхозтехники | Компании партнеры",
+    "chars": 333,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-23-311",
+    "old_url": "/affiliation-23-311.html",
+    "title": "кору хвойных деревьев для мульчирования посадок  |  Продажа сельхозтехники | Компании партнеры",
+    "chars": 304,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-401",
+    "old_url": "/affiliation-6-401.html",
+    "title": "диагностику АКПП, АКПП ZF  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 299,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-185",
+    "old_url": "/affiliation-6-185.html",
+    "title": "услуги по замене узлов и агрегатов  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 215,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-258",
+    "old_url": "/affiliation-6-258.html",
+    "title": "автомобили, спецтехнику, запчасти и сервис  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 302,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-295",
+    "old_url": "/affiliation-6-295.html",
+    "title": "химические и пищевые автоцистерны  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 189,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-339",
+    "old_url": "/affiliation-6-339.html",
+    "title": "ремонт выхлопной системы  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 133,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-6-403",
+    "old_url": "/affiliation-6-403.html",
+    "title": "круглосуточную эвакуацию и  помощь в случае непредвиденных ситуаций на дороге, подача от 15 минут  |  Капитальный ремонт автомобилей | Компании партнеры",
+    "chars": 296,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-9-28",
+    "old_url": "/affiliation-9-28.html",
+    "title": "газонокосилки  |  Садовые сайты | Компании партнеры",
+    "chars": 95,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-9",
+    "old_url": "/affiliation-10-9.html",
+    "title": "лодочные моторы и аксессуары для Гризли  |  Про лодки | Компании партнеры",
+    "chars": 269,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-71",
+    "old_url": "/affiliation-10-71.html",
+    "title": "лодочные прицепы и моторы  |  Про лодки | Компании партнеры",
+    "chars": 150,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-109",
+    "old_url": "/affiliation-10-109.html",
+    "title": "пластиковые мотолодки Catran  |  Про лодки | Компании партнеры",
+    "chars": 108,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-121",
+    "old_url": "/affiliation-10-121.html",
+    "title": "лодочные моторы  |  Про лодки | Компании партнеры",
+    "chars": 106,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-134",
+    "old_url": "/affiliation-10-134.html",
+    "title": "надувные лодки  |  Про лодки | Компании партнеры",
+    "chars": 101,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-161",
+    "old_url": "/affiliation-10-161.html",
+    "title": "судно на воздушной подушке  |  Про лодки | Компании партнеры",
+    "chars": 324,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-208",
+    "old_url": "/affiliation-10-208.html",
+    "title": "для транспортировки лодки автомобильные прицепы  |  Про лодки | Компании партнеры",
+    "chars": 217,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-196",
+    "old_url": "/affiliation-10-196.html",
+    "title": "из пластика каюту на 2х человек на лодку Казанка  |  Про лодки | Компании партнеры",
+    "chars": 293,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-216",
+    "old_url": "/affiliation-10-216.html",
+    "title": "каюты, двигатели, аксессуары, доп оборудование  |  Про лодки | Компании партнеры",
+    "chars": 319,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-238",
+    "old_url": "/affiliation-10-238.html",
+    "title": "безопасные и удобные лодки Windboat  |  Про лодки | Компании партнеры",
+    "chars": 187,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-243",
+    "old_url": "/affiliation-10-243.html",
+    "title": "моторные лодки Скиф  |  Про лодки | Компании партнеры",
+    "chars": 173,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-244",
+    "old_url": "/affiliation-10-244.html",
+    "title": "Специальные катера КС  |  Про лодки | Компании партнеры",
+    "chars": 228,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-10-254",
+    "old_url": "/affiliation-10-254.html",
+    "title": "в экслуатации  |  Про лодки | Компании партнеры",
+    "chars": 147,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-144",
+    "old_url": "/affiliation-5-144.html",
+    "title": "бурового оборудования  |  Буровые сайты | Компании партнеры",
+    "chars": 322,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-15",
+    "old_url": "/affiliation-5-15.html",
+    "title": "запчасти к буровой установке  |  Буровые сайты | Компании партнеры",
+    "chars": 86,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-127",
+    "old_url": "/affiliation-5-127.html",
+    "title": "запчасти оказывает ремонт и сервисное обслуживание  |  Буровые сайты | Компании партнеры",
+    "chars": 146,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-26",
+    "old_url": "/affiliation-5-26.html",
+    "title": "СТЕРХ  |  Буровые сайты | Компании партнеры",
+    "chars": 222,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-32",
+    "old_url": "/affiliation-5-32.html",
+    "title": "ТД Аумас предлагает дополнительное оборудование для проведения буровых работ, освоения, бурения и ремонта скважин в труднодоступных местах, вблизи водоемов; в прибрежных зонах морей  для обслуживания буровых платформ, расположенных в море.  |  Буровые сайты | Компании партнеры",
+    "chars": 650,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-33",
+    "old_url": "/affiliation-5-33.html",
+    "title": "установки для бурения скважин на воду  |  Буровые сайты | Компании партнеры",
+    "chars": 239,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-48",
+    "old_url": "/affiliation-5-48.html",
+    "title": "with hole clean out by flushing  |  Буровые сайты | Компании партнеры",
+    "chars": 218,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-54",
+    "old_url": "/affiliation-5-54.html",
+    "title": "про установку подъемную АзИНМАШ-37 А1  |  Буровые сайты | Компании партнеры",
+    "chars": 185,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-95",
+    "old_url": "/affiliation-5-95.html",
+    "title": "ремонт буровой установки УРБ 2А2  |  Буровые сайты | Компании партнеры",
+    "chars": 138,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-112",
+    "old_url": "/affiliation-5-112.html",
+    "title": "буровой инструмент  |  Буровые сайты | Компании партнеры",
+    "chars": 218,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-120",
+    "old_url": "/affiliation-5-120.html",
+    "title": "буровые установки  |  Буровые сайты | Компании партнеры",
+    "chars": 163,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-141",
+    "old_url": "/affiliation-5-141.html",
+    "title": "буровых установок УРБ 2,5 А  |  Буровые сайты | Компании партнеры",
+    "chars": 164,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-210",
+    "old_url": "/affiliation-5-210.html",
+    "title": "запчастями для буровых  |  Буровые сайты | Компании партнеры",
+    "chars": 128,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-202",
+    "old_url": "/affiliation-5-202.html",
+    "title": "С применением и разработкой нового типа силовых лебёдок увеличилась подъёмная сила  |  Буровые сайты | Компании партнеры",
+    "chars": 444,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-191",
+    "old_url": "/affiliation-5-191.html",
+    "title": "самоходной буровой установки УРБ-2,5А  |  Буровые сайты | Компании партнеры",
+    "chars": 279,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-234",
+    "old_url": "/affiliation-5-234.html",
+    "title": "буровые установки УБГ-Л2 Аллигатор  |  Буровые сайты | Компании партнеры",
+    "chars": 316,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-240",
+    "old_url": "/affiliation-5-240.html",
+    "title": "станки Колибри  |  Буровые сайты | Компании партнеры",
+    "chars": 176,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-270",
+    "old_url": "/affiliation-5-270.html",
+    "title": "буровой станок СТЕРХ  |  Буровые сайты | Компании партнеры",
+    "chars": 145,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-271",
+    "old_url": "/affiliation-5-271.html",
+    "title": "установку буровую легкой серии УБГ-Л  |  Буровые сайты | Компании партнеры",
+    "chars": 253,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-5-385",
+    "old_url": "/affiliation-5-385.html",
+    "title": "гидравлические буровые установки  |  Буровые сайты | Компании партнеры",
+    "chars": 192,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-89",
+    "old_url": "/affiliation-2-89.html",
+    "title": "внешнеэкономической деятельностью  |  Все для бизнеса | Компании партнеры",
+    "chars": 118,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-209",
+    "old_url": "/affiliation-2-209.html",
+    "title": "лодки казанка и отгружает авто и жд транспортом  |  Все для бизнеса | Компании партнеры",
+    "chars": 135,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-289",
+    "old_url": "/affiliation-2-289.html",
+    "title": "предупреждение рудничных аварий  |  Все для бизнеса | Компании партнеры",
+    "chars": 136,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-304",
+    "old_url": "/affiliation-2-304.html",
+    "title": "получить представление о преимуществах ленгдинга  |  Все для бизнеса | Компании партнеры",
+    "chars": 182,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-322",
+    "old_url": "/affiliation-2-322.html",
+    "title": "сервисное обслуживание лазерных принтеров и МФУ  |  Все для бизнеса | Компании партнеры",
+    "chars": 359,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-329",
+    "old_url": "/affiliation-2-329.html",
+    "title": "аренду производственных помещений  |  Все для бизнеса | Компании партнеры",
+    "chars": 180,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-2-337",
+    "old_url": "/affiliation-2-337.html",
+    "title": "юридическое и бухгалтерское сопровождение  |  Все для бизнеса | Компании партнеры",
+    "chars": 211,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-14-157",
+    "old_url": "/affiliation-14-157.html",
+    "title": "ответы по форексу  |  Рынки | Компании партнеры",
+    "chars": 57,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-14-377",
+    "old_url": "/affiliation-14-377.html",
+    "title": "помещения для переговоров и конференций  |  Рынки | Компании партнеры",
+    "chars": 338,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-26-340",
+    "old_url": "/affiliation-26-340.html",
+    "title": "юридические услуги  |  Юридические компании | Компании партнеры",
+    "chars": 176,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-142",
+    "old_url": "/affiliation-20-142.html",
+    "title": "обновление программного обеспечения сайтов  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 192,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-145",
+    "old_url": "/affiliation-20-145.html",
+    "title": "Восстановление и поддержание работоспособности компьютерного парка  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 155,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-189",
+    "old_url": "/affiliation-20-189.html",
+    "title": "платформу автомобильного интернет-магазина Autosfera16.ru  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 220,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-213",
+    "old_url": "/affiliation-20-213.html",
+    "title": "Проектирование, монтаж и обслуживание компьютерных сетей  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 252,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-402",
+    "old_url": "/affiliation-20-402.html",
+    "title": "|  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 3,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-307",
+    "old_url": "/affiliation-20-307.html",
+    "title": "управление бизнесом через сайт  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 133,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-309",
+    "old_url": "/affiliation-20-309.html",
+    "title": "доменные имена TATAR  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 244,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-374",
+    "old_url": "/affiliation-20-374.html",
+    "title": "управление сайтами, аккаунтов соцсетей, интернет магазинами  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 245,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-20-387",
+    "old_url": "/affiliation-20-387.html",
+    "title": "бинарную систему управления синаптическими связями  |  Введение в эксплуатацию и настройка компьютерной техники | Компании партнеры",
+    "chars": 230,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-6",
+    "old_url": "/affiliation-1-6.html",
+    "title": "сделать вашу информацию доступной для всех  |  Системы управления сайтами | Компании партнеры",
+    "chars": 268,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-31",
+    "old_url": "/affiliation-1-31.html",
+    "title": "интернет магазины  |  Системы управления сайтами | Компании партнеры",
+    "chars": 125,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-35",
+    "old_url": "/affiliation-1-35.html",
+    "title": "поддержку сайтов  |  Системы управления сайтами | Компании партнеры",
+    "chars": 62,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-36",
+    "old_url": "/affiliation-1-36.html",
+    "title": "систему управления сайтов  |  Системы управления сайтами | Компании партнеры",
+    "chars": 101,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-37",
+    "old_url": "/affiliation-1-37.html",
+    "title": "CMS  |  Системы управления сайтами | Компании партнеры",
+    "chars": 69,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-38",
+    "old_url": "/affiliation-1-38.html",
+    "title": "цифровые активы для вашего бизнеса  |  Системы управления сайтами | Компании партнеры",
+    "chars": 222,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-1-345",
+    "old_url": "/affiliation-1-345.html",
+    "title": "дизайн сайта  |  Системы управления сайтами | Компании партнеры",
+    "chars": 201,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-15-335",
+    "old_url": "/affiliation-15-335.html",
+    "title": "отдых на берегу моря  |  Семейный туризм | Компании партнеры",
+    "chars": 157,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-25-273",
+    "old_url": "/affiliation-25-273.html",
+    "title": "вокал  |  Образование, обучение, курсы семинары | Компании партнеры",
+    "chars": 153,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-52",
+    "old_url": "/affiliation-3-52.html",
+    "title": "сохраним свое здоровье  |  Дом моей семьи | Компании партнеры",
+    "chars": 102,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-75",
+    "old_url": "/affiliation-3-75.html",
+    "title": "лечение болезней  |  Дом моей семьи | Компании партнеры",
+    "chars": 52,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-132",
+    "old_url": "/affiliation-3-132.html",
+    "title": "драгоценностях  |  Дом моей семьи | Компании партнеры",
+    "chars": 96,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-154",
+    "old_url": "/affiliation-3-154.html",
+    "title": "рецепты похудания  |  Дом моей семьи | Компании партнеры",
+    "chars": 170,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-225",
+    "old_url": "/affiliation-3-225.html",
+    "title": "окраску изделий  |  Дом моей семьи | Компании партнеры",
+    "chars": 105,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-249",
+    "old_url": "/affiliation-3-249.html",
+    "title": "посуду  |  Дом моей семьи | Компании партнеры",
+    "chars": 99,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-256",
+    "old_url": "/affiliation-3-256.html",
+    "title": "лампы Gauss LED Varton  |  Дом моей семьи | Компании партнеры",
+    "chars": 264,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-272",
+    "old_url": "/affiliation-3-272.html",
+    "title": "понятия физиологических функций  |  Дом моей семьи | Компании партнеры",
+    "chars": 264,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-3-277",
+    "old_url": "/affiliation-3-277.html",
+    "title": "советы про здоровье ребенка  |  Дом моей семьи | Компании партнеры",
+    "chars": 218,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-4-129",
+    "old_url": "/affiliation-4-129.html",
+    "title": "калорифер-отопитель и конвекторы отопления  |  Отопление | Компании партнеры",
+    "chars": 153,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-4-67",
+    "old_url": "/affiliation-4-67.html",
+    "title": "инфракрасные лучи поглощаются телом, превращаясь при этом в энергию тепла  |  Отопление | Компании партнеры",
+    "chars": 220,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-4-86",
+    "old_url": "/affiliation-4-86.html",
+    "title": "конвекторы комфорт  |  Отопление | Компании партнеры",
+    "chars": 99,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-22",
+    "old_url": "/affiliation-12-22.html",
+    "title": "ремонт электродвигателей постоянного тока  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 85,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-27",
+    "old_url": "/affiliation-12-27.html",
+    "title": "тепловое оборудование  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 112,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-29",
+    "old_url": "/affiliation-12-29.html",
+    "title": "сварочные трансформаторы ТДМ  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 85,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-58",
+    "old_url": "/affiliation-12-58.html",
+    "title": "электродвигатели  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 117,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-85",
+    "old_url": "/affiliation-12-85.html",
+    "title": "конвейер скребковый трубный для транспортирования сыпучих материалов  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 238,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-193",
+    "old_url": "/affiliation-12-193.html",
+    "title": "товары и услуги  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 133,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-263",
+    "old_url": "/affiliation-12-263.html",
+    "title": "диагностику станков  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 120,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-287",
+    "old_url": "/affiliation-12-287.html",
+    "title": "алмазный и твердосплавный инструмент  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 405,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-362",
+    "old_url": "/affiliation-12-362.html",
+    "title": "Станки для резки с ЧПУ  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 140,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-373",
+    "old_url": "/affiliation-12-373.html",
+    "title": "обрабатывающий центр с ЧПУ  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 127,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-375",
+    "old_url": "/affiliation-12-375.html",
+    "title": "станки для кирпича нижнего прессования  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 299,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-378",
+    "old_url": "/affiliation-12-378.html",
+    "title": "саморезы, шурупы, электроды  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 417,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-386",
+    "old_url": "/affiliation-12-386.html",
+    "title": "заводы по производству облицовочного кирпича, брусчатки, строительных блоков  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 388,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-12-404",
+    "old_url": "/affiliation-12-404.html",
+    "title": "для производства лего кирпича  |  Станки, инструменты, оборудование | Компании партнеры",
+    "chars": 288,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24-211",
+    "old_url": "/affiliation-24-211.html",
+    "title": "ферросплавы  |  Промышленные предприятия | Компании партнеры",
+    "chars": 90,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24-363",
+    "old_url": "/affiliation-24-363.html",
+    "title": "плазменную и кислородную резку металлов  |  Промышленные предприятия | Компании партнеры",
+    "chars": 174,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24-369",
+    "old_url": "/affiliation-24-369.html",
+    "title": "трубные скребковые конвейеры  |  Промышленные предприятия | Компании партнеры",
+    "chars": 314,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24-399",
+    "old_url": "/affiliation-24-399.html",
+    "title": "СОЖ, смазочно-охлаждающие жидкости  |  Промышленные предприятия | Компании партнеры",
+    "chars": 242,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-24-400",
+    "old_url": "/affiliation-24-400.html",
+    "title": "Смазки для штамповки, формовки, высоких температур, низкотемпературные  |  Промышленные предприятия | Компании партнеры",
+    "chars": 354,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-123",
+    "old_url": "/affiliation-13-123.html",
+    "title": "вентиляционного оборудования  |  Строительство и отделка | Компании партнеры",
+    "chars": 217,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-55",
+    "old_url": "/affiliation-13-55.html",
+    "title": "наливные полы  |  Строительство и отделка | Компании партнеры",
+    "chars": 137,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-68",
+    "old_url": "/affiliation-13-68.html",
+    "title": "для отделки деревянного дома  |  Строительство и отделка | Компании партнеры",
+    "chars": 136,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-222",
+    "old_url": "/affiliation-13-222.html",
+    "title": "светодиодные лампы Gauss со всеми видами цоколей  |  Строительство и отделка | Компании партнеры",
+    "chars": 247,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-235",
+    "old_url": "/affiliation-13-235.html",
+    "title": "душевых стоек, штор, поддонов  |  Строительство и отделка | Компании партнеры",
+    "chars": 262,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-236",
+    "old_url": "/affiliation-13-236.html",
+    "title": "минибассейнов  |  Строительство и отделка | Компании партнеры",
+    "chars": 272,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-237",
+    "old_url": "/affiliation-13-237.html",
+    "title": "бассейны Uksi  |  Строительство и отделка | Компании партнеры",
+    "chars": 226,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-248",
+    "old_url": "/affiliation-13-248.html",
+    "title": "информацию о строительных компании  |  Строительство и отделка | Компании партнеры",
+    "chars": 135,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-265",
+    "old_url": "/affiliation-13-265.html",
+    "title": "балок, колон, ферм  |  Строительство и отделка | Компании партнеры",
+    "chars": 141,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-301",
+    "old_url": "/affiliation-13-301.html",
+    "title": "межвенцовый утеплитель  |  Строительство и отделка | Компании партнеры",
+    "chars": 310,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-348",
+    "old_url": "/affiliation-13-348.html",
+    "title": "сухие строительные смеси  |  Строительство и отделка | Компании партнеры",
+    "chars": 124,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  },
+  {
+    "slug": "affiliation-13-384",
+    "old_url": "/affiliation-13-384.html",
+    "title": "фурнитуру оконную  |  Строительство и отделка | Компании партнеры",
+    "chars": 247,
+    "tables": 0,
+    "images": [],
+    "robots": "ALL"
+  }
+]

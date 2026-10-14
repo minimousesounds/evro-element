@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Страница не найдена" noindex>
+  <div class="container section">
+    <div class="nf">
+      <svg class="nf__art" viewBox="0 0 360 360" aria-hidden="true">
+        <circle cx="180" cy="180" r="180" fill="#FFCC00" />
+        <circle cx="180" cy="180" r="93" fill="none" stroke="#161616" stroke-width="36" />
+        <circle cx="180" cy="180" r="32" fill="#161616" />
+      </svg>
+      <div class="nf__text">
+        <span class="nf__code t-display">404</span>
+        <h1>Такой страницы нет</h1>
+        <p class="lead">Возможно, товар переехал после обновления сайта. Найдите его по артикулу или перейдите в каталог.</p>
+        <form class="search search--l" action="/search/" method="get" role="search">
+          <Icon name="search" size={24} class="search__icon" />
+          <input type="search" name="q" placeholder="Артикул или название, например SP926M" aria-label="Поиск по каталогу" />
+          <button class="btn" type="submit">Найти</button>
+        </form>
+        <div class="row"><a class="btn btn--l btn--dark" href="/catalog/">В каталог</a><a class="btn btn--l btn--outline" href="/">На главную</a></div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nf { display: flex; gap: 64px; align-items: center; padding: 64px; border-radius: var(--radius-lg); background: var(--bg-surface); }
+  .nf__art { width: 360px; height: 360px; flex: none; }
+  .nf__text { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+  .nf__code { color: var(--text-tertiary); }
+  @media (max-width: 1100px) { .nf { flex-direction: column; align-items: stretch; gap: 32px; padding: 40px; } .nf__art { width: 280px; height: 280px; align-self: center; } }
+  @media (max-width: 600px) {
+    .nf { padding: 24px; }
+    .nf__art { width: 160px; height: 160px; }
+    .search--l { height: 48px; padding: 0 4px 0 16px; border-width: 1px; border-radius: var(--radius-sm); }
+    .search--l input { font-size: 16px; }
+    .search--l .btn { height: 36px; padding: 0 12px; font-size: 14px; font-weight: 500; }
+    .row, .row .btn { width: 100%; }
+  }
+</style>
