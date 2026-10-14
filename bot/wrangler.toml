@@ -1,0 +1,17 @@
+# Настройки Cloudflare Worker для бота. Секреты (токены) задаются командой
+# `npx wrangler secret put ИМЯ`, в этот файл их не пишем.
+name = "evro-element-bot"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+REPO = "minimousesounds/evro-element"
+BRANCH = "main"
+SITE_INDEX_URL = "https://minimousesounds.github.io/evro-element/bot-index.json"
+
+# Хранилище неподтверждённых изменений. id появится после
+# `npx wrangler kv namespace create PENDING`.
+[[kv_namespaces]]
+binding = "PENDING"
+id = "REPLACE_WITH_KV_ID"
