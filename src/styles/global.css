@@ -1,5 +1,7 @@
 /* Токены из Figma (коллекции Color и Dimension) */
 :root {
+  /* сайт только светлый: «only» запрещает браузерам (Chrome, DuckDuckGo на Android) самим затемнять страницу */
+  color-scheme: only light;
   --bg-page: #f2f2ee; --bg-surface: #fff; --bg-subtle: #e8e8e2; --bg-inverse: #161616; --bg-inverse-subtle: #262624;
   --bg-accent: #ffcc00; --bg-accent-hover: #f0b800; --bg-accent-subtle: #fff4c2; --bg-success-subtle: #e3f4ea;
   --text-primary: #161616; --text-secondary: #5c5c57; --text-tertiary: #8c8c86; --text-inverse: #fff;
