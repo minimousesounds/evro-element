@@ -36,12 +36,41 @@ export class GitHub {
     return new TextDecoder().decode(bytes);
   }
 
+  /** Тексты всех файлов в папках и отдельных файлах одним запросом (GraphQL). */
+  async readMany(dirs: string[], paths: string[]): Promise<{ dirs: Record<string, Record<string, string>>; files: Record<string, string> }> {
+    const [owner, name] = this.repo.split('/');
+    const expr = (p: string) => JSON.stringify(`${this.branch}:${p}`);
+    const query = `query($owner: String!, $name: String!) { repository(owner: $owner, name: $name) {
+      ${dirs.map((d, i) => `d${i}: object(expression: ${expr(d)}) { ... on Tree { entries { name object { ... on Blob { text } } } } }`).join('\n')}
+      ${paths.map((p, i) => `f${i}: object(expression: ${expr(p)}) { ... on Blob { text } }`).join('\n')}
+    } }`;
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${this.token}`, 'Content-Type': 'application/json', 'User-Agent': 'evro-element-bot' },
+      body: JSON.stringify({ query, variables: { owner, name } }),
+    });
+    type Entry = { name: string; object?: { text?: string | null } };
+    const data = (await res.json()) as { data?: { repository: Record<string, { entries?: Entry[]; text?: string | null } | null> }; errors?: unknown };
+    if (!res.ok || !data.data) throw new Error(`GitHub GraphQL: ${res.status} ${JSON.stringify(data.errors ?? data)}`);
+    const repo = data.data.repository;
+    const out = { dirs: {} as Record<string, Record<string, string>>, files: {} as Record<string, string> };
+    dirs.forEach((d, i) => {
+      out.dirs[d] = {};
+      for (const e of repo[`d${i}`]?.entries ?? []) if (e.object?.text != null) out.dirs[d][e.name] = e.object.text;
+    });
+    paths.forEach((p, i) => (out.files[p] = repo[`f${i}`]?.text ?? ''));
+    return out;
+  }
+
   /** Один коммит со всеми файлами. Возвращает sha коммита. */
   async commit(message: string, files: FileChange[]): Promise<string> {
     const ref = await this.api<{ object: { sha: string } }>(`/git/ref/heads/${this.branch}`);
     const parent = await this.api<{ tree: { sha: string } }>(`/git/commits/${ref.object.sha}`);
+    // текст кладём прямо в дерево, отдельный blob нужен только картинкам:
+    // так прайс на сотню файлов укладывается в лимит запросов Cloudflare
     const tree = await Promise.all(
       files.map(async (f) => {
+        if (f.encoding === 'utf-8') return { path: f.path, mode: '100644', type: 'blob', content: f.content };
         const blob = await this.api<{ sha: string }>('/git/blobs', { method: 'POST', body: JSON.stringify({ content: f.content, encoding: f.encoding }) });
         return { path: f.path, mode: '100644', type: 'blob', sha: blob.sha };
       }),

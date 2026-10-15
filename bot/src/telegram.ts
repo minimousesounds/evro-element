@@ -61,6 +61,14 @@ export class Telegram {
     return this.call('sendChatAction', { chat_id: chatId, action: 'typing' });
   }
 
+  /** Скачивает файл по file_id как байты. */
+  async downloadBytes(fileId: string): Promise<Uint8Array> {
+    const file = await this.call<{ file_path: string }>('getFile', { file_id: fileId });
+    const res = await fetch(`https://api.telegram.org/file/bot${this.token}/${file.file_path}`);
+    if (!res.ok) throw new Error(`Не скачался файл: ${res.status}`);
+    return new Uint8Array(await res.arrayBuffer());
+  }
+
   /** Скачивает файл по file_id и возвращает base64. */
   async download(fileId: string): Promise<{ base64: string; path: string }> {
     const file = await this.call<{ file_path: string }>('getFile', { file_id: fileId });

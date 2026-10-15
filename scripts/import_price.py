@@ -203,10 +203,12 @@ def main():
     # редиректы: старый адрес товара ведёт на новый адрес, скрытого — на его категорию
     rpath = ROOT / "src" / "data" / "redirects.json"
     data = json.loads(rpath.read_text(encoding="utf-8"))
+    # старый адрес товара всегда /shop/view-<oldId>.html: по нему находим товар, даже если редирект уже вёл в категорию
+    by_old_url = {f"/shop/view-{get_field(t, 'oldId')}.html": s for s, t in files.items() if get_field(t, "oldId")}
     for old, new in data["redirects"].items():
         parts = new.strip("/").split("/")
-        if len(parts) == 3 and parts[2] in files:
-            slug = parts[2]
+        slug = by_old_url.get(old) or (parts[2] if len(parts) == 3 and parts[2] in files else None)
+        if slug:
             cat = product_cat[slug]
             visible_cat = f"/catalog/{cat}/" if cat in used else "/catalog/"
             data["redirects"][old] = f"/catalog/{cat}/{slug}/" if slug in seen else visible_cat
