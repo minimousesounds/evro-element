@@ -21,7 +21,7 @@ const label = brandLabel(product);
     <span class:list={['pcard__stock', { 'pcard__stock--order': !d.inStock }]}>{d.inStock ? 'В наличии' : 'Под заказ'}</span>
     <div class="pcard__foot">
       <span class="pcard__price">{formatPrice(d.price)}</span>
-      <div class="pcard__buy" data-cart-ctl={product.id} data-sku={d.sku} data-title={d.title}
+      <div class="pcard__buy" data-cart-ctl={product.id} data-sku={d.sku} data-title={d.title} data-analog={d.kind === 'analog' ? '1' : undefined}
         data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''} data-min={d.minQty > 1 ? d.minQty : undefined}>
         <button class="btn btn--s" type="button" data-ctl-add><Icon name="plus" size={16} />{d.minQty > 1 ? `От ${d.minQty} шт.` : 'В корзину'}</button>
         <span class="stepper stepper--s pcard__qty" data-ctl-stepper hidden>

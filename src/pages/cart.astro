@@ -33,7 +33,7 @@ import Icon from '../components/Icon.astro';
   <template id="cart-row">
     <li class="item">
       <a class="item__img" tabindex="-1" aria-hidden="true"><img alt="" width="88" height="88" /></a>
-      <div class="item__info"><span class="item__meta"><span class="mono" data-f="sku"></span></span><a class="item__title" data-f="title"></a><span class="tertiary small" data-f="unit"></span></div>
+      <div class="item__info"><span class="item__meta"><span class="mono" data-f="sku"></span><span class="item__analog" data-f="analog" hidden>аналог</span></span><a class="item__title" data-f="title"></a><span class="tertiary small" data-f="unit"></span></div>
       <span class="stepper item__qty">
         <button type="button" data-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
         <input type="number" inputmode="numeric" min="1" max="9999" aria-label="Количество" />
@@ -73,6 +73,7 @@ import Icon from '../components/Icon.astro';
         title.textContent = i.title;
         title.href = i.url;
         li.querySelector('[data-f="sku"]')!.textContent = i.sku;
+        li.querySelector<HTMLElement>('[data-f="analog"]')!.hidden = !i.analog;
         li.querySelector('[data-f="unit"]')!.textContent = `${money(i.price)} за шт.`;
         li.querySelector('[data-f="sum"]')!.textContent = money(i.price * i.qty);
         const qty = li.querySelector('input')!;
@@ -109,7 +110,8 @@ import Icon from '../components/Icon.astro';
   .item__img { display: grid; place-items: center; width: 88px; height: 88px; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px var(--border-default); background: #fff; overflow: hidden; }
   .item__img img { width: 80px; height: 80px; object-fit: contain; }
   .item__info { display: grid; gap: 6px; }
-  .item__meta { font-size: 12px; line-height: 16px; }
+  .item__meta { display: flex; gap: 8px; align-items: center; font-size: 12px; line-height: 16px; }
+  .item__analog { padding: 0 6px; border-radius: 4px; background: var(--bg-accent-subtle); color: var(--text-primary); }
   .item__title { font: 600 18px/24px var(--font); letter-spacing: -0.01em; text-decoration: none; }
   .item__sum { font: 600 20px/24px var(--font); text-align: right; white-space: nowrap; }
   .item__remove { background: none; }

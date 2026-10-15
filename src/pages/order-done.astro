@@ -36,7 +36,7 @@ import site from '../data/site.json';
         const li = document.createElement('li');
         li.append(
           Object.assign(document.createElement('span'), { className: 'mono', textContent: i.sku }),
-          Object.assign(document.createElement('span'), { className: 'muted', textContent: i.title }),
+          Object.assign(document.createElement('span'), { className: 'muted', textContent: i.analog ? `${i.title} (аналог)` : i.title }),
           Object.assign(document.createElement('b'), { textContent: `${i.qty} шт.` }),
         );
         ul.append(li);

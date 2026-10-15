@@ -98,7 +98,7 @@ const ld = {
 
         <div class="buy">
           <div class="buy__price">{formatPrice(d.price)} <small>{perUnit(d.unit)}{d.minQty > 1 ? `, от ${d.minQty} ${d.unit}` : ''}</small></div>
-          <div class="buy__actions" data-cart-ctl={product.id} data-mode="page" data-min={d.minQty > 1 ? d.minQty : undefined} data-sku={d.sku} data-title={d.title}
+          <div class="buy__actions" data-cart-ctl={product.id} data-mode="page" data-analog={d.kind === 'analog' ? '1' : undefined} data-min={d.minQty > 1 ? d.minQty : undefined} data-sku={d.sku} data-title={d.title}
             data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}>
             <span class="stepper" data-ctl-stepper>
               <button type="button" data-ctl-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>

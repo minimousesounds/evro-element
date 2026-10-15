@@ -9,6 +9,8 @@ export interface CartItem {
   qty: number;
   /** минимальная партия, меньше не продаём */
   min?: number;
+  /** аналог: показываем это в корзине, на оформлении и в письме с заказом, чтобы не было споров «думал, что оригинал» */
+  analog?: boolean;
 }
 
 const KEY = 'ee-cart';
@@ -89,7 +91,7 @@ function sync(ctl: HTMLElement) {
 
 function itemOf(ctl: HTMLElement): Omit<CartItem, 'qty'> {
   const d = ctl.dataset;
-  return { id: d.cartCtl!, sku: d.sku || '', title: d.title || '', price: Number(d.price) || 0, url: d.url || '', image: d.image || '', min: minOf(ctl) };
+  return { id: d.cartCtl!, sku: d.sku || '', title: d.title || '', price: Number(d.price) || 0, url: d.url || '', image: d.image || '', min: minOf(ctl), analog: d.analog === '1' };
 }
 
 document.addEventListener('click', (e) => {

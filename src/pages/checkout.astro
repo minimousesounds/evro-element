@@ -61,6 +61,7 @@ import site from '../data/site.json';
         <h4>Ваш заказ</h4>
         <ul class="lines" id="order-lines"></ul>
         <div class="total"><span id="total-label">Итого без доставки</span><b id="order-total"></b></div>
+        <p class="notice" id="analog-note" hidden style="margin: 0;">Позиции с пометкой «аналог» — не оригинальные детали, а совместимые аналоги. Они встают на место оригинала.</p>
         <label class="check"><input type="checkbox" name="consent" required />Согласен на <a href="/consent/">обработку персональных данных</a></label>
         <button class="btn btn--l btn--block" type="submit">Оформить заказ</button>
         <p class="error" id="order-error" role="alert" hidden></p>
@@ -106,12 +107,14 @@ import site from '../data/site.json';
   for (const i of items) {
     const li = document.createElement('li');
     const sku = Object.assign(document.createElement('span'), { className: 'mono', textContent: i.sku });
-    const name = Object.assign(document.createElement('span'), { className: 'muted', textContent: i.title });
+    const name = Object.assign(document.createElement('span'), { className: 'muted', textContent: i.analog ? `${i.title} (аналог)` : i.title });
     const qty = Object.assign(document.createElement('b'), { textContent: `${i.qty} × ${money(i.price)}` });
     li.append(sku, name, qty);
     lines.append(li);
   }
   document.getElementById('order-total')!.textContent = money(cartTotal(items));
+  // покупатель видит до отправки, что в заказе аналоги, а не оригинальные детали
+  if (items.some((i) => i.analog)) document.getElementById('analog-note')!.hidden = false;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -126,7 +129,7 @@ import site from '../data/site.json';
     const pickup = v('delivery') === 'Самовывоз';
     const number = orderNumber();
     const total = cartTotal(items);
-    const lines = items.map((i, n) => `${n + 1}. ${i.sku} ${i.title}: ${i.qty} шт. × ${money(i.price)} = ${money(i.price * i.qty)}`).join('\n');
+    const lines = items.map((i, n) => `${n + 1}. ${i.sku} ${i.title}${i.analog ? ' (аналог)' : ''}: ${i.qty} шт. × ${money(i.price)} = ${money(i.price * i.qty)}`).join('\n');
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     btn.disabled = true;
     const res = await sendForm(
@@ -156,7 +159,7 @@ import site from '../data/site.json';
       error.hidden = false;
       return;
     }
-    sessionStorage.setItem('ee-last-order', JSON.stringify({ number, total, payment: v('payment'), pickup, email: v('email'), items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty })) }));
+    sessionStorage.setItem('ee-last-order', JSON.stringify({ number, total, payment: v('payment'), pickup, email: v('email'), items: items.map((i) => ({ sku: i.sku, title: i.title, qty: i.qty, analog: i.analog })) }));
     writeCart([]);
     location.href = `${import.meta.env.BASE_URL}order-done/`;
   });
