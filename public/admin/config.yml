@@ -147,7 +147,9 @@ collections:
         file: src/data/site.json
         fields:
           - { name: name, label: Название магазина, widget: string }
-          - { name: legalName, label: Юридическое название, widget: string }
+          - { name: legalName, label: Продавец, widget: string, hint: "Кто выставляет счета, например: ИП Шафигуллин А. Ф. Пишется в подвале сайта и в документах" }
+          - { name: inn, label: ИНН продавца, widget: string, required: false }
+          - { name: ogrn, label: ОГРНИП продавца, widget: string, required: false }
           - { name: tagline, label: Подпись под логотипом, widget: string }
           - { name: city, label: Город, widget: string }
           - { name: address, label: Адрес полностью, widget: string }
@@ -164,7 +166,7 @@ collections:
         label: Страница «О компании»
         file: src/data/about.json
         fields:
-          - { name: intro, label: Главная фраза, widget: text, hint: "Подстановки: {компания} — юр. название, {год} — год основания, {лет} — сколько лет работаете, {категорий} — число категорий" }
+          - { name: intro, label: Главная фраза, widget: text, hint: "Подстановки: {компания} — название магазина в кавычках, {год} — год основания, {лет} — сколько лет работаете, {категорий} — число категорий" }
           - { name: paragraphs, label: Абзацы под ней, label_singular: Абзац, widget: list, field: { name: text, label: Абзац, widget: text } }
           - name: stats
             label: Чёрные плитки с цифрами

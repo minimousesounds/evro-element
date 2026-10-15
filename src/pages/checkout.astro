@@ -29,6 +29,13 @@ import site from '../data/site.json';
             <label class="field">Название организации<input name="company" autocomplete="organization" /></label>
             <label class="field">ИНН<input name="inn" inputmode="numeric" maxlength="12" /></label>
           </div>
+          <div class="stack" data-org hidden style="gap: 8px;">
+            <span class="small muted">Счёт</span>
+            <div class="chips seg">
+              <label class="chip"><input type="radio" name="vat" value="С НДС" checked />С НДС</label>
+              <label class="chip"><input type="radio" name="vat" value="Без НДС" />Без НДС</label>
+            </div>
+          </div>
         </fieldset>
         <fieldset class="card stack">
           <legend><h4>Доставка</h4></legend>
@@ -78,7 +85,7 @@ import site from '../data/site.json';
   const payInput = (key: string) => form.querySelector<HTMLInputElement>(`[data-pay="${key}"] input`)!;
   const sync = () => {
     const org = radio('buyer').value !== 'Физическое лицо';
-    form.querySelector<HTMLElement>('[data-org]')!.hidden = !org;
+    form.querySelectorAll<HTMLElement>('[data-org]').forEach((el) => (el.hidden = !org));
     const pickup = radio('delivery').value === 'Самовывоз';
     form.querySelector<HTMLElement>('[data-address]')!.hidden = pickup;
     // оплата при получении возможна только в офисе
@@ -134,6 +141,7 @@ import site from '../data/site.json';
         'Покупатель': v('buyer'),
         'Организация': v('company'),
         'ИНН': v('inn'),
+        'НДС': v('buyer') === 'Физическое лицо' ? '' : v('vat'),
         'Доставка': v('delivery'),
         'Город': pickup ? '' : v('city'),
         'Адрес или пункт выдачи': pickup ? '' : v('address'),

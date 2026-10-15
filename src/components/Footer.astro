@@ -33,7 +33,7 @@ const categories = await getCategories();
     </div>
   </div>
   <div class="container ftr__bottom">
-    <span>© {site.foundingYear}–{new Date().getFullYear()} {site.legalName}</span>
+    <span>© {site.foundingYear}–{new Date().getFullYear()} {site.name}. Продавец: {[site.legalName, site.inn && `ИНН ${site.inn}`, site.ogrn && `ОГРНИП ${site.ogrn}`].filter(Boolean).join(', ')}</span>
     <a href="/privacy/">Политика конфиденциальности</a>
     <a href="/consent/">Согласие на обработку данных</a>
     <a href="/terms/">Пользовательское соглашение</a>

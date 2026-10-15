@@ -11,7 +11,7 @@ const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
 // Тексты страницы правятся в админке (Настройки → Страница «О компании»). Подстановки считаются при сборке.
 const yearsWord = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? 'год' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'года' : 'лет');
 const fill = (t: string) =>
-  t.replaceAll('{компания}', site.legalName).replaceAll('{год}', String(site.foundingYear))
+  t.replaceAll('{компания}', `«${site.name}»`).replaceAll('{год}', String(site.foundingYear))
     .replaceAll('{лет}', `${years} ${yearsWord(years)}`).replaceAll('{категорий}', String(categories.length));
 ---
 <Base title="О компании" description={fill(about.seoDescription)}>
