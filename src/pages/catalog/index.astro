@@ -19,7 +19,7 @@ const imageOf = (id: string) => categories.find((c) => c.id === id)?.data.image 
     <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог' }]} />
     <div class="page-title"><h1>Каталог фильтров</h1><span class="page-title__sub">{categories.length} {plural(categories.length, ['категория', 'категории', 'категорий'])}</span></div>
     <div class="stack">
-      <p class="notice"><Icon name="info" size={18} />В каталоге аналоги фильтров ASAS. Артикул в карточке совпадает с номером оригинала, который заменяет фильтр.</p>
+      <p class="notice"><Icon name="info" size={18} />Многие фильтры в каталоге — аналоги, это указано в карточке. Аналог встаёт на место оригинала с тем же номером.</p>
       <div class="cats">
         {categories.map((c) => <CategoryCard category={c} count={countBy(c.id)} image={imageOf(c.id)} />)}
       </div>

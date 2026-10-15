@@ -52,9 +52,9 @@ group('план изменений', () => {
     expect(plan.problems[0]).toContain('цену');
   });
 
-  it('создаёт товар с фото', () => {
+  it('создаёт товар с фото и не пишет бренд ASAS', () => {
     const plan = buildPlan([a({ type: 'create', sku: 'SP1553M', title: 'Фильтр топливный', category: 'filtr-toplivnyj', price: 330, kind: 'analog', brand: 'ASAS' })], catalog, true);
-    expect(describe(plan, catalog)[0]).toBe('➕ Новый товар SP1553M Фильтр топливный, 330 ₽, «Фильтр топливный», аналог ASAS, в наличии, с фото');
+    expect(describe(plan, catalog)[0]).toBe('➕ Новый товар SP1553M Фильтр топливный, 330 ₽, «Фильтр топливный», аналог, в наличии, с фото');
   });
 
   it('возвращает скрытый товар на сайт при новой цене, но не при «кончился»', () => {

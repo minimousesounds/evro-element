@@ -41,7 +41,8 @@ RULES = [
     (r"помп|насос[а]? водян|р/к насоса|фибра|шкив насоса", "nasosy-vodyanye-kamaz"),
     (r"подшипник", "podshipniki"),
 ]
-BRANDS = {"asas": "ASAS", "claas": "Claas", "new holland": "New Holland", "caterpillar": "Caterpillar",
+# ASAS на сайте не упоминаем (решение владельца 15.10.2026): у таких позиций бренд пустой, пометка «аналог»
+BRANDS = {"asas": "", "claas": "Claas", "new holland": "New Holland", "caterpillar": "Caterpillar",
           "komatsu": "Komatsu", "jcb landpower": "JCB", "камаз": "КамАЗ", "vspz": "VSPZ",
           "hifi filter": "HiFi Filter", "mann+hummel": "Mann+Hummel", "donaldson": "Donaldson", "racor": "Racor",
           "белзан": "БелЗАН", "уралаз": "УралАЗ"}
@@ -106,6 +107,7 @@ def describe(row):
     low = name.lower()
     country = COUNTRIES.get(raw.lower(), "")
     brand = "" if country else BRANDS.get(raw.lower(), raw)
+    is_asas = raw.lower() == "asas"
     m = re.search(r"\s*пр-во\s+(\S+)", name, re.I)
     if m:
         country = COUNTRIES.get(m.group(1).lower(), m.group(1))
@@ -118,7 +120,7 @@ def describe(row):
     if "оригинал" in low:
         kind = "original"
         name = re.sub(r"\s*\bоригинал\b.*$", "", name, flags=re.I)
-    elif "аналог" in low or brand == "ASAS" or (brand == "Claas" and country):
+    elif "аналог" in low or is_asas or (brand == "Claas" and country):
         kind = "analog"
     name = re.sub(r"\s*\bаналог\b\s*", " ", name, flags=re.I).strip(" ,")
     name = re.sub(r"^(Рк|Р/к)\s", "Ремкомплект ", name)

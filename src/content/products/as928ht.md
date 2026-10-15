@@ -1,7 +1,7 @@
 ---
 title: "Фильтр гидравлический"
 sku: "AS928HT"
-brand: "ASAS"
+brand: ""
 kind: ""
 category: filtr-gidravlicheskij
 price: 2000

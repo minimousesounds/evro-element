@@ -52,7 +52,8 @@ const RULES: [RegExp, string][] = [
   [/подшипник/, 'podshipniki'],
 ];
 const BRANDS: Record<string, string> = {
-  asas: 'ASAS', claas: 'Claas', 'new holland': 'New Holland', caterpillar: 'Caterpillar', komatsu: 'Komatsu',
+  // ASAS на сайте не упоминаем (решение владельца): бренд пустой, пометка «аналог»
+  asas: '', claas: 'Claas', 'new holland': 'New Holland', caterpillar: 'Caterpillar', komatsu: 'Komatsu',
   'jcb landpower': 'JCB', камаз: 'КамАЗ', vspz: 'VSPZ', 'hifi filter': 'HiFi Filter', 'mann+hummel': 'Mann+Hummel',
   donaldson: 'Donaldson', racor: 'Racor', белзан: 'БелЗАН', уралаз: 'УралАЗ',
 };
@@ -112,7 +113,7 @@ export function describeRow(row: PriceRow) {
   for (const [a, b] of TYPOS) name = name.replaceAll(a, b);
   const low = name.toLowerCase();
   let country = COUNTRIES[raw.toLowerCase()] ?? '';
-  const brand = country ? '' : BRANDS[raw.toLowerCase()] ?? raw;
+  const brand: string = country ? '' : BRANDS[raw.toLowerCase()] ?? raw;
   let m = name.match(/\s*пр-во\s+(\S+)/i);
   if (m) {
     country = COUNTRIES[m[1].toLowerCase()] ?? m[1];
@@ -127,7 +128,7 @@ export function describeRow(row: PriceRow) {
   if (low.includes('оригинал')) {
     kind = 'original';
     name = name.replace(new RegExp(`\\s*${W('оригинал')}.*$`, 'iu'), '');
-  } else if (low.includes('аналог') || brand === 'ASAS' || (brand === 'Claas' && country)) {
+  } else if (low.includes('аналог') || raw.toLowerCase() === 'asas' || (brand === 'Claas' && country)) {
     kind = 'analog';
   }
   name = name.replace(new RegExp(`\\s*${W('аналог')}\\s*`, 'giu'), ' ').replace(/^[ ,]+|[ ,]+$/g, '');

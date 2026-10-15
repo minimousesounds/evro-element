@@ -1,7 +1,7 @@
 ---
 title: "Элемент топливного фильтра"
 sku: "AS304KA"
-brand: "ASAS"
+brand: ""
 kind: ""
 category: element-toplivnogo-filtra
 price: 140

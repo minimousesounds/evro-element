@@ -1,7 +1,7 @@
 ---
 title: "Фильтр топливный"
 sku: "SPFC321"
-brand: "ASAS"
+brand: ""
 kind: ""
 category: filtr-toplivnyj
 price: 300

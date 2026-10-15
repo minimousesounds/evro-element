@@ -1,7 +1,7 @@
 ---
 title: "Фильтр масляный"
 sku: "SP407SC"
-brand: "ASAS"
+brand: ""
 kind: ""
 category: filtr-maslyanyj
 price: 330

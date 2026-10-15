@@ -46,7 +46,7 @@ const description =
       </nav>
 
       <div class="main stack">
-        {products.some((p) => p.data.kind === 'analog') && <p class="notice"><Icon name="info" size={18} />В каталоге аналоги фильтров ASAS. Артикул в карточке совпадает с номером оригинала, который заменяет фильтр.</p>}
+        {products.some((p) => p.data.kind === 'analog') && <p class="notice"><Icon name="info" size={18} />Многие фильтры в каталоге — аналоги, это указано в карточке. Аналог встаёт на место оригинала с тем же номером.</p>}
         <div class="toolbar">
           <label class="search toolbar__search">
             <Icon name="search" size={22} class="search__icon" />

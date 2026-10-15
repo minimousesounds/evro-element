@@ -14,7 +14,7 @@ export const ActionSchema = z.object({
   title: z.string().nullable().describe('Название товара, например «Фильтр топливный»'),
   category: z.string().nullable().describe('id категории из списка'),
   kind: z.enum(['original', 'analog']).nullable().describe('Оригинал или аналог, если сказано'),
-  brand: z.string().nullable().describe('Бренд; для аналога — бренд оригинала, который он заменяет'),
+  brand: z.string().nullable().describe('Бренд; для аналога — бренд оригинала, который он заменяет. ASAS не указывай никогда: null'),
 });
 export type Action = z.infer<typeof ActionSchema>;
 

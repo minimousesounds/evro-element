@@ -18,6 +18,9 @@ export interface Plan {
 const money = (n: number) => `${new Intl.NumberFormat('ru-RU').format(n).replace(/ /g, ' ')} ₽`;
 const kindLabel = (k?: string) => (k === 'analog' ? 'аналог' : k === 'original' ? 'оригинал' : '');
 
+/** ASAS на сайте не упоминаем (решение владельца): такой бренд просто не записываем. */
+const cleanBrand = (b: string | null) => (b && !/^asas(\s*-?\s*filter)?$/i.test(b.trim()) ? b.trim() : '');
+
 export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean): Plan {
   const plan: Plan = { changes: [], info: [], problems: [] };
   const updates = new Map<string, Extract<Change, { kind: 'update' }>>();
@@ -56,7 +59,7 @@ export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean
         kind: 'create',
         slug,
         addPhoto,
-        product: { sku: a.sku.trim(), title: a.title!, category: a.category!, price: a.price!, inStock: a.in_stock ?? true, kind: a.kind ?? '', brand: a.brand ?? '', images: [] },
+        product: { sku: a.sku.trim(), title: a.title!, category: a.category!, price: a.price!, inStock: a.in_stock ?? true, kind: a.kind ?? '', brand: cleanBrand(a.brand), images: [] },
       });
       continue;
     }
@@ -69,7 +72,7 @@ export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean
     if (a.in_stock != null && a.in_stock !== p.inStock) u.inStock = a.in_stock;
     if (a.type === 'create' || a.type === 'edit') {
       if (a.title && a.title !== p.title) u.newTitle = a.title;
-      if (a.brand && a.brand !== p.brand) u.brand = a.brand;
+      if (cleanBrand(a.brand) && cleanBrand(a.brand) !== p.brand) u.brand = cleanBrand(a.brand);
       if (a.kind && a.kind !== p.kind) u.productKind = a.kind;
       if (a.category && a.category !== p.category && categoryIds.has(a.category)) u.category = a.category;
     }
