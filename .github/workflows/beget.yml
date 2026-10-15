@@ -1,6 +1,6 @@
-# Боевой сайт https://kama-filtr.ru: сборка и выкладка на хостинг Beget по FTP при каждом изменении в main.
+# Боевой сайт https://kama-filtr.ru: сборка и выкладка на хостинг Beget при каждом изменении в main.
 # Нужны секреты репозитория BEGET_FTP_HOST, BEGET_FTP_USER, BEGET_FTP_PASSWORD
-# и переменная BEGET_DIR — папка сайта на хостинге, например kama-filtr.ru/public_html/.
+# и переменная BEGET_DIR — папка сайта относительно FTP-аккаунта (./, если аккаунт уже смотрит в public_html).
 # Пока секретов нет, сборка проходит, а выкладка пропускается.
 name: Deploy kama-filtr.ru
 
@@ -35,17 +35,17 @@ jobs:
         run: echo "ready=${{ secrets.BEGET_FTP_PASSWORD != '' && vars.BEGET_DIR != '' }}" >> "$GITHUB_OUTPUT"
       - name: Выкладка на Beget
         if: steps.cfg.outputs.ready == 'true'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.BEGET_FTP_HOST }}
-          username: ${{ secrets.BEGET_FTP_USER }}
-          password: ${{ secrets.BEGET_FTP_PASSWORD }}
-          # Beget пускает только по шифрованному FTP (FTPS)
-          protocol: ftps
-          local-dir: dist/
-          server-dir: ${{ vars.BEGET_DIR }}
-          # правила старого домена на новом сайте не нужны
-          exclude: |
-            **/.git*
-            **/.git*/**
-            old-domain.htaccess
+        env:
+          HOST: ${{ secrets.BEGET_FTP_HOST }}
+          USER: ${{ secrets.BEGET_FTP_USER }}
+          PASS: ${{ secrets.BEGET_FTP_PASSWORD }}
+          DIR: ${{ vars.BEGET_DIR }}
+        run: |
+          sudo apt-get install -y -qq lftp > /dev/null
+          # правила старого домена новому сайту не нужны
+          rm -f dist/old-domain.htaccess
+          # Beget пускает только по FTPS. mirror выставляет файлам права как у исходников (644/755),
+          # иначе веб-сервер отвечает 403; --delete убирает со старой выкладки то, чего больше нет
+          lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set net:max-retries 3;
+            open -u \"$USER\",\"$PASS\" \"$HOST\";
+            mirror --reverse --delete --parallel=8 --verbose=1 dist/ \"$DIR\""
