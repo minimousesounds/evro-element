@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import site from '../data/site.json';
 ---
 <Base title="Заказ оформлен" noindex>
-  <span hidden id="done-data" data-hours={site.hours} data-address={`${site.addressShort}, офис 205, ${site.hours}`}></span>
+  <span hidden id="done-data" data-hours={site.hours} data-address={`${site.addressShort}, ${site.office}, ${site.hours}`}></span>
   <div class="container section">
     <div class="done">
       <span class="done__icon"><Icon name="check" size={40} /></span>

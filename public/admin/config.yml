@@ -155,7 +155,8 @@ collections:
           - { name: tagline, label: Подпись под логотипом, widget: string }
           - { name: city, label: Город, widget: string }
           - { name: address, label: Адрес полностью, widget: string }
-          - { name: addressShort, label: Адрес коротко, widget: string }
+          - { name: addressShort, label: Адрес коротко, widget: string, hint: "Без офиса: улица и дом" }
+          - { name: office, label: Офис, widget: string, hint: "Например: офис 109" }
           - { name: phone, label: Телефон, widget: string }
           - { name: email, label: Почта, widget: string }
           - { name: hours, label: Режим работы, widget: string }
