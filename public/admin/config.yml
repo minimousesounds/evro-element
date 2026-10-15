@@ -148,6 +148,8 @@ collections:
         fields:
           - { name: name, label: Название магазина, widget: string }
           - { name: legalName, label: Продавец, widget: string, hint: "Кто выставляет счета, например: ИП Шафигуллин А. Ф. Пишется в подвале сайта и в документах" }
+          - { name: legalFullName, label: Продавец полностью, widget: string, hint: "Для политики конфиденциальности и соглашения: Индивидуальный предприниматель Фамилия Имя Отчество" }
+          - { name: legalAddress, label: Адрес продавца для документов, widget: string, hint: "Фактический адрес из реквизитов, не домашний" }
           - { name: inn, label: ИНН продавца, widget: string, required: false }
           - { name: ogrn, label: ОГРНИП продавца, widget: string, required: false }
           - { name: tagline, label: Подпись под логотипом, widget: string }

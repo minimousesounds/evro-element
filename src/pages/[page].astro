@@ -1,5 +1,5 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import site from '../data/site.json';
@@ -10,7 +10,13 @@ export async function getStaticPaths() {
 }
 interface Props { entry: CollectionEntry<'pages'> }
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+// в юридических текстах реквизиты подставляются из настроек, чтобы не расходились с подвалом
+const tokens: Record<string, string> = {
+  '{продавец}': site.legalFullName, '{продавец кратко}': site.legalName, '{инн}': site.inn, '{огрнип}': site.ogrn,
+  '{адрес}': site.legalAddress, '{почта}': site.email, '{телефон}': site.phone, '{магазин}': site.name,
+  '{сайт}': new URL('/', Astro.site).href.replace(/\/$/, ''),
+};
+const html = Object.entries(tokens).reduce((h, [k, v]) => h.replaceAll(k, v), entry.rendered?.html ?? '');
 const isContacts = entry.id === 'contacts';
 const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
 ---
@@ -27,7 +33,7 @@ const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
           <div><span class="tertiary">Режим работы</span><span>{site.hours}, Сб–Вс выходной</span></div>
         </address>
       ) : (
-        <article class="prose"><Content /></article>
+        <article class="prose" set:html={html} />
       )}
     </div>
   </div>
