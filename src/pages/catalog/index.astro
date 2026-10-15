@@ -4,11 +4,13 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CategoryCard from '../../components/CategoryCard.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import Icon from '../../components/Icon.astro';
-import { getCategories, getProducts, plural } from '../../lib/catalog';
+import machines from '../../data/machines.json';
+import { getCategories, getProducts, plural, machineProducts, machineUrl, type Machine } from '../../lib/catalog';
 
 const categories = await getCategories();
 const products = await getProducts();
 const countBy = (id: string) => products.filter((p) => p.data.category.id === id).length;
+const byMachine = (machines as Machine[]).map((m) => ({ m, n: machineProducts(m, products).length })).filter((x) => x.n > 0);
 const imageOf = (id: string) => categories.find((c) => c.id === id)?.data.image || products.find((p) => p.data.category.id === id && p.data.images.length)?.data.images[0];
 ---
 <Base
@@ -23,6 +25,12 @@ const imageOf = (id: string) => categories.find((c) => c.id === id)?.data.image 
       <div class="cats">
         {categories.map((c) => <CategoryCard category={c} count={countBy(c.id)} image={imageOf(c.id)} />)}
       </div>
+      {byMachine.length > 0 && (
+        <section class="stack machines" aria-labelledby="by-machine">
+          <h2 id="by-machine">Запчасти по технике</h2>
+          <div class="chips">{byMachine.map(({ m, n }) => <a class="chip" href={machineUrl(m)} title={m.title}>{m.short}<span class="chip__count">{n}</span></a>)}</div>
+        </section>
+      )}
     </div>
   </div>
   <LeadForm />
@@ -30,5 +38,6 @@ const imageOf = (id: string) => categories.find((c) => c.id === id)?.data.image 
 
 <style>
   .cats { display: grid; gap: var(--gap); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .machines { padding-top: 24px; gap: 16px; }
   @media (max-width: 1100px) { .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>

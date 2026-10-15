@@ -5,7 +5,7 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductCard from '../../../components/ProductCard.astro';
 import Icon from '../../../components/Icon.astro';
 import site from '../../../data/site.json';
-import { getCategories, getProducts, categoryUrl, productUrl, productSeo, formatPrice, perUnit, fullName, type Product, type Category } from '../../../lib/catalog';
+import { getCategories, getProducts, categoryUrl, productUrl, productSeo, formatPrice, perUnit, isFilter, analogNote, fullName, type Product, type Category } from '../../../lib/catalog';
 
 export async function getStaticPaths() {
   const categories = await getCategories();
@@ -93,7 +93,7 @@ const ld = {
         </div>
 
         {analog && (
-          <p class="notice"><Icon name="info" size={18} />Это аналог{d.brand ? ` фильтра ${d.brand}` : ''}. Посадочные размеры, резьба и уплотнение совпадают с оригиналом, фильтр встаёт на штатное место.</p>
+          <p class="notice"><Icon name="info" size={18} />Это аналог{d.brand ? ` ${isFilter(product) ? 'фильтра' : 'детали'} ${d.brand}` : ''}. {analogNote(product)}</p>
         )}
 
         <div class="buy">

@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Icon from '../../components/Icon.astro';
+import machines from '../../data/machines.json';
+import { getProducts, machineProducts, positions, simpleMarkdown, type Machine } from '../../lib/catalog';
+
+// Страницы «Запчасти для КамАЗ / Caterpillar / …»: под поисковые запросы по марке техники.
+// Пустые страницы не собираем, чтобы не показывать поисковикам страницы без товаров.
+export async function getStaticPaths() {
+  const all = await getProducts();
+  return (machines as Machine[])
+    .map((m) => ({ m, products: machineProducts(m, all) }))
+    .filter(({ products }) => products.length > 0)
+    .map(({ m, products }) => ({ params: { slug: m.slug }, props: { m, products } }));
+}
+interface Props { m: Machine; products: Awaited<ReturnType<typeof getProducts>> }
+const { m, products } = Astro.props;
+---
+<Base title={m.seoTitle} rawTitle={false} description={`${m.intro.split('. ')[0]}. ${positions(products.length)} в каталоге.`}>
+  <div class="container">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog/' }, { label: m.title }]} />
+    <div class="page-title"><h1>{m.title}</h1><span class="page-title__sub">{positions(products.length)}</span></div>
+    <div class="stack section" style="padding-top: 0;">
+      <p class="lead machine__intro">{m.intro}</p>
+      <div class="grid">{products.map((p) => <ProductCard product={p} />)}</div>
+      <div class="machine__help">
+        <div><p class="t-h4">Не нашли нужную деталь?</p><p class="small">Напишите номер или модель техники, подскажем, можем ли привезти.</p></div>
+        <button class="btn" type="button" data-callback><Icon name="phone" size={20} />Оставить заявку</button>
+      </div>
+      <div class="prose seo" set:html={simpleMarkdown(m.text)} />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .machine__intro { max-width: 820px; margin: 0; }
+  .machine__help { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 24px 28px; border-radius: var(--radius-lg); background: var(--bg-accent-subtle); }
+  .machine__help p { margin: 0; }
+  .machine__help .small { margin-top: 4px; color: var(--text-secondary); }
+  @media (max-width: 600px) { .machine__help { flex-direction: column; align-items: stretch; padding: 20px; } }
+</style>
