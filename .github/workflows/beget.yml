@@ -44,8 +44,8 @@ jobs:
           sudo apt-get install -y -qq lftp > /dev/null
           # правила старого домена новому сайту не нужны
           rm -f dist/old-domain.htaccess
-          # Beget пускает только по FTPS. mirror выставляет файлам права как у исходников (644/755),
-          # иначе веб-сервер отвечает 403; --delete убирает со старой выкладки то, чего больше нет
+          # Beget пускает только по FTPS и сам выставляет права файлам (SITE CHMOD запрещён, отсюда --no-perms);
+          # --delete убирает со старой выкладки то, чего больше нет
           lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set net:max-retries 3;
             open -u \"$USER\",\"$PASS\" \"$HOST\";
-            mirror --reverse --delete --parallel=8 --verbose=1 dist/ \"$DIR\""
+            mirror --reverse --delete --no-perms --parallel=8 --verbose=1 dist/ \"$DIR\""
