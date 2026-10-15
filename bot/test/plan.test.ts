@@ -57,6 +57,13 @@ group('план изменений', () => {
     expect(describe(plan, catalog)[0]).toBe('➕ Новый товар SP1553M Фильтр топливный, 330 ₽, «Фильтр топливный», аналог ASAS, в наличии, с фото');
   });
 
+  it('возвращает скрытый товар на сайт при новой цене, но не при «кончился»', () => {
+    const hidden: Catalog = { ...catalog, products: catalog.products.map((p) => (p.id === 'sp677' ? { ...p, hidden: true } : p)) };
+    const plan = buildPlan([a({ type: 'price', sku: 'SP677', price: 250 })], hidden, false);
+    expect(describe(plan, hidden)).toEqual(['• SP677 Фильтр масляный: цена 220 ₽ → 250 ₽, вернётся на сайт']);
+    expect(buildPlan([a({ type: 'stock', sku: 'SP677', in_stock: false })], hidden, false).changes[0]).not.toHaveProperty('unhide');
+  });
+
   it('отвечает на вопрос без изменений', () => {
     const plan = buildPlan([a({ type: 'info', sku: 'SP677' })], catalog, false);
     expect(plan.info).toEqual(['SP677 Фильтр масляный: 220 ₽, в наличии']);

@@ -75,7 +75,9 @@ import Icon from '../components/Icon.astro';
         li.querySelector('[data-f="sku"]')!.textContent = i.sku;
         li.querySelector('[data-f="unit"]')!.textContent = `${money(i.price)} за шт.`;
         li.querySelector('[data-f="sum"]')!.textContent = money(i.price * i.qty);
-        li.querySelector('input')!.value = String(i.qty);
+        const qty = li.querySelector('input')!;
+        qty.value = String(i.qty);
+        qty.min = String(i.min ?? 1);
         li.querySelector('[data-remove]')!.setAttribute('aria-label', `Удалить ${i.title} ${i.sku}`);
         return li;
       }),
@@ -85,7 +87,7 @@ import Icon from '../components/Icon.astro';
   list.addEventListener('change', (e) => {
     const input = e.target as HTMLInputElement;
     const id = input.closest<HTMLElement>('.item')?.dataset.id;
-    writeCart(readCart().map((i) => (i.id === id ? { ...i, qty: Math.max(1, Number(input.value) || 1) } : i)));
+    writeCart(readCart().map((i) => (i.id === id ? { ...i, qty: Math.min(9999, Math.max(i.min ?? 1, Number(input.value) || 1)) } : i)));
     render();
   });
   list.addEventListener('click', (e) => {

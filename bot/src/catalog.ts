@@ -11,6 +11,8 @@ export interface CatalogProduct {
   kind: '' | 'original' | 'analog';
   brand: string;
   images: number;
+  /** снят с сайта: не показывается, но файл есть */
+  hidden?: boolean;
 }
 
 export interface Catalog {

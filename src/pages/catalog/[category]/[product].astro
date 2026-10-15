@@ -5,7 +5,7 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ProductCard from '../../../components/ProductCard.astro';
 import Icon from '../../../components/Icon.astro';
 import site from '../../../data/site.json';
-import { getCategories, getProducts, categoryUrl, productUrl, productSeo, formatPrice, fullName, type Product, type Category } from '../../../lib/catalog';
+import { getCategories, getProducts, categoryUrl, productUrl, productSeo, formatPrice, perUnit, fullName, type Product, type Category } from '../../../lib/catalog';
 
 export async function getStaticPaths() {
   const categories = await getCategories();
@@ -97,12 +97,12 @@ const ld = {
         )}
 
         <div class="buy">
-          <div class="buy__price">{formatPrice(d.price)} <small>за штуку</small></div>
-          <div class="buy__actions" data-cart-ctl={product.id} data-mode="page" data-sku={d.sku} data-title={d.title}
+          <div class="buy__price">{formatPrice(d.price)} <small>{perUnit(d.unit)}{d.minQty > 1 ? `, от ${d.minQty} ${d.unit}` : ''}</small></div>
+          <div class="buy__actions" data-cart-ctl={product.id} data-mode="page" data-min={d.minQty > 1 ? d.minQty : undefined} data-sku={d.sku} data-title={d.title}
             data-price={d.price} data-url={productUrl(product)} data-image={d.images[0] ?? ''}>
             <span class="stepper" data-ctl-stepper>
               <button type="button" data-ctl-step="-1" aria-label="Меньше"><Icon name="minus" size={20} /></button>
-              <input id="qty" type="number" inputmode="numeric" min="1" max="9999" value="1" aria-label="Количество" />
+              <input id="qty" type="number" inputmode="numeric" min={d.minQty} max="9999" value={d.minQty} aria-label="Количество" />
               <button type="button" data-ctl-step="1" aria-label="Больше"><Icon name="plus" size={20} /></button>
             </span>
             <button class="btn btn--l buy__add" type="button" data-ctl-add><Icon name="plus" size={20} />Добавить в корзину</button>

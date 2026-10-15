@@ -4,7 +4,7 @@ import { findBySku, type Catalog, type CatalogProduct } from './catalog';
 import { uniqueSlug, type NewProduct } from './content';
 
 export type Change =
-  | { kind: 'update'; productId: string; path: string; sku: string; title: string; price?: number; inStock?: boolean; newTitle?: string; brand?: string; productKind?: 'original' | 'analog'; category?: string; addPhoto?: boolean }
+  | { kind: 'update'; productId: string; path: string; sku: string; title: string; price?: number; inStock?: boolean; newTitle?: string; brand?: string; productKind?: 'original' | 'analog'; category?: string; addPhoto?: boolean; unhide?: boolean }
   | { kind: 'create'; slug: string; product: NewProduct; addPhoto: boolean };
 
 export interface Plan {
@@ -38,7 +38,7 @@ export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean
   for (const a of actions) {
     const p = findBySku(catalog, a.sku);
     if (a.type === 'info') {
-      if (p) plan.info.push(`${p.sku} ${p.title}: ${money(p.price)}, ${p.inStock ? 'в наличии' : 'нет в наличии'}`);
+      if (p) plan.info.push(`${p.sku} ${p.title}: ${money(p.price)}, ${p.inStock ? 'в наличии' : 'нет в наличии'}${p.hidden ? ', сейчас снят с сайта' : ''}`);
       else plan.info.push(`${a.sku}: такого артикула на сайте нет`);
       continue;
     }
@@ -77,11 +77,13 @@ export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean
       u.addPhoto = true;
       photoUsed = true;
     }
+    // скрытый товар возвращается на сайт, если его продают снова (не «кончился»)
+    if (p.hidden && a.in_stock !== false) u.unhide = true;
   }
 
   // действия, которые ничего не меняют (цена и так такая), не показываем
   plan.changes = plan.changes.filter(
-    (c) => c.kind === 'create' || c.price != null || c.inStock != null || c.newTitle || c.brand || c.productKind || c.category || c.addPhoto,
+    (c) => c.kind === 'create' || c.price != null || c.inStock != null || c.newTitle || c.brand || c.productKind || c.category || c.addPhoto || c.unhide,
   );
   if (hasPhoto && !photoUsed && actions.length) plan.problems.push('Не понял, к какому товару фото. Напишите артикул в подписи.');
   return plan;
@@ -105,6 +107,7 @@ export function describe(plan: Plan, catalog: Catalog): string[] {
     if (c.brand) parts.push(`бренд ${c.brand}`);
     if (c.category) parts.push(`категория «${cat(c.category)}»`);
     if (c.addPhoto) parts.push('новое фото');
+    if (c.unhide) parts.push('вернётся на сайт');
     return `• ${c.sku} ${c.title}: ${parts.join(', ')}`;
   });
 }

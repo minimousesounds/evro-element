@@ -56,6 +56,11 @@ export function setText(md: string, key: 'title' | 'brand' | 'kind', value: stri
   return join(setLine(fm, key, q(value)), body);
 }
 
+export function setHidden(md: string, hidden: boolean): string {
+  const { fm, body } = splitFrontmatter(md);
+  return join(setLine(fm, 'hidden', String(hidden)), body);
+}
+
 export function setCategory(md: string, category: string): string {
   const { fm, body } = splitFrontmatter(md);
   return join(setLine(fm, 'category', category), body);

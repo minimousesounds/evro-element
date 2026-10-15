@@ -25,6 +25,11 @@ const products = defineCollection({
     category: reference('categories'),
     price: z.number(),
     inStock: z.boolean().default(true),
+    unit: z.string().default('шт.'),
+    // продаётся не меньше этого количества
+    minQty: z.number().int().min(1).default(1),
+    // снят с сайта: страницы нет, старые адреса ведут в категорию
+    hidden: z.boolean().default(false),
     popular: z.boolean().default(false),
     offer: z.boolean().default(false),
     images: z.array(z.string()).default([]),

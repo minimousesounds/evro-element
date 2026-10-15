@@ -1,5 +1,5 @@
 // Превращает подтверждённый план в файлы для коммита.
-import { addImage, newProductMd, setCategory, setInStock, setPrice, setText } from './content';
+import { addImage, newProductMd, setCategory, setHidden, setInStock, setPrice, setText } from './content';
 import type { FileChange } from './github';
 import type { Plan } from './plan';
 
@@ -36,6 +36,7 @@ export async function planToFiles(plan: Plan, readText: (path: string) => Promis
     if (c.productKind) md = setText(md, 'kind', c.productKind);
     if (c.category) md = setCategory(md, c.category);
     if (c.addPhoto && photo) md = addImage(md, photoFor(c.productId));
+    if (c.unhide) md = setHidden(md, false);
     files.push({ path: c.path, content: md, encoding: 'utf-8' });
   }
   return files;

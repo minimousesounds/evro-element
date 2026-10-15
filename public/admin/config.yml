@@ -20,7 +20,7 @@ collections:
     create: true
     slug: "{{fields.sku}}"
     identifier_field: title
-    summary: "{{sku}} — {{title}}, {{price}} ₽"
+    summary: "{{sku}} — {{title}}, {{price}} ₽{{hidden | ternary(' (скрыт)', '')}}"
     sortable_fields: [sku, title, price]
     media_folder: /public/uploads/products
     public_folder: /uploads/products
@@ -29,6 +29,13 @@ collections:
       - { name: sku, label: Артикул, widget: string, hint: "Латиницей, как на корпусе. По нему строится адрес страницы" }
       - { name: price, label: "Цена, ₽", widget: number, value_type: float, min: 0 }
       - { name: inStock, label: В наличии, widget: boolean, default: true }
+      - { name: hidden, label: Скрыть с сайта, widget: boolean, default: false, hint: "Товар не показывается, но не удаляется. Старые ссылки на него ведут в категорию" }
+      - name: unit
+        label: Единица
+        widget: select
+        default: "шт."
+        options: ["шт.", "компл."]
+      - { name: minQty, label: Минимальная партия, widget: number, value_type: int, min: 1, default: 1, hint: "Меньше этого количества положить в корзину нельзя" }
       - name: category
         label: Категория
         widget: relation

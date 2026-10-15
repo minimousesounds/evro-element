@@ -7,6 +7,8 @@ export interface CartItem {
   url: string;
   image: string;
   qty: number;
+  /** минимальная партия, меньше не продаём */
+  min?: number;
 }
 
 const KEY = 'ee-cart';
@@ -70,6 +72,7 @@ export function setQty(id: string, qty: number) {
 // На странице товара (data-mode="page") степпер виден всегда: до добавления это просто выбор количества.
 const ctls = () => document.querySelectorAll<HTMLElement>('[data-cart-ctl]');
 const qtyIn = (id: string) => readCart().find((i) => i.id === id)?.qty ?? 0;
+const minOf = (ctl: HTMLElement) => Math.max(1, Number(ctl.dataset.min) || 1);
 
 function sync(ctl: HTMLElement) {
   const qty = qtyIn(ctl.dataset.cartCtl!);
@@ -81,12 +84,12 @@ function sync(ctl: HTMLElement) {
   if (go) go.hidden = qty === 0;
   if (!page) stepper.hidden = qty === 0;
   if (qty > 0 && document.activeElement !== input) input.value = String(qty);
-  stepper.toggleAttribute('data-one', !page && qty === 1);
+  stepper.toggleAttribute('data-one', !page && qty > 0 && qty <= minOf(ctl));
 }
 
 function itemOf(ctl: HTMLElement): Omit<CartItem, 'qty'> {
   const d = ctl.dataset;
-  return { id: d.cartCtl!, sku: d.sku || '', title: d.title || '', price: Number(d.price) || 0, url: d.url || '', image: d.image || '' };
+  return { id: d.cartCtl!, sku: d.sku || '', title: d.title || '', price: Number(d.price) || 0, url: d.url || '', image: d.image || '', min: minOf(ctl) };
 }
 
 document.addEventListener('click', (e) => {
@@ -97,13 +100,16 @@ document.addEventListener('click', (e) => {
   const input = ctl.querySelector<HTMLInputElement>('input')!;
   const step = target.closest<HTMLElement>('[data-ctl-step]');
   if (step) {
+    const min = minOf(ctl);
     const next = (Number(input.value) || 0) + Number(step.dataset.ctlStep);
-    if (qtyIn(id)) setQty(id, ctl.dataset.mode === 'page' ? Math.max(1, next) : next);
-    else input.value = String(Math.min(MAX_QTY, Math.max(1, next)));
+    // ниже минимальной партии в карточке значит «убрать», на странице товара — остаться на минимуме
+    if (qtyIn(id)) setQty(id, next >= min ? next : ctl.dataset.mode === 'page' ? min : 0);
+    else input.value = String(Math.min(MAX_QTY, Math.max(min, next)));
     return;
   }
   if (!target.closest('[data-ctl-add]')) return;
-  const qty = ctl.dataset.mode === 'page' ? Math.min(MAX_QTY, Math.max(1, Number(input.value) || 1)) : 1;
+  const min = minOf(ctl);
+  const qty = ctl.dataset.mode === 'page' ? Math.min(MAX_QTY, Math.max(min, Number(input.value) || min)) : min;
   addToCart(itemOf(ctl), qty);
   const name = document.createElement('span');
   name.textContent = `${ctl.dataset.title} ${ctl.dataset.sku}`;
@@ -116,9 +122,12 @@ document.addEventListener('change', (e) => {
   const ctl = input.closest<HTMLElement>('[data-cart-ctl]');
   if (!ctl || input.tagName !== 'INPUT') return;
   const id = ctl.dataset.cartCtl!;
+  const min = minOf(ctl);
   const n = Math.min(MAX_QTY, Math.max(0, Math.floor(Number(input.value)) || 0));
-  if (qtyIn(id)) setQty(id, ctl.dataset.mode === 'page' ? Math.max(1, n) : n);
-  else input.value = String(Math.max(1, n));
+  // вписали меньше партии — поднимаем до партии; 0 в карточке убирает товар
+  const fixed = n === 0 && ctl.dataset.mode !== 'page' ? 0 : Math.max(min, n);
+  if (qtyIn(id)) setQty(id, fixed);
+  else input.value = String(Math.max(min, n));
   sync(ctl);
 });
 document.addEventListener('keydown', (e) => {
