@@ -40,6 +40,8 @@ jobs:
           server: ${{ secrets.BEGET_FTP_HOST }}
           username: ${{ secrets.BEGET_FTP_USER }}
           password: ${{ secrets.BEGET_FTP_PASSWORD }}
+          # Beget пускает только по шифрованному FTP (FTPS)
+          protocol: ftps
           local-dir: dist/
           server-dir: ${{ vars.BEGET_DIR }}
           # правила старого домена на новом сайте не нужны
