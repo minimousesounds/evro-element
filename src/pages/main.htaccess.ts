@@ -7,24 +7,17 @@ import site from '../data/site.json';
 export const GET: APIRoute = () => {
   const host = new URL(import.meta.env.SITE).host;
   const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\\-&~# ]/g, '\\$&');
-  // https включаем, только когда на хостинге выпущен сертификат (настройка forceHttps), иначе сайт перестанет открываться
+  // forceHttps: на хостинге выпущен сертификат и включён «Редирект с HTTP на HTTPS» в настройках сайта Beget.
+  // Сам переход на https делает Beget, здесь только цели переадресаций сразу с https, без лишнего шага
   const scheme = site.forceHttps ? 'https' : 'http';
   // полный адрес в цели: старый адрес ведёт сразу на нужную страницу одним переходом, без лишнего шага на https
   const rules = Object.entries(data.redirects as Record<string, string>)
     .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
     .map(([from, to]) => `RewriteRule ^${esc(from.replace(/^\/+/, ''))}$ ${scheme}://${host}${to} [R=301,L]`);
   const canonical = [
-    '# Один адрес сайта: без www' + (site.forceHttps ? ' и по https' : ''),
+    '# Один адрес сайта: без www',
     `RewriteCond %{HTTP_HOST} ^www\\.(.+)$ [NC]`,
     `RewriteRule ^(.*)$ ${scheme}://${host}/$1 [R=301,L]`,
-    ...(site.forceHttps
-      ? [
-          // за nginx Beget протокол виден по заголовку X-Forwarded-Proto
-          'RewriteCond %{HTTPS} off',
-          'RewriteCond %{HTTP:X-Forwarded-Proto} !https',
-          `RewriteRule ^(.*)$ https://${host}/$1 [R=301,L]`,
-        ]
-      : []),
   ];
   const body = [
     '# Сгенерировано src/pages/main.htaccess.ts. Править redirects.json, а не этот файл.',

@@ -15,7 +15,7 @@
   "hours": "Пн–Пт 9:00–16:00",
   "hoursSchema": "Mo-Fr 09:00-16:00",
   "foundingYear": 2008,
-  "forceHttps": false,
+  "forceHttps": true,
   "yandexMetrika": "31865876",
   "dadataToken": "",
   "formsKey": "2ef71b4a-64a8-46f5-a8cc-344ad74cded9"
