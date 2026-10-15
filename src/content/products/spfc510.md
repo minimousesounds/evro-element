@@ -8,8 +8,7 @@ price: 330
 inStock: true
 popular: false
 offer: false
-images:
-  - "/uploads/products/spfc510.png"
+images: []
 replaces: []
 specs: []
 country: ""

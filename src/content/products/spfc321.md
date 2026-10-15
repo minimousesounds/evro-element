@@ -8,8 +8,7 @@ price: 300
 inStock: true
 popular: false
 offer: false
-images:
-  - "/uploads/products/spfc321.png"
+images: []
 replaces: []
 specs: []
 country: ""
