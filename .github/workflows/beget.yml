@@ -35,17 +35,19 @@ jobs:
         run: echo "ready=${{ secrets.BEGET_FTP_PASSWORD != '' && vars.BEGET_DIR != '' }}" >> "$GITHUB_OUTPUT"
       - name: Выкладка на Beget
         if: steps.cfg.outputs.ready == 'true'
-        env:
-          HOST: ${{ secrets.BEGET_FTP_HOST }}
-          USER: ${{ secrets.BEGET_FTP_USER }}
-          PASS: ${{ secrets.BEGET_FTP_PASSWORD }}
-          DIR: ${{ vars.BEGET_DIR }}
-        run: |
-          sudo apt-get install -y -qq lftp > /dev/null
+        # по одному файлу: бесплатный тариф обрывает параллельные соединения.
+        # Действие помнит, что уже залито (.ftp-deploy-sync-state.json на сервере), и шлёт только изменённое
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.BEGET_FTP_HOST }}
+          username: ${{ secrets.BEGET_FTP_USER }}
+          password: ${{ secrets.BEGET_FTP_PASSWORD }}
+          # Beget пускает только по шифрованному FTP (FTPS)
+          protocol: ftps
+          local-dir: dist/
+          server-dir: ${{ vars.BEGET_DIR }}
           # правила старого домена новому сайту не нужны
-          rm -f dist/old-domain.htaccess
-          # Beget пускает только по FTPS и сам выставляет права файлам (SITE CHMOD запрещён, отсюда --no-perms);
-          # --delete убирает со старой выкладки то, чего больше нет
-          lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; set net:max-retries 3;
-            open -u \"$USER\",\"$PASS\" \"$HOST\";
-            mirror --reverse --delete --no-perms --parallel=8 --verbose=1 dist/ \"$DIR\""
+          exclude: |
+            **/.git*
+            **/.git*/**
+            old-domain.htaccess
