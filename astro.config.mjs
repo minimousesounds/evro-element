@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // Боевой адрес по умолчанию. Для временной копии на GitHub Pages сборка получает
 // SITE_URL и SITE_BASE (подпапка) из .github/workflows/deploy.yml.
-const site = process.env.SITE_URL || 'https://www.evro-element.ru';
+const site = process.env.SITE_URL || 'https://kama-filtr.ru';
 const base = process.env.SITE_BASE || '/';
 
 /** Ссылки в шаблонах написаны от корня («/catalog/»). В подпапке дописываем к ним base. */

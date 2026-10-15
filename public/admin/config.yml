@@ -6,7 +6,7 @@ backend:
   branch: main
 
 locale: ru
-site_url: https://www.evro-element.ru
+site_url: https://kama-filtr.ru
 media_folder: public/uploads
 public_folder: /uploads
 
