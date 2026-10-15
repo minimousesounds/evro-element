@@ -10,11 +10,11 @@ export interface SendResult {
   error?: string;
 }
 
-/** Номер заказа, понятный человеку: ЕЭ-141026-4821 (дата и случайные цифры). */
+/** Номер заказа, понятный человеку: КФ-151026-4821 (дата и случайные цифры). */
 export function orderNumber(): string {
   const d = new Date();
   const p = (n: number) => String(n).padStart(2, '0');
-  return `ЕЭ-${p(d.getDate())}${p(d.getMonth() + 1)}${String(d.getFullYear()).slice(2)}-${Math.floor(1000 + Math.random() * 9000)}`;
+  return `КФ-${p(d.getDate())}${p(d.getMonth() + 1)}${String(d.getFullYear()).slice(2)}-${Math.floor(1000 + Math.random() * 9000)}`;
 }
 
 /**
