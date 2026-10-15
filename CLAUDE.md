@@ -31,6 +31,12 @@
 - Ссылки в шаблонах пишем от корня, в подпапке их дописывает интеграция prefix-base в astro.config.mjs. В скриптах использовать import.meta.env.BASE_URL.
 - Локальная сборка под подпапку в Git Bash: `MSYS_NO_PATHCONV=1 SITE_BASE=/evro-element/ ...`, иначе путь превращается в путь на диске.
 
+## Боевой хостинг
+- Beget, платный тариф (420 ₽/мес), аккаунт o92745df на почту отца, сервер 87.236.19.212 (бесплатный сервер 185.50.25.55 резал зарубежные запросы). Папка сайта `o92745df.beget.tech/public_html`, к ней прилинкован kama-filtr.ru, DNS домена на Beget.
+- Выкладка: `.github/workflows/beget.yml`, FTP-Deploy по FTPS по одному файлу (параллельный lftp терял файлы), секреты BEGET_FTP_*, переменная BEGET_DIR=./ (FTP-аккаунт o92745df_deploy смотрит в public_html).
+- `.htaccess` собирает сайт: `src/pages/main.htaccess.ts` (www → без www, https при `forceHttps: true` в site.json, старые адреса). В `public/` файла нет, скрипты и бот пишут только redirects.json.
+- Из-за границы сайт открывается; бот берёт bot-index.json с копии на GitHub Pages.
+
 ## Папки
 - `scrape/` — парсер старого сайта. `scrape.py` (товары, категории, страницы, фото), `annotate.py` (разметка старых адресов), `page_images.py` (картинки техстраниц). `raw/` — кэш HTML, повторный запуск сеть не трогает.
 - `data/` — результат парсинга от 03.10.2026:

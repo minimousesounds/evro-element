@@ -283,10 +283,7 @@ def main():
         w.writerow(head)
         w.writerows(rows)
     write(ROOT / "src" / "data" / "redirects.json", json.dumps({"redirects": redirects, "gone": gone}, ensure_ascii=False, indent=1))
-    ht = ["# Сгенерировано scripts/import_content.py. Редиректы со старого сайта.", "RewriteEngine On", ""]
-    ht += [f"RewriteRule ^{re.escape(o.lstrip('/'))}$ {n} [R=301,L]" for o, n in sorted(redirects.items())]
-    ht += ["", "# Раздел обмена ссылками удалён", r"RewriteRule ^affiliation(-[\d-]+)?\.html$ - [G,L]", "", "ErrorDocument 404 /404.html", ""]
-    write(ROOT / "public" / ".htaccess", "\n".join(ht))
+    # .htaccess собирает сам сайт из redirects.json (src/pages/main.htaccess.ts)
     print(f"редиректов {len(redirects)}, удалённых адресов {len(gone)}")
 
 

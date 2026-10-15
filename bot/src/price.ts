@@ -239,24 +239,9 @@ export function applyPrice(rows: PriceRow[], state: RepoState, hideMissing: bool
   for (const [s, t] of Object.entries(files)) add(`src/content/products/${s}.md`, t, state.products[s]);
   for (const [s, t] of Object.entries(categories)) add(`src/content/categories/${s}.md`, t, state.categories[s]);
   const redirectsJson = JSON.stringify(redirects, null, 1);
-  if (redirectsJson !== JSON.stringify(state.redirects, null, 1)) {
-    add('src/data/redirects.json', redirectsJson);
-    add('public/.htaccess', htaccess(redirects.redirects));
-  }
+  // .htaccess сайт собирает сам из redirects.json (src/pages/main.htaccess.ts)
+  if (redirectsJson !== JSON.stringify(state.redirects, null, 1)) add('src/data/redirects.json', redirectsJson);
   return { files: out, stats };
-}
-
-/** Тот же .htaccess, что пишут скрипты импорта. */
-export function htaccess(redirects: Record<string, string>): string {
-  // как re.escape в Python, чтобы файл не менялся от того, кто его записал
-  const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\\-&~# ]/g, '\\$&');
-  const rules = Object.entries(redirects)
-    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
-    .map(([o, n]) => `RewriteRule ^${esc(o.replace(/^\/+/, ''))}$ ${n} [R=301,L]`);
-  return [
-    '# Сгенерировано scripts/import_content.py и scripts/import_price.py. Редиректы со старого сайта.', 'RewriteEngine On', '',
-    ...rules, '', '# Раздел обмена ссылками удалён', 'RewriteRule ^affiliation(-[\\d-]+)?\\.html$ - [G,L]', '', 'ErrorDocument 404 /404.html', '',
-  ].join('\n');
 }
 
 const money = (n: number) => `${new Intl.NumberFormat('ru-RU').format(n).replace(/ /g, ' ')} ₽`;

@@ -226,10 +226,7 @@ def main():
     for s, t in cats.items():
         (CATEGORIES / f"{s}.md").write_text(t, encoding="utf-8", newline="\n")
     rpath.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
-    ht = ["# Сгенерировано scripts/import_content.py и scripts/import_price.py. Редиректы со старого сайта.", "RewriteEngine On", ""]
-    ht += [f"RewriteRule ^{re.escape(o.lstrip('/'))}$ {n} [R=301,L]" for o, n in sorted(data["redirects"].items())]
-    ht += ["", "# Раздел обмена ссылками удалён", r"RewriteRule ^affiliation(-[\d-]+)?\.html$ - [G,L]", "", "ErrorDocument 404 /404.html", ""]
-    (ROOT / "public" / ".htaccess").write_text("\n".join(ht), encoding="utf-8", newline="\n")
+    # .htaccess собирает сам сайт из redirects.json (src/pages/main.htaccess.ts)
 
 
 if __name__ == "__main__":

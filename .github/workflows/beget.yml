@@ -30,6 +30,9 @@ jobs:
       - run: npm run build
         env:
           SITE_URL: https://kama-filtr.ru
+      - name: Правила сервера
+        # .htaccess собирается сайтом (src/pages/main.htaccess.ts); правила старого домена новому сайту не нужны
+        run: mv dist/main.htaccess dist/.htaccess && rm -f dist/old-domain.htaccess
       - id: cfg
         name: Есть ли доступ к хостингу
         run: echo "ready=${{ secrets.BEGET_FTP_PASSWORD != '' && vars.BEGET_DIR != '' }}" >> "$GITHUB_OUTPUT"
@@ -46,8 +49,6 @@ jobs:
           protocol: ftps
           local-dir: dist/
           server-dir: ${{ vars.BEGET_DIR }}
-          # правила старого домена новому сайту не нужны
           exclude: |
             **/.git*
             **/.git*/**
-            old-domain.htaccess

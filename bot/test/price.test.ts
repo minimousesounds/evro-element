@@ -92,7 +92,6 @@ group('применение прайса', () => {
     expect(stats.unhidden).toEqual(['SP1553M']);
     const red = JSON.parse(files.find((f) => f.path === 'src/data/redirects.json')!.content);
     expect(red.redirects['/shop/view-16.html']).toBe('/catalog/filtr-toplivnyj/sp1553m/');
-    expect(files.find((f) => f.path === 'public/.htaccess')!.content).toContain('RewriteRule ^shop/view\\-16\\.html$ /catalog/filtr-toplivnyj/sp1553m/ [R=301,L]');
   });
 
   it('один артикул у двух производителей даёт два товара', () => {
