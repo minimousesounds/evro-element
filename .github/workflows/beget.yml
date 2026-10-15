@@ -1,0 +1,49 @@
+# Боевой сайт https://kama-filtr.ru: сборка и выкладка на хостинг Beget по FTP при каждом изменении в main.
+# Нужны секреты репозитория BEGET_FTP_HOST, BEGET_FTP_USER, BEGET_FTP_PASSWORD
+# и переменная BEGET_DIR — папка сайта на хостинге, например kama-filtr.ru/public_html/.
+# Пока секретов нет, сборка проходит, а выкладка пропускается.
+name: Deploy kama-filtr.ru
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# выкладки идут по очереди и не обрываются: недолитый сайт хуже, чем чуть устаревший
+concurrency:
+  group: beget
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          SITE_URL: https://kama-filtr.ru
+      - id: cfg
+        name: Есть ли доступ к хостингу
+        run: echo "ready=${{ secrets.BEGET_FTP_PASSWORD != '' && vars.BEGET_DIR != '' }}" >> "$GITHUB_OUTPUT"
+      - name: Выкладка на Beget
+        if: steps.cfg.outputs.ready == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.BEGET_FTP_HOST }}
+          username: ${{ secrets.BEGET_FTP_USER }}
+          password: ${{ secrets.BEGET_FTP_PASSWORD }}
+          local-dir: dist/
+          server-dir: ${{ vars.BEGET_DIR }}
+          # правила старого домена на новом сайте не нужны
+          exclude: |
+            **/.git*
+            **/.git*/**
+            old-domain.htaccess
