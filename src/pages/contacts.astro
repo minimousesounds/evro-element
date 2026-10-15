@@ -23,7 +23,7 @@ const mapQuery = encodeURIComponent(`${site.city}, ${site.addressShort}`);
         <div class="info__row"><Icon name="clock" size={22} /><span><span class="tertiary small">Режим работы</span><span>{site.hours}, Сб–Вс выходной</span></span></div>
       </address>
       <div class="map">
-        <iframe src={`https://yandex.ru/map-widget/v1/?text=${mapQuery}&z=16`} title="Евроэлемент на карте" loading="lazy" allowfullscreen></iframe>
+        <iframe src={`https://yandex.ru/map-widget/v1/?text=${mapQuery}&z=16`} title={`${site.name} на карте`} loading="lazy" allowfullscreen></iframe>
         <a class="map__link" href={`https://yandex.ru/maps/?text=${mapQuery}`} target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
       </div>
     </div>

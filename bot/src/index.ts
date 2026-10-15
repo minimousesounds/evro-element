@@ -1,4 +1,4 @@
-// Telegram-бот для правки каталога «Евроэлемент». Работает на Cloudflare Workers.
+// Telegram-бот для правки каталога «Кама-фильтр». Работает на Cloudflare Workers.
 // Сообщение владельца → Claude разбирает → бот показывает план → «Подтвердить» → коммит в репозиторий сайта.
 import Anthropic from '@anthropic-ai/sdk';
 import { planToFiles, type PhotoFile } from './apply';
@@ -75,7 +75,7 @@ async function handle(update: TgUpdate, env: Env) {
   const msg = update.message;
   if (!msg) return;
   if (!msg.from || !allowed.has(msg.from.id)) {
-    await tg.send(msg.chat.id, `Это служебный бот магазина «Евроэлемент». Ваш id: ${msg.from?.id ?? 'неизвестен'}`);
+    await tg.send(msg.chat.id, `Это служебный бот магазина «Кама-фильтр». Ваш id: ${msg.from?.id ?? 'неизвестен'}`);
     return;
   }
   try {
