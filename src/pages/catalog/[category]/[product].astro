@@ -49,6 +49,7 @@ const ld = {
   name,
   sku: d.sku,
   category: category.data.title,
+  description: seo.description,
   ...(d.images.length ? { image: d.images.map((i) => new URL(i, Astro.site).href) } : {}),
   ...(d.brand && !analog ? { brand: { '@type': 'Brand', name: d.brand } } : {}),
   offers: {
@@ -57,7 +58,17 @@ const ld = {
     priceCurrency: 'RUB',
     price: d.price,
     availability: d.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+    itemCondition: 'https://schema.org/NewCondition',
     seller: { '@type': 'Organization', name: site.name },
+    // как в «Условиях использования»: 7 дней для частных покупателей, обратную доставку оплачивает покупатель
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'RU',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 7,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnShippingFees',
+    },
   },
 };
 ---
