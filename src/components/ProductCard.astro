@@ -38,7 +38,7 @@ const label = brandLabel(product);
   .pcard { display: flex; flex-direction: column; background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); overflow: hidden; transition: box-shadow 0.15s, border-color 0.15s; }
   .pcard:hover { border-color: var(--border-strong); box-shadow: var(--shadow-hover); }
   .pcard__media { position: relative; display: grid; place-items: center; height: 228px; padding: 20px; background: #fff; text-decoration: none; }
-  .pcard__media img { max-height: 188px; width: auto; object-fit: contain; }
+  .pcard__media img { max-height: 188px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
   .pcard__nophoto { font-size: 14px; color: var(--text-tertiary); }
   .pcard__badge { position: absolute; top: 16px; left: 16px; }
   .pcard__body { display: flex; flex-direction: column; gap: 12px; padding: 16px 20px 20px; flex: 1; }
@@ -58,7 +58,7 @@ const label = brandLabel(product);
   .pcard__price { font: 600 20px/24px var(--font); letter-spacing: -0.01em; white-space: nowrap; }
   @media (max-width: 600px) {
     .pcard__media { height: 148px; padding: 10px; }
-    .pcard__media img { max-height: 128px; }
+    .pcard__media img { max-height: 128px; max-width: 100%; }
     .pcard__badge { top: 8px; left: 8px; }
     .pcard__body { padding: 12px; gap: 8px; }
     .pcard__meta .mono { font-size: 12px; line-height: 16px; font-weight: 400; }

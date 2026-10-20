@@ -170,8 +170,9 @@ const ld = {
 
 <style>
   .product { display: grid; grid-template-columns: 620px minmax(0, 1fr); gap: 48px; align-items: start; }
-  .gallery { position: relative; display: grid; place-items: center; height: 560px; padding: 64px; border-radius: var(--radius-lg); background: #fff; }
-  .gallery img { max-height: 100%; width: auto; object-fit: contain; }
+  /* строка сетки 1fr при фиксированной высоте: фото любой пропорции вписывается в рамку, а не растягивает её */
+  .gallery { position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); place-items: center; height: 560px; padding: 64px; border-radius: var(--radius-lg); background: #fff; }
+  .gallery img { width: 100%; height: 100%; object-fit: contain; }
   .gallery__badge { position: absolute; top: 24px; left: 24px; }
   .info { display: flex; flex-direction: column; gap: 24px; }
   .info__head { display: flex; flex-direction: column; gap: 12px; }
