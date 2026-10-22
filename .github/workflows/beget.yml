@@ -33,6 +33,9 @@ jobs:
       - name: Правила сервера
         # .htaccess собирается сайтом (src/pages/main.htaccess.ts); правила старого домена новому сайту не нужны
         run: mv dist/main.htaccess dist/.htaccess && rm -f dist/old-domain.htaccess
+      - name: Проверка приёмника форм
+        # сломанный send.php не должен попасть на хостинг: без него заказы не дойдут
+        run: php -l dist/send.php
       - id: cfg
         name: Есть ли доступ к хостингу
         run: echo "ready=${{ secrets.BEGET_FTP_PASSWORD != '' && vars.BEGET_DIR != '' }}" >> "$GITHUB_OUTPUT"

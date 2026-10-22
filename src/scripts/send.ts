@@ -1,9 +1,8 @@
-// Отправка заказов и заявок на почту владельца.
-// Сейчас через Web3Forms (ключ formsKey в src/data/site.json). Чтобы сменить сервис,
-// достаточно поправить эту функцию: формы на сайте вызывают только sendForm().
+// Отправка заказов и заявок на почту владельца через приёмник на своём хостинге (send.php, Beget, Россия):
+// данные покупателей не уходят сторонним сервисам. Формы на сайте вызывают только sendForm().
 import site from '../data/site.json';
 
-const ENDPOINT = 'https://api.web3forms.com/submit';
+const ENDPOINT = `${import.meta.env.BASE_URL}send.php`;
 
 export interface SendResult {
   ok: boolean;
@@ -23,24 +22,15 @@ export function orderNumber(): string {
  * @param replyTo почта клиента, чтобы ответить ему прямо из письма
  */
 export async function sendForm(subject: string, fields: Record<string, string>, replyTo?: string): Promise<SendResult> {
-  const key = (site as { formsKey?: string }).formsKey;
-  if (!key) return { ok: false, error: `Отправка ещё не настроена. Позвоните нам: ${site.phone}.` };
   const clean = Object.fromEntries(Object.entries(fields).filter(([, v]) => v && String(v).trim()));
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: key,
-        subject,
-        from_name: `Сайт ${site.name}`,
-        ...(replyTo ? { replyto: replyTo } : {}),
-        ...clean,
-        'Страница': location.href,
-      }),
+      body: JSON.stringify({ subject, replyTo: replyTo || '', fields: { ...clean, 'Страница': location.href } }),
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || data.success === false) throw new Error(data.message || res.statusText);
+    if (!res.ok || !data.ok) throw new Error(data.error || res.statusText);
     return { ok: true };
   } catch {
     return { ok: false, error: `Не получилось отправить. Позвоните нам, пожалуйста: ${site.phone}.` };

@@ -162,7 +162,6 @@ collections:
           - { name: hours, label: Режим работы, widget: string }
           - { name: hoursSchema, label: "Режим работы для поисковиков", widget: string, hint: "Формат: Mo-Fr 09:00-16:00" }
           - { name: foundingYear, label: Год основания, widget: number, value_type: int }
-          - { name: formsKey, label: "Ключ Web3Forms для писем с заказами", widget: string, required: false, hint: "Access key с web3forms.com. Письма приходят на почту, указанную при получении ключа" }
           - { name: dadataToken, label: "Ключ DaData для подсказок города и адреса", widget: string, required: false, hint: "API-ключ из личного кабинета dadata.ru. Без него подсказывается только город из короткого списка" }
           - { name: yandexMetrika, label: Номер счётчика Яндекс Метрики, widget: string, required: false }
       - name: about
