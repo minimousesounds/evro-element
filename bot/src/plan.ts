@@ -4,7 +4,7 @@ import { findBySku, type Catalog, type CatalogProduct } from './catalog';
 import { uniqueSlug, type NewProduct } from './content';
 
 export type Change =
-  | { kind: 'update'; productId: string; path: string; sku: string; title: string; price?: number; inStock?: boolean; newTitle?: string; brand?: string; productKind?: 'original' | 'analog'; category?: string; addPhoto?: boolean; unhide?: boolean }
+  | { kind: 'update'; productId: string; path: string; sku: string; title: string; price?: number; inStock?: boolean; newTitle?: string; brand?: string; productKind?: 'original' | 'analog'; category?: string; addPhoto?: boolean; unhide?: boolean; description?: string }
   | { kind: 'create'; slug: string; product: NewProduct; addPhoto: boolean };
 
 export interface Plan {
@@ -80,13 +80,14 @@ export function buildPlan(actions: Action[], catalog: Catalog, hasPhoto: boolean
       u.addPhoto = true;
       photoUsed = true;
     }
+    if (a.type === 'description' && a.description != null) u.description = a.description.trim();
     // скрытый товар возвращается на сайт, если его продают снова (не «кончился»)
-    if (p.hidden && a.in_stock !== false) u.unhide = true;
+    if (p.hidden && a.in_stock !== false && a.type !== 'description') u.unhide = true;
   }
 
   // действия, которые ничего не меняют (цена и так такая), не показываем
   plan.changes = plan.changes.filter(
-    (c) => c.kind === 'create' || c.price != null || c.inStock != null || c.newTitle || c.brand || c.productKind || c.category || c.addPhoto || c.unhide,
+    (c) => c.kind === 'create' || c.price != null || c.inStock != null || c.newTitle || c.brand || c.productKind || c.category || c.addPhoto || c.unhide || c.description != null,
   );
   if (hasPhoto && !photoUsed && actions.length) plan.problems.push('Не понял, к какому товару фото. Напишите артикул в подписи.');
   return plan;
@@ -111,6 +112,8 @@ export function describe(plan: Plan, catalog: Catalog): string[] {
     if (c.category) parts.push(`категория «${cat(c.category)}»`);
     if (c.addPhoto) parts.push('новое фото');
     if (c.unhide) parts.push('вернётся на сайт');
+    // описание показываем целиком: владелец должен увидеть исправленный текст до подтверждения
+    if (c.description != null) parts.push(c.description ? `новое описание:\n«${c.description}»` : 'описание убрано');
     return `• ${c.sku} ${c.title}: ${parts.join(', ')}`;
   });
 }
@@ -118,7 +121,7 @@ export function describe(plan: Plan, catalog: Catalog): string[] {
 /** Короткое описание для коммита. */
 export function commitMessage(plan: Plan): string {
   const head = plan.changes
-    .map((c) => (c.kind === 'create' ? `новый ${c.product.sku}` : `${c.sku}${c.price != null ? ` цена ${c.price}` : ''}${c.inStock != null ? (c.inStock ? ' в наличии' : ' нет в наличии') : ''}${c.addPhoto ? ' фото' : ''}`))
+    .map((c) => (c.kind === 'create' ? `новый ${c.product.sku}` : `${c.sku}${c.price != null ? ` цена ${c.price}` : ''}${c.inStock != null ? (c.inStock ? ' в наличии' : ' нет в наличии') : ''}${c.addPhoto ? ' фото' : ''}${c.description != null ? ' описание' : ''}`))
     .join(', ');
   return `Бот: ${head}`.slice(0, 120);
 }

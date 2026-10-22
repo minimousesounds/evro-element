@@ -17,7 +17,7 @@ const catalog: Catalog = {
   ],
 };
 
-const a = (x: Partial<Action> & Pick<Action, 'type' | 'sku'>): Action => ({ price: null, in_stock: null, title: null, category: null, kind: null, brand: null, ...x });
+const a = (x: Partial<Action> & Pick<Action, 'type' | 'sku'>): Action => ({ price: null, in_stock: null, title: null, category: null, kind: null, brand: null, description: null, ...x });
 
 const md = (sku: string, price: number) => `---\ntitle: "Фильтр"\nsku: "${sku}"\nbrand: "ASAS"\nkind: ""\ncategory: filtr-toplivnyj\nprice: ${price}\ninStock: true\nimages: []\n---\n`;
 
@@ -62,6 +62,12 @@ group('план изменений', () => {
     const plan = buildPlan([a({ type: 'price', sku: 'SP677', price: 250 })], hidden, false);
     expect(describe(plan, hidden)).toEqual(['• SP677 Фильтр масляный: цена 220 ₽ → 250 ₽, вернётся на сайт']);
     expect(buildPlan([a({ type: 'stock', sku: 'SP677', in_stock: false })], hidden, false).changes[0]).not.toHaveProperty('unhide');
+  });
+
+  it('меняет описание и показывает текст целиком', () => {
+    const plan = buildPlan([a({ type: 'description', sku: 'SP926M', description: 'Высота 160 мм. Ставится на КамАЗ Евро-3.' })], catalog, false);
+    expect(describe(plan, catalog)).toEqual(['• SP926M Фильтр топливный: новое описание:\n«Высота 160 мм. Ставится на КамАЗ Евро-3.»']);
+    expect(commitMessage(plan)).toBe('Бот: SP926M описание');
   });
 
   it('отвечает на вопрос без изменений', () => {

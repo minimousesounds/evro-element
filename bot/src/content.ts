@@ -61,6 +61,12 @@ export function setHidden(md: string, hidden: boolean): string {
   return join(setLine(fm, 'hidden', String(hidden)), body);
 }
 
+/** Описание товара — текст после блока ---; пустой текст убирает описание. */
+export function setBody(md: string, text: string): string {
+  const { fm } = splitFrontmatter(md);
+  return join(fm, text.trim() ? `\n${text.trim()}\n` : '');
+}
+
 export function setCategory(md: string, category: string): string {
   const { fm, body } = splitFrontmatter(md);
   return join(setLine(fm, 'category', category), body);

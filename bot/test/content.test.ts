@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addImage, newProductMd, readField, setCategory, setInStock, setPrice, setText, slugify, uniqueSlug } from '../src/content';
+import { addImage, newProductMd, readField, setBody, setCategory, setInStock, setPrice, setText, slugify, uniqueSlug } from '../src/content';
 
 const md = `---
 title: "Фильтр топливный"
@@ -45,6 +45,18 @@ describe('правка товара', () => {
   it('добавляет фото к товару без фото', () => {
     const out = addImage(md.replace(/images:\n  - .*\n/, 'images: []\n'), '/uploads/products/x.jpg');
     expect(out).toContain('images:\n  - "/uploads/products/x.jpg"\nreplaces');
+  });
+});
+
+describe('описание товара', () => {
+  const md = '---\ntitle: "Фильтр"\nprice: 100\n---\n';
+  it('записывает описание после блока --- и не трогает поля', () => {
+    const out = setBody(md, '  Высота 160 мм.\n\nСтавится на КамАЗ.  ');
+    expect(out).toBe('---\ntitle: "Фильтр"\nprice: 100\n---\n\nВысота 160 мм.\n\nСтавится на КамАЗ.\n');
+    expect(readField(out, 'price')).toBe('100');
+  });
+  it('пустой текст убирает описание', () => {
+    expect(setBody(setBody(md, 'Текст'), '')).toBe(md);
   });
 });
 
