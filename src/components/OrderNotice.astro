@@ -1,0 +1,54 @@
+---
+// Плашка над шапкой, когда оформление на сайте временно недоступно (настройка ordersPaused в site.json).
+// Можно закрыть: до конца визита она не появится, но страница корзины всё равно подскажет, как заказать.
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+const phoneHref = 'tel:' + site.phone.replace(/[^\d+]/g, '');
+---
+{site.ordersPaused && (
+  <div class="onotice" role="status" data-onotice>
+    <div class="container onotice__in">
+      <Icon name="phone" size={18} class="onotice__icon" />
+      <p class="onotice__text">
+        <b>Оформление на сайте временно на паузе.</b>
+        <span class="onotice__more"> Заказы принимаем по телефону <a href={phoneHref}>{site.phone}</a>{site.email && <> и почте <a href={`mailto:${site.email}`}>{site.email}</a></>}. Отгружаем как обычно.</span>
+        <span class="onotice__short"> Звоните: <a href={phoneHref}>{site.phone}</a></span>
+      </p>
+      <button class="onotice__close" type="button" aria-label="Скрыть объявление" data-onotice-close><Icon name="close" size={18} /></button>
+    </div>
+  </div>
+)}
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-onotice]');
+  if (bar) {
+    try {
+      if (sessionStorage.getItem('kf-onotice') === 'closed') bar.hidden = true;
+    } catch {
+      /* хранилище недоступно: плашка просто остаётся */
+    }
+    bar.querySelector('[data-onotice-close]')!.addEventListener('click', () => {
+      bar.hidden = true;
+      try {
+        sessionStorage.setItem('kf-onotice', 'closed');
+      } catch {
+        /* ничего страшного */
+      }
+    });
+  }
+</script>
+
+<style>
+  .onotice { background: var(--bg-accent-subtle); border-bottom: 1px solid color-mix(in srgb, var(--bg-accent) 45%, transparent); color: var(--text-primary); }
+  .onotice__in { display: flex; gap: 12px; align-items: center; min-height: 44px; padding-top: 8px; padding-bottom: 8px; }
+  .onotice :global(.onotice__icon) { flex: none; color: var(--text-primary); }
+  .onotice__text { flex: 1; margin: 0; font-size: 14px; line-height: 20px; }
+  .onotice__text a { font-weight: 600; white-space: nowrap; }
+  .onotice__short { display: none; }
+  .onotice__close { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 8px; background: none; color: var(--text-secondary); cursor: pointer; }
+  .onotice__close:hover { background: color-mix(in srgb, var(--bg-accent) 35%, transparent); color: var(--text-primary); }
+  @media (max-width: 600px) {
+    .onotice__more { display: none; }
+    .onotice__short { display: inline; }
+  }
+</style>

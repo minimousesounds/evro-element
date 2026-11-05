@@ -7,6 +7,8 @@ import site from '../data/site.json';
 <Base title="Оформление заказа" noindex>
   <div class="container">
     <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Корзина', href: '/cart/' }, { label: 'Оформление' }]} />
+    {/* пока оформление на паузе, отправляем в корзину: там звонок и письмо с составом заказа */}
+    {site.ordersPaused && <script is:inline>location.replace('/cart/');</script>}
     <div class="page-title"><h1>Оформление заказа</h1></div>
     <form class="cart section" style="padding-top: 0;" id="order-form" data-dadata={site.dadataToken} novalidate>
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />

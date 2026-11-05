@@ -9,6 +9,7 @@ import '@fontsource/jetbrains-mono/500.css';
 import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
+import OrderNotice from '../components/OrderNotice.astro';
 import Footer from '../components/Footer.astro';
 import CallbackModal from '../components/CallbackModal.astro';
 
@@ -84,6 +85,7 @@ const business = {
     )}
   </head>
   <body>
+    <OrderNotice />
     <Header phoneHref={phoneHref} />
     <main>
       <slot />

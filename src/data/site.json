@@ -16,6 +16,7 @@
   "hoursSchema": "Mo-Fr 09:00-16:00",
   "foundingYear": 2008,
   "forceHttps": true,
+  "ordersPaused": true,
   "yandexMetrika": "",
   "dadataToken": ""
 }

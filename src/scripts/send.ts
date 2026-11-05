@@ -22,6 +22,10 @@ export function orderNumber(): string {
  * @param replyTo почта клиента, чтобы ответить ему прямо из письма
  */
 export async function sendForm(subject: string, fields: Record<string, string>, replyTo?: string): Promise<SendResult> {
+  // приём заявок на сайте на паузе (site.json ordersPaused): сразу подсказываем телефон и почту
+  if ((site as { ordersPaused?: boolean }).ordersPaused) {
+    return { ok: false, error: `Заявки с сайта временно не принимаем. Позвоните: ${site.phone}${site.email ? ` или напишите на ${site.email}` : ''}.` };
+  }
   const clean = Object.fromEntries(Object.entries(fields).filter(([, v]) => v && String(v).trim()));
   try {
     const res = await fetch(ENDPOINT, {
