@@ -119,7 +119,17 @@ const ld = {
             <button class="btn btn--l buy__add" type="button" data-ctl-add><Icon name="plus" size={20} />Добавить в корзину</button>
             <a class="btn btn--l btn--dark buy__add" href="/cart/" data-ctl-go hidden><Icon name="check" size={20} />В корзине, оформить</a>
           </div>
-          <p class="notice notice--plain"><Icon name="info" size={18} />Оформите заказ на сайте. Соберём его и отправим выбранным способом.</p>
+          {site.ordersPaused ? (
+            <>
+              {/* пока оформление на паузе, этот товар можно купить на Ozon с онлайн-оплатой */}
+              {d.ozon && (
+                <a class="btn btn--l btn--outline btn--block buy__ozon" href={d.ozon} target="_blank" rel="noopener nofollow">Купить на Ozon<Icon name="arrow-up-right" size={20} /></a>
+              )}
+              <p class="notice notice--plain"><Icon name="info" size={18} />Оформление на сайте временно на паузе. Добавьте товар в корзину и отправьте заказ на почту в один клик или позвоните{d.ozon ? '. На Ozon цена может отличаться' : ''}.</p>
+            </>
+          ) : (
+            <p class="notice notice--plain"><Icon name="info" size={18} />Оформите заказ на сайте. Соберём его и отправим выбранным способом.</p>
+          )}
         </div>
 
         <ul class="conds">
@@ -220,6 +230,8 @@ const ld = {
     .gallery__badge { top: 16px; left: 16px; }
     .buy { padding: 20px; }
     .buy__actions { flex-direction: column; }
+    /* в колонке flex: 1 сжимал кнопку по высоте */
+    .buy__add { flex: none; }
     .buy__actions .stepper { width: 100%; }
     .conds li { padding: 16px 20px; }
     .tabs { gap: 20px; }

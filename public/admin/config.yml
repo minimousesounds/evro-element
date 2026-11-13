@@ -35,6 +35,7 @@ collections:
         widget: select
         default: "шт."
         options: ["шт.", "компл."]
+      - { name: ozon, label: Ссылка на Ozon, widget: string, required: false, hint: "Карточка товара на Ozon. Кнопка «Купить на Ozon» видна, только пока включено «Заказы только по телефону и почте»" }
       - { name: minQty, label: Минимальная партия, widget: number, value_type: int, min: 1, default: 1, hint: "Меньше этого количества положить в корзину нельзя" }
       - name: category
         label: Категория

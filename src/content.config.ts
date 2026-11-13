@@ -30,6 +30,8 @@ const products = defineCollection({
     minQty: z.number().int().min(1).default(1),
     // снят с сайта: страницы нет, старые адреса ведут в категорию
     hidden: z.boolean().default(false),
+    // карточка этого товара на Ozon: кнопка «Купить на Ozon» показывается, пока оформление на сайте на паузе (ordersPaused)
+    ozon: z.string().optional().default(''),
     popular: z.boolean().default(false),
     offer: z.boolean().default(false),
     images: z.array(z.string()).default([]),
